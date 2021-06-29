@@ -1,0 +1,28 @@
+﻿// <copyright file="Line3.cs" company="Daniel Snouck">
+// Copyright (c) Daniel Snouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+// </copyright>
+
+namespace Scenery.Models
+{
+    /// <summary>
+    /// Represents a line in three dimensions.
+    /// </summary>
+    public class Line3
+    {
+        /// <summary>
+        /// Gets or sets the origin.
+        /// </summary>
+        public Vector3 Origin { get; set; } = new Vector3();
+
+        /// <summary>
+        /// Gets or sets the direction.
+        /// </summary>
+        public Vector3 Direction { get; set; } = new Vector3
+        {
+            XCoordinate = 1D,
+            YCoordinate = 0D,
+            ZCoordinate = 0D,
+        };
+    }
+}
