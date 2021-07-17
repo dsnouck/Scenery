@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Scenery.Models;
-using System.Collections.Generic;
+using Scenery.Models.Scenes;
 
 namespace Scenery.Controllers.Controllers
 {
@@ -11,7 +11,13 @@ namespace Scenery.Controllers.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return base.Ok(new List<SceneContainer> { new SceneContainer() });
+            return base.Ok(new SceneContainer { Scene = new ScaledScene { OriginalScene = new SphereScene() } });
+        }
+
+        [HttpPost]
+        public IActionResult Post(SceneContainer scene)
+        {
+            return base.Ok(scene);
         }
     }
 }
