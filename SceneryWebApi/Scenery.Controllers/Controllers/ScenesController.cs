@@ -11,7 +11,22 @@ namespace Scenery.Controllers.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return base.Ok(new SceneContainer { Scene = new ScaledScene { OriginalScene = new SphereScene() } });
+            var scene = new SceneContainer
+            {
+                Scene = new IntersectedScene
+                {
+                    Scenes =
+                    {
+                        new CubeScene(),
+                        new ScaledScene
+                        {
+                            Factor = 1.3D,
+                            OriginalScene = new SphereScene(),
+                        },
+                    },
+                },
+            };
+            return base.Ok(scene);
         }
 
         [HttpPost]
