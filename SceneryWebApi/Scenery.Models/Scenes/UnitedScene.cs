@@ -13,6 +13,6 @@ namespace Scenery.Models.Scenes
         /// <summary>
         /// Gets the scenes to be united.
         /// </summary>
-        public List<Scene> Scenes { get; } = new List<Scene>();
+        public List<Scene> Scenes { get; set; } = new List<Scene>();
     }
 }

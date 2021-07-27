@@ -17,33 +17,45 @@ namespace Scenery.Controllers.Controllers
                 {
                     Scenes =
                     {
-                        new ColoredScene
+                        new UnitedScene
                         {
-                            Color = new Color
+                            Scenes =
                             {
-                                RedComponent = 0D,
-                                GreenComponent = 0D,
-                                BlueComponent = 1D,
+                                new ConeScene(),
+                                new CubeScene(),
                             },
-                            OriginalScene = new CubeScene(),
                         },
                         new ColoredScene
                         {
-                            Color = new Color
-                            {
-                                RedComponent = 1D,
-                                GreenComponent = 0D,
-                                BlueComponent = 0D,
-                            },
-                            OriginalScene = new ScaledScene
-                            {
-                                Factor = 1.3D,
-                                OriginalScene = new SphereScene(),
-                            },
+                            OriginalScene = new CylinderScene(),
                         },
+                        new InvertedScene
+                        {
+                            OriginalScene = new DodecahedronScene(),
+                        },
+                        new InvisibleScene
+                        {
+                            OriginalScene = new EmptyScene(),
+                        },
+                        new PlaneScene(),
+                        new RotatedScene
+                        {
+                            OriginalScene = new FullScene(),
+                        },
+                        new ScaledScene
+                        {
+                            OriginalScene = new IcosahedronScene(),
+                        },
+                        new TranslatedScene
+                        {
+                            OriginalScene = new OctahedronScene(),
+                        },
+                        new SphereScene(),
+                        new TetrahedronScene(),
                     },
                 },
             };
+
             return base.Ok(scene);
         }
 
