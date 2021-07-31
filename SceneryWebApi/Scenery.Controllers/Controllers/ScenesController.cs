@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Scenery.Models;
 using Scenery.Models.Scenes;
+using System.Drawing;
+using System.IO;
 
 namespace Scenery.Controllers.Controllers
 {
@@ -62,7 +64,34 @@ namespace Scenery.Controllers.Controllers
         [HttpPost]
         public IActionResult Post(SceneContainer scene)
         {
-            return base.Ok(scene);
+            using var image = GetImage();
+            return this.File(image, "image/png", "scene.png");
+        }
+
+        private static Stream GetImage()
+        {
+            var rowCount = 240;
+            var columnCount = 320;
+            var bitmap = new Bitmap(columnCount, rowCount);
+            
+            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++)
+            {
+                for (var columnIndex = 0; columnIndex < columnCount; columnIndex++)
+                {
+                    bitmap.SetPixel(
+                        columnIndex,
+                        rowIndex,
+                        System.Drawing.Color.FromArgb(
+                            byte.MaxValue,
+                            byte.MinValue,
+                            byte.MinValue));
+                }
+            }
+
+            var stream = new MemoryStream();
+            bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            stream.Position = 0;
+            return stream;
         }
     }
 }
