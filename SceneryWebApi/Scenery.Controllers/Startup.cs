@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Scenery.Components;
 using Scenery.Controllers.Converters;
 
 namespace Scenery.Controllers
@@ -26,6 +27,7 @@ namespace Scenery.Controllers
                 {
                     options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter());
                 });
+            services.AddComponents();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scenery.Controllers", Version = "v1" });

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Scenery.Components.Interfaces;
 using Scenery.Models;
 using Scenery.Models.Scenes;
-using System.Drawing;
-using System.IO;
 
 namespace Scenery.Controllers.Controllers
 {
@@ -10,6 +9,13 @@ namespace Scenery.Controllers.Controllers
     [Route("[controller]")]
     public class ScenesController : ControllerBase
     {
+        private readonly ISceneContainerComponent sceneContainerComponent;
+
+        public ScenesController(ISceneContainerComponent sceneContainerComponent)
+        {
+            this.sceneContainerComponent = sceneContainerComponent;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -19,44 +25,65 @@ namespace Scenery.Controllers.Controllers
                 {
                     Scenes =
                     {
-                        new UnitedScene
+                        new ColoredScene
                         {
-                            Scenes =
+                            Color = new Color
                             {
-                                new ConeScene(),
-                                new CubeScene(),
+                                RedComponent = 1D,
+                                GreenComponent = 0D,
+                                BlueComponent = 0D,
                             },
+                            OriginalScene = new CubeScene(),
                         },
                         new ColoredScene
                         {
-                            OriginalScene = new CylinderScene(),
+                            Color = new Color
+                            {
+                                RedComponent = 0D,
+                                GreenComponent = 0D,
+                                BlueComponent = 1D,
+                            },
+                            OriginalScene = new InvertedScene
+                            {
+                                OriginalScene = new ScaledScene
+                                {
+                                    Factor = 1.3D,
+                                    OriginalScene = new SphereScene(),
+                                },
+                            },
                         },
-                        new InvertedScene
-                        {
-                            OriginalScene = new DodecahedronScene(),
-                        },
-                        new InvisibleScene
-                        {
-                            OriginalScene = new EmptyScene(),
-                        },
-                        new PlaneScene(),
-                        new RotatedScene
-                        {
-                            OriginalScene = new FullScene(),
-                        },
-                        new ScaledScene
-                        {
-                            OriginalScene = new IcosahedronScene(),
-                        },
-                        new TranslatedScene
-                        {
-                            OriginalScene = new OctahedronScene(),
-                        },
-                        new SphereScene(),
-                        new TetrahedronScene(),
                     },
                 },
+                ProjectorSettings = new ProjectorSettings
+                {
+                    Eye = new Vector3
+                    {
+                        XCoordinate = 4.430761575624772D,
+                        YCoordinate = -2.4205360806680094D,
+                        ZCoordinate = 3.2418138352088386D,
+                    },
+                    Focus = new Vector3
+                    {
+                        XCoordinate = 0D,
+                        YCoordinate = 0D,
+                        ZCoordinate = 0D,
+                    },
+                    HorizontalOpeningAngle = 0.7853981633974483D,
+                    BackgroundColor = new Color
+                    {
+                        RedComponent = 1D,
+                        GreenComponent = 1D,
+                        BlueComponent = 1D,
+                    },
+                },
+                SamplerSettings = new SamplerSettings
+                {
+                    ColumnCount = 160,
+                    RowCount = 120,
+                    SubsampleCount = 2,
+                },
             };
+
 
             return base.Ok(scene);
         }
@@ -64,34 +91,8 @@ namespace Scenery.Controllers.Controllers
         [HttpPost]
         public IActionResult Post(SceneContainer scene)
         {
-            using var image = GetImage();
+            var image = this.sceneContainerComponent.GetStream(scene);
             return this.File(image, "image/png", "scene.png");
-        }
-
-        private static Stream GetImage()
-        {
-            var rowCount = 240;
-            var columnCount = 320;
-            var bitmap = new Bitmap(columnCount, rowCount);
-            
-            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++)
-            {
-                for (var columnIndex = 0; columnIndex < columnCount; columnIndex++)
-                {
-                    bitmap.SetPixel(
-                        columnIndex,
-                        rowIndex,
-                        System.Drawing.Color.FromArgb(
-                            byte.MaxValue,
-                            byte.MinValue,
-                            byte.MinValue));
-                }
-            }
-
-            var stream = new MemoryStream();
-            bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-            stream.Position = 0;
-            return stream;
         }
     }
 }
