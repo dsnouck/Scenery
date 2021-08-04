@@ -1,16 +1,29 @@
-﻿using Scenery.Models;
-using Scenery.Models.Scenes;
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
+﻿// <copyright file="SceneJsonConverter.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+// </copyright>
 
 namespace Scenery.Controllers.Converters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.Json;
+    using Scenery.Models;
+    using Scenery.Models.Scenes;
+
+    /// <inheritdoc/>
     public class SceneJsonConverter : CustomJsonConverter<Scene>
     {
+        /// <inheritdoc/>
         public override Scene Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             return ReadScene(ref reader);
+        }
+
+        /// <inheritdoc/>
+        public override void Write(Utf8JsonWriter writer, Scene value, JsonSerializerOptions options)
+        {
+            WriteScene(writer, value);
         }
 
         private static Scene ReadScene(ref Utf8JsonReader reader)
@@ -170,11 +183,6 @@ namespace Scenery.Controllers.Converters
             return vector;
         }
 
-        public override void Write(Utf8JsonWriter writer, Scene value, JsonSerializerOptions options)
-        {
-            WriteScene(writer, value);
-        }
-
         private static void WriteScene(Utf8JsonWriter writer, Scene scene)
         {
             WriteStartObject(writer);
@@ -246,6 +254,7 @@ namespace Scenery.Controllers.Converters
             {
                 WriteScene(writer, scene);
             }
+
             WriteEndArray(writer);
         }
 
@@ -258,6 +267,7 @@ namespace Scenery.Controllers.Converters
             WriteNumber(writer, nameof(Color.BlueComponent), color.BlueComponent);
             WriteEndObject(writer);
         }
+
         private static void WriteVector(Utf8JsonWriter writer, string propertyName, Vector3 vector)
         {
             WritePropertyName(writer, propertyName);

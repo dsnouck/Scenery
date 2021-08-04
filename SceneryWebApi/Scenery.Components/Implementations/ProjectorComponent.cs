@@ -1,16 +1,16 @@
-﻿// <copyright file="ProjectorComponent.cs" company="Daniel Snouck">
-// Copyright (c) Daniel Snouck. All rights reserved.
-// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+﻿// <copyright file="ProjectorComponent.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
 namespace Scenery.Components.Implementations
 {
+    using System;
+    using System.Linq;
     using Scenery.Components.Interfaces;
     using Scenery.Components.Interfaces.SceneComponents;
     using Scenery.Models;
     using Scenery.Models.Scenes;
-    using System;
-    using System.Linq;
 
     /// <inheritdoc/>
     public class ProjectorComponent : IProjectorComponent
@@ -42,6 +42,11 @@ namespace Scenery.Components.Implementations
         /// <inheritdoc/>
         public Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings)
         {
+            if (scene == null)
+            {
+                throw new ArgumentNullException(nameof(scene));
+            }
+
             if (projectorSettings == null)
             {
                 throw new ArgumentNullException(nameof(projectorSettings));

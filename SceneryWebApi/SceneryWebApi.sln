@@ -8,11 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41685725-68BC-4E37-88BD-B20A1B486AD0}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.Models", "Scenery.Models\Scenery.Models.csproj", "{51E8F4A2-1BE5-4799-9213-17268D002181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenery.Components", "Scenery.Components\Scenery.Components.csproj", "{2C858559-F39F-4ADA-A54A-1BFB31448B7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.Components", "Scenery.Components\Scenery.Components.csproj", "{2C858559-F39F-4ADA-A54A-1BFB31448B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

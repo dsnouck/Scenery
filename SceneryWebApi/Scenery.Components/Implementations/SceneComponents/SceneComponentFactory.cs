@@ -1,16 +1,16 @@
-﻿// <copyright file="SceneComponentFactory.cs" company="Daniel Snouck">
-// Copyright (c) Daniel Snouck. All rights reserved.
-// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+﻿// <copyright file="SceneComponentFactory.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
 namespace Scenery.Components.Implementations.SceneComponents
 {
+    using System;
+    using System.Linq;
     using Scenery.Components.Interfaces;
     using Scenery.Components.Interfaces.SceneComponents;
     using Scenery.Models;
     using Scenery.Models.Scenes;
-    using System;
-    using System.Linq;
 
     /// <inheritdoc/>
     public class SceneComponentFactory : ISceneComponentFactory
@@ -70,6 +70,16 @@ namespace Scenery.Components.Implementations.SceneComponents
                 UnitedScene unitedScene => this.CreateUnitedSceneComponent(unitedScene),
                 _ => throw new NotSupportedException($"Unknown {nameof(Scene)} {scene.GetType().Name}."),
             };
+        }
+
+        private static ISceneComponent CreateEmptySceneComponent()
+        {
+            return new EmptySceneComponent();
+        }
+
+        private static ISceneComponent CreateFullSceneComponent()
+        {
+            return new FullSceneComponent();
         }
 
         private ISceneComponent CreateColoredSceneComponent(ColoredScene coloredScene)
@@ -222,16 +232,6 @@ namespace Scenery.Components.Implementations.SceneComponents
             };
 
             return this.CreateSceneComponent(intersectedScene);
-        }
-
-        private static ISceneComponent CreateEmptySceneComponent()
-        {
-            return new EmptySceneComponent();
-        }
-
-        private static ISceneComponent CreateFullSceneComponent()
-        {
-            return new FullSceneComponent();
         }
 
         private ISceneComponent CreateIcosahedronSceneComponent()

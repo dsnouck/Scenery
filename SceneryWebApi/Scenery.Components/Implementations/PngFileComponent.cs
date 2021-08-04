@@ -1,14 +1,14 @@
-﻿// <copyright file="PngFileComponent.cs" company="Daniel Snouck">
-// Copyright (c) Daniel Snouck. All rights reserved.
-// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+﻿// <copyright file="PngFileComponent.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
 namespace Scenery.Components.Implementations
 {
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
     using System.Collections.Generic;
     using System.IO;
+    using Scenery.Components.Interfaces;
+    using Scenery.Models;
 
     /// <inheritdoc/>
     public class PngFileComponent : IBitmapFileComponent
@@ -19,13 +19,13 @@ namespace Scenery.Components.Implementations
         /// Initializes a new instance of the <see cref="PngFileComponent"/> class.
         /// </summary>
         /// <param name="bitmapComponent">An <see cref="IBitmapComponent"/>.</param>
-        /// <param name="fileComponent">An <see cref="IFileComponent"/>.</param>
         public PngFileComponent(
             IBitmapComponent bitmapComponent)
         {
             this.bitmapComponent = bitmapComponent;
         }
 
+        /// <inheritdoc/>
         public Stream GetStream(List<List<Color>> bitmap)
         {
             var stream = new MemoryStream();

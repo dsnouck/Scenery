@@ -1,13 +1,13 @@
-﻿// <copyright file="Vector3Component.cs" company="Daniel Snouck">
-// Copyright (c) Daniel Snouck. All rights reserved.
-// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+﻿// <copyright file="Vector3Component.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
 namespace Scenery.Components.Implementations
 {
+    using System;
     using Scenery.Components.Interfaces;
     using Scenery.Models;
-    using System;
 
     /// <inheritdoc/>
     public class Vector3Component : IVector3Component

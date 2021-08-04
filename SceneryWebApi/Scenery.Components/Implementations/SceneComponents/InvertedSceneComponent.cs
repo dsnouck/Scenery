@@ -1,15 +1,15 @@
-﻿// <copyright file="InvertedSceneComponent.cs" company="Daniel Snouck">
-// Copyright (c) Daniel Snouck. All rights reserved.
-// Licensed under the MIT License. See LICENSE file in the solution root for full license information.
+﻿// <copyright file="InvertedSceneComponent.cs" company="dsnouck">
+// Copyright (c) dsnouck. All rights reserved.
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
 namespace Scenery.Components.Implementations.SceneComponents
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Scenery.Components.Interfaces;
     using Scenery.Components.Interfaces.SceneComponents;
     using Scenery.Models;
-    using System.Collections.Generic;
-    using System.Linq;
 
     /// <inheritdoc/>
     public class InvertedSceneComponent : ISceneComponent
