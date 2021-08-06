@@ -1,0 +1,34 @@
+{
+  "$type": "Scenery.Entities.SceneContainer, Scenery.Entities",
+  "Scene": {
+    "$type": "Scenery.Entities.Scenes.SphereScene, Scenery.Entities"
+  },
+  "ProjectorSettings": {
+    "$type": "Scenery.Entities.ProjectorSettings, Scenery.Entities",
+    "Eye": {
+      "$type": "Scenery.Entities.Vector3, Scenery.Entities",
+      "XCoordinate": 2.0,
+      "YCoordinate": 2.0,
+      "ZCoordinate": 2.0
+    },
+    "Focus": {
+      "$type": "Scenery.Entities.Vector3, Scenery.Entities",
+      "XCoordinate": 0.0,
+      "YCoordinate": 0.0,
+      "ZCoordinate": 0.0
+    },
+    "HorizontalOpeningAngle": 0.7853981633974483,
+    "BackgroundColor": {
+      "$type": "Scenery.Entities.Color, Scenery.Entities",
+      "RedComponent": 0.0,
+      "GreenComponent": 0.0,
+      "BlueComponent": 0.0
+    }
+  },
+  "SamplerSettings": {
+    "$type": "Scenery.Entities.SamplerSettings, Scenery.Entities",
+    "ColumnCount": 128,
+    "RowCount": 128,
+    "SubsampleCount": 2
+  }
+}

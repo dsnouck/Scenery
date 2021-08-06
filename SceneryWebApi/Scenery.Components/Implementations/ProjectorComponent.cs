@@ -42,11 +42,6 @@ namespace Scenery.Components.Implementations
         /// <inheritdoc/>
         public Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings)
         {
-            if (scene == null)
-            {
-                throw new ArgumentNullException(nameof(scene));
-            }
-
             if (projectorSettings == null)
             {
                 throw new ArgumentNullException(nameof(projectorSettings));

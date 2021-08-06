@@ -14,6 +14,12 @@ namespace Scenery.Components.Interfaces
     public interface ISceneContainerComponent
     {
         /// <summary>
+        /// Gets an example <see cref="SceneContainer"/>.
+        /// </summary>
+        /// <returns>An example <see cref="SceneContainer"/>.</returns>
+        SceneContainer GetExample();
+
+        /// <summary>
         /// Gets the <paramref name="sceneContainer"/> rendered to a <see cref="Stream"/>.
         /// </summary>
         /// <param name="sceneContainer">The scene container.</param>

@@ -114,7 +114,7 @@ namespace Scenery.Controllers.Converters
                 throw new JsonException();
             }
 
-            return reader.GetString();
+            return reader.GetString() !;
         }
 
         /// <summary>
