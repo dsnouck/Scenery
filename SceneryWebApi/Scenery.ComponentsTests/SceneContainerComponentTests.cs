@@ -5,9 +5,15 @@
 
 namespace Scenery.Components.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using FluentAssertions;
     using Moq;
     using Scenery.Components.Implementations;
     using Scenery.Components.Interfaces;
+    using Scenery.Models;
+    using Scenery.Models.Scenes;
+    using Xunit;
 
     /// <summary>
     /// Provides tests for <see cref="SceneContainerComponent"/>.
@@ -31,6 +37,42 @@ namespace Scenery.Components.Tests
                 this.bitmapFileComponentTestDouble.Object,
                 this.projectorComponentTestDouble.Object,
                 this.samplerComponentTestDouble.Object);
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneContainerComponent.GetExample"/>.
+        /// </summary>
+        [Fact]
+        public void WhenGetExampleIsCalledThenTheResultIsNotNull()
+        {
+            // Arrange.
+
+            // Act.
+            var result = this.systemUnderTest.GetExample();
+
+            // Assert.
+            result.Should().NotBeNull();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneContainerComponent.GetStream(SceneContainer)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenASceneContainerWhenGetStreamIsCalledThenTheCorrectActionsArePerformed()
+        {
+            // Arrange.
+            var sceneContainer = new SceneContainer();
+
+            // Act.
+            this.systemUnderTest.GetStream(sceneContainer);
+
+            // Assert.
+            this.projectorComponentTestDouble
+                .Verify(component => component.ProjectSceneToImage(It.IsAny<Scene>(), It.IsAny<ProjectorSettings>()), Times.Once);
+            this.samplerComponentTestDouble
+                .Verify(component => component.SampleImageToBitmap(It.IsAny<Func<Vector2, Color>>(), It.IsAny<SamplerSettings>()), Times.Once);
+            this.bitmapFileComponentTestDouble
+                .Verify(component => component.GetStream(It.IsAny<List<List<Color>>>()), Times.Once);
         }
     }
 }

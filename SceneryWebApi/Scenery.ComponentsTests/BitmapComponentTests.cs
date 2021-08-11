@@ -53,6 +53,7 @@ namespace Scenery.Components.Tests
                 },
             });
 
+            // TODO: Remove superfluous tests like this.
             // Assert.
             action.Should().NotThrow();
 
