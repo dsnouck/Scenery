@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41685725-68BC-4E37-88BD-B20A1B486AD0}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		CodeCoverage.runsettings = CodeCoverage.runsettings
+		SceneryWebApi.runsettings = SceneryWebApi.runsettings
 		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.Components", "Scene
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ComponentsTests", "Scenery.ComponentsTests\Scenery.ComponentsTests.csproj", "{B004AF67-9AE1-43B9-8C5D-FCD50B6D59D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenery.ControllersTests", "Scenery.ControllersTests\Scenery.ControllersTests.csproj", "{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ControllersTests", "Scenery.ControllersTests\Scenery.ControllersTests.csproj", "{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
