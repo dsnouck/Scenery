@@ -5,11 +5,13 @@
 
 namespace Scenery.ControllersTests.Controllers
 {
+    using System.IO;
     using FluentAssertions;
     using Microsoft.AspNetCore.Mvc;
     using Moq;
     using Scenery.Components.Interfaces;
     using Scenery.Controllers.Controllers;
+    using Scenery.Models;
     using Xunit;
 
     /// <summary>
@@ -43,6 +45,28 @@ namespace Scenery.ControllersTests.Controllers
             result.Should().BeOfType<OkObjectResult>();
             this.sceneContainerComponentTestDouble
                 .Verify(component => component.GetExample(), Times.Once);
+        }
+
+        /// <summary>
+        /// Tests <see cref="ScenesController.Post(SceneContainer)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenASceneContainerWhenPostIsCalledThenSceneContainerComponentGetStreamIsCalled()
+        {
+            // Arrange.
+            var sceneContainer = new SceneContainer();
+            using var stream = new MemoryStream();
+            this.sceneContainerComponentTestDouble
+                .Setup(component => component.GetStream(It.IsAny<SceneContainer>()))
+                .Returns(stream);
+
+            // Act.
+            var result = this.systemUnderTest.Post(sceneContainer);
+
+            // Assert.
+            result.Should().BeOfType<FileStreamResult>();
+            this.sceneContainerComponentTestDouble
+                .Verify(component => component.GetStream(It.IsAny<SceneContainer>()));
         }
     }
 }
