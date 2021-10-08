@@ -139,6 +139,134 @@ namespace Scenery.ControllersTests.Converters
         }
 
         /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingStartObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"""string""";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingEndObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""type"":""sphereScene"",""string"":""string""}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingStartArrayWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""type"":""intersectedScene"",""scenes"":""string""}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingPropertyWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAnUnexpectedPropertyWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""string"":""string""}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingNumberWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""type"":""scaledScene"",""factor"":""string""}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenAMissingStringWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""type"":0}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+        /// </summary>
+        [Fact]
+        public void GivenANullStringWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
+        {
+            // Arrange.
+            const string json = @"{""type"":null}";
+
+            // Act.
+            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+
+            // Assert.
+            action.Should().Throw<JsonException>();
+        }
+
+        /// <summary>
         /// Tests <see cref="SceneJsonConverter.Write(Utf8JsonWriter, Scene, JsonSerializerOptions)"/>.
         /// </summary>
         [Fact]

@@ -120,7 +120,7 @@ namespace Scenery.Controllers.Converters
             ReadPropertyName(ref reader, propertyName);
             reader.Read();
 
-            if (reader.TokenType != JsonTokenType.String)
+            if (reader.TokenType != JsonTokenType.String && reader.TokenType != JsonTokenType.Null)
             {
                 throw new JsonException();
             }
