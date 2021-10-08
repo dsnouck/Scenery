@@ -250,6 +250,7 @@ namespace Scenery.Controllers.Converters
         {
             WritePropertyName(writer, propertyName);
             WriteStartArray(writer);
+
             foreach (var scene in scenes)
             {
                 WriteScene(writer, scene);

@@ -18,7 +18,14 @@ namespace Scenery.Controllers.Converters
         /// <param name="reader">The reader.</param>
         protected static void ReadStartObject(ref Utf8JsonReader reader)
         {
-            if (reader.TokenType != JsonTokenType.StartObject && (!reader.Read() || reader.TokenType != JsonTokenType.StartObject))
+            if (reader.TokenType == JsonTokenType.StartObject)
+            {
+                return;
+            }
+
+            reader.Read();
+
+            if (reader.TokenType != JsonTokenType.StartObject)
             {
                 throw new JsonException();
             }
@@ -30,7 +37,9 @@ namespace Scenery.Controllers.Converters
         /// <param name="reader">The reader.</param>
         protected static void ReadEndObject(ref Utf8JsonReader reader)
         {
-            if (!reader.Read() || reader.TokenType != JsonTokenType.EndObject)
+            reader.Read();
+
+            if (reader.TokenType != JsonTokenType.EndObject)
             {
                 throw new JsonException();
             }
@@ -42,7 +51,9 @@ namespace Scenery.Controllers.Converters
         /// <param name="reader">The reader.</param>
         protected static void ReadStartArray(ref Utf8JsonReader reader)
         {
-            if (!reader.Read() || reader.TokenType != JsonTokenType.StartArray)
+            reader.Read();
+
+            if (reader.TokenType != JsonTokenType.StartArray)
             {
                 throw new JsonException();
             }
@@ -55,11 +66,7 @@ namespace Scenery.Controllers.Converters
         /// <returns>Whether the end array could be read.</returns>
         protected static bool ReadEndArray(ref Utf8JsonReader reader)
         {
-            if (!reader.Read())
-            {
-                throw new JsonException();
-            }
-
+            reader.Read();
             return reader.TokenType == JsonTokenType.EndArray;
         }
 
@@ -70,7 +77,9 @@ namespace Scenery.Controllers.Converters
         /// <param name="propertyName">The property name.</param>
         protected static void ReadPropertyName(ref Utf8JsonReader reader, string propertyName)
         {
-            if (!reader.Read() || reader.TokenType != JsonTokenType.PropertyName)
+            reader.Read();
+
+            if (reader.TokenType != JsonTokenType.PropertyName)
             {
                 throw new JsonException();
             }
@@ -90,8 +99,9 @@ namespace Scenery.Controllers.Converters
         protected static double ReadDoubleProperty(ref Utf8JsonReader reader, string propertyName)
         {
             ReadPropertyName(ref reader, propertyName);
+            reader.Read();
 
-            if (!reader.Read() || reader.TokenType != JsonTokenType.Number)
+            if (reader.TokenType != JsonTokenType.Number)
             {
                 throw new JsonException();
             }
@@ -108,8 +118,9 @@ namespace Scenery.Controllers.Converters
         protected static string ReadStringProperty(ref Utf8JsonReader reader, string propertyName)
         {
             ReadPropertyName(ref reader, propertyName);
+            reader.Read();
 
-            if (!reader.Read() || reader.TokenType != JsonTokenType.String)
+            if (reader.TokenType != JsonTokenType.String)
             {
                 throw new JsonException();
             }
