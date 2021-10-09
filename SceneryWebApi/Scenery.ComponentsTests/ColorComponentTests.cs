@@ -10,6 +10,7 @@ namespace Scenery.Components.Tests
     using FluentAssertions;
     using Scenery.Components.Implementations;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -18,7 +19,6 @@ namespace Scenery.Components.Tests
     public class ColorComponentTests
     {
         private readonly ColorComponent systemUnderTest;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColorComponentTests"/> class.
@@ -26,7 +26,6 @@ namespace Scenery.Components.Tests
         public ColorComponentTests()
         {
             this.systemUnderTest = new ColorComponent();
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace Scenery.Components.Tests
                     GreenComponent = 0.5D,
                     BlueComponent = 0.5D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -189,7 +188,7 @@ namespace Scenery.Components.Tests
                     GreenComponent = 0.25D,
                     BlueComponent = 0.5D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
     }
 }

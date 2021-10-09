@@ -9,6 +9,7 @@ namespace Scenery.Components.Tests
     using FluentAssertions;
     using Scenery.Components.Implementations;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -17,7 +18,6 @@ namespace Scenery.Components.Tests
     public class Vector3ComponentTests
     {
         private readonly Vector3Component systemUnderTest;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector3ComponentTests"/> class.
@@ -25,7 +25,6 @@ namespace Scenery.Components.Tests
         public Vector3ComponentTests()
         {
             this.systemUnderTest = new Vector3Component();
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -92,7 +91,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 7D,
                     ZCoordinate = 9D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 0D,
                     ZCoordinate = 1D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -184,7 +183,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 6D,
                     ZCoordinate = -3D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -214,7 +213,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 1D,
                     ZCoordinate = 1.5D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -274,7 +273,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.DotProduct(vector, otherVector);
 
             // Assert.
-            result.Should().BeApproximately(32D, this.doubleEquivalencyTestComponent.Precision);
+            result.Should().BeApproximately(32D, Equivalencies.DoublePrecision);
         }
 
         /// <summary>
@@ -295,7 +294,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.GetLength(vector);
 
             // Assert.
-            result.Should().BeApproximately(3.742D, this.doubleEquivalencyTestComponent.Precision);
+            result.Should().BeApproximately(3.742D, Equivalencies.DoublePrecision);
         }
 
         /// <summary>
@@ -341,7 +340,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 4D,
                     ZCoordinate = 6D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -369,7 +368,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = 0.535D,
                     ZCoordinate = 0.802D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -436,7 +435,7 @@ namespace Scenery.Components.Tests
                     YCoordinate = -3D,
                     ZCoordinate = -3D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
     }
 }

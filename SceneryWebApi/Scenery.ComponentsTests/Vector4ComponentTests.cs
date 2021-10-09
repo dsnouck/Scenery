@@ -9,6 +9,7 @@ namespace Scenery.Components.Tests
     using FluentAssertions;
     using Scenery.Components.Implementations;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -17,7 +18,6 @@ namespace Scenery.Components.Tests
     public class Vector4ComponentTests
     {
         private readonly Vector4Component systemUnderTest;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector4ComponentTests"/> class.
@@ -25,7 +25,6 @@ namespace Scenery.Components.Tests
         public Vector4ComponentTests()
         {
             this.systemUnderTest = new Vector4Component();
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.DotProduct(vector, otherVector);
 
             // Assert.
-            result.Should().BeApproximately(70D, this.doubleEquivalencyTestComponent.Precision);
+            result.Should().BeApproximately(70D, Equivalencies.DoublePrecision);
         }
     }
 }

@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ComponentsTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ControllersTests", "Scenery.ControllersTests\Scenery.ControllersTests.csproj", "{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenery.TestInstrumentation", "Scenery.TestInstrumentation\Scenery.TestInstrumentation.csproj", "{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

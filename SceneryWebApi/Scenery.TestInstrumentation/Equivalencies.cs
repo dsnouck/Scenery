@@ -3,30 +3,20 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Tests
+namespace Scenery.TestInstrumentation
 {
     using FluentAssertions;
     using FluentAssertions.Equivalency;
 
-    // TODO: Move to separate project.
-
     /// <summary>
     /// Provides double equivalencies.
     /// </summary>
-    public class DoubleEquivalencyTestComponent
+    public static class Equivalencies
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoubleEquivalencyTestComponent"/> class.
+        /// Gets the double precision.
         /// </summary>
-        public DoubleEquivalencyTestComponent()
-        {
-            this.Precision = 0.001D;
-        }
-
-        /// <summary>
-        /// Gets the precision.
-        /// </summary>
-        public double Precision { get; }
+        public static double DoublePrecision => 0.001D;
 
         /// <summary>
         /// Defines a double equivalency for comparing <typeparamref name="TEntity"/>s.
@@ -34,10 +24,10 @@ namespace Scenery.Components.Tests
         /// <typeparam name="TEntity">The type of entity.</typeparam>
         /// <param name="options">The options.</param>
         /// <returns>A double equivalency for comparing <typeparamref name="TEntity"/>s.</returns>
-        public EquivalencyAssertionOptions<TEntity> DoubleEquivalency<TEntity>(EquivalencyAssertionOptions<TEntity> options)
+        public static EquivalencyAssertionOptions<TEntity> DoubleEquivalency<TEntity>(EquivalencyAssertionOptions<TEntity> options)
         {
             return options
-                .Using<double>(context => context.Subject.Should().BeApproximately(context.Expectation, this.Precision))
+                .Using<double>(context => context.Subject.Should().BeApproximately(context.Expectation, DoublePrecision))
                 .WhenTypeIs<double>();
         }
     }

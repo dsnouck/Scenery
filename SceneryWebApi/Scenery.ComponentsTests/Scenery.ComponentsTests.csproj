@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Scenery.Components\Scenery.Components.csproj" />
+    <ProjectReference Include="..\Scenery.TestInstrumentation\Scenery.TestInstrumentation.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,7 @@ namespace Scenery.Components.Tests
     using Scenery.Components.Implementations;
     using Scenery.Components.Interfaces;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -22,7 +23,6 @@ namespace Scenery.Components.Tests
         private readonly SamplerComponent systemUnderTest;
         private readonly Mock<IColorComponent> colorComponentTestDouble;
         private readonly Mock<IFuncDoubleDoubleComponent> funcDoubleDoubleComponentTestDouble;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SamplerComponentTests"/> class.
@@ -34,7 +34,6 @@ namespace Scenery.Components.Tests
             this.systemUnderTest = new SamplerComponent(
                 this.colorComponentTestDouble.Object,
                 this.funcDoubleDoubleComponentTestDouble.Object);
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace Scenery.Components.Tests
                         new Color(),
                     },
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
             this.colorComponentTestDouble
                 .Verify(component => component.Average(It.IsAny<List<Color>>()), Times.Exactly(6));
             this.funcDoubleDoubleComponentTestDouble
@@ -150,7 +149,7 @@ namespace Scenery.Components.Tests
                         new Color(),
                     },
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
             this.colorComponentTestDouble
                 .Verify(component => component.Average(It.IsAny<List<Color>>()), Times.Exactly(6));
             this.funcDoubleDoubleComponentTestDouble

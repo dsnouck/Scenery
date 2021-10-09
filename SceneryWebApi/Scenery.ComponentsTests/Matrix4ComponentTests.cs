@@ -11,6 +11,7 @@ namespace Scenery.Components.Tests
     using Scenery.Components.Implementations;
     using Scenery.Components.Interfaces;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -21,7 +22,6 @@ namespace Scenery.Components.Tests
         private readonly Matrix4Component systemUnderTest;
         private readonly Mock<IVector3Component> vector3ComponentTestDouble;
         private readonly Mock<IVector4Component> vector4ComponentTestDouble;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Matrix4ComponentTests"/> class.
@@ -33,7 +33,6 @@ namespace Scenery.Components.Tests
             this.systemUnderTest = new Matrix4Component(
                 this.vector3ComponentTestDouble.Object,
                 this.vector4ComponentTestDouble.Object);
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace Scenery.Components.Tests
                         WCoordinate = 1D,
                     },
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
             this.vector3ComponentTestDouble
                 .Verify(component => component.Normalize(It.IsAny<Vector3>()), Times.Once);
         }
@@ -140,7 +139,7 @@ namespace Scenery.Components.Tests
                         WCoordinate = 1D,
                     },
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -209,7 +208,7 @@ namespace Scenery.Components.Tests
                         WCoordinate = 1D,
                     },
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>

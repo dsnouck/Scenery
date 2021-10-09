@@ -10,6 +10,7 @@ namespace Scenery.Components.Tests
     using FluentAssertions;
     using Scenery.Components.Implementations;
     using Scenery.Models;
+    using Scenery.TestInstrumentation;
     using Xunit;
 
     /// <summary>
@@ -18,7 +19,6 @@ namespace Scenery.Components.Tests
     public class FuncDoubleDoubleComponentTests
     {
         private readonly FuncDoubleDoubleComponent systemUnderTest;
-        private readonly DoubleEquivalencyTestComponent doubleEquivalencyTestComponent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FuncDoubleDoubleComponentTests"/> class.
@@ -26,7 +26,6 @@ namespace Scenery.Components.Tests
         public FuncDoubleDoubleComponentTests()
         {
             this.systemUnderTest = new FuncDoubleDoubleComponent();
-            this.doubleEquivalencyTestComponent = new DoubleEquivalencyTestComponent();
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.GetLineThrough(point, otherPoint);
 
             // Assert.
-            result(5D).Should().BeApproximately(6D, this.doubleEquivalencyTestComponent.Precision);
+            result(5D).Should().BeApproximately(6D, Equivalencies.DoublePrecision);
         }
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace Scenery.Components.Tests
                     -1D,
                     1D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace Scenery.Components.Tests
                     0D,
                     0D,
                 },
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
 
         /// <summary>
@@ -151,7 +150,7 @@ namespace Scenery.Components.Tests
             // Assert.
             result.Should().BeEquivalentTo(
                 new List<double>(),
-                this.doubleEquivalencyTestComponent.DoubleEquivalency);
+                Equivalencies.DoubleEquivalency);
         }
     }
 }
