@@ -73,21 +73,10 @@ namespace Scenery.Components.Tests
         public void GivenTheColorIsNullWhenGetSystemDrawingColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetSystemDrawingColorFromColor(Color color)
-            {
-                return () => this.systemUnderTest.GetSystemDrawingColorFromColor(color);
-            }
+            Color color = null;
 
             // Act.
-            var action = GetSystemDrawingColorFromColor(new Color());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetSystemDrawingColorFromColor(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetSystemDrawingColorFromColor(color);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -122,21 +111,10 @@ namespace Scenery.Components.Tests
         public void GivenTheColorIsNullWhenGetRedGreenBlueBytesFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetBytesFromColor(Color color)
-            {
-                return () => this.systemUnderTest.GetRedGreenBlueBytesFromColor(color);
-            }
+            Color color = null;
 
             // Act.
-            var action = GetBytesFromColor(new Color());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetBytesFromColor(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetRedGreenBlueBytesFromColor(color);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -176,21 +154,10 @@ namespace Scenery.Components.Tests
         public void GivenTheColorIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Multiply(Color color)
-            {
-                return () => this.systemUnderTest.Multiply(color, 0D);
-            }
+            Color color = null;
 
             // Act.
-            var action = Multiply(new Color());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Multiply(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Multiply(color, 0D);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

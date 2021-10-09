@@ -7,9 +7,9 @@
           <CodeCoverage>
             <ModulePaths>
               <Include>
-                <ModulePath>^.*Scenery\.Components\.dll</ModulePath>
-                <ModulePath>^.*Scenery\.Controllers\.dll</ModulePath>
-                <ModulePath>^.*Scenery\.Models\.dll</ModulePath>
+                <ModulePath>^.*Scenery\.Components\.dll$</ModulePath>
+                <ModulePath>^.*Scenery\.Controllers\.dll$</ModulePath>
+                <ModulePath>^.*Scenery\.Models\.dll$</ModulePath>
               </Include>
             </ModulePaths>
             <Sources>

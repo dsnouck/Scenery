@@ -5,9 +5,10 @@
 
 namespace Scenery.Components.Tests
 {
-    using System;
     using FluentAssertions;
     using FluentAssertions.Equivalency;
+
+    // TODO: Move to separate project.
 
     /// <summary>
     /// Provides double equivalencies.
@@ -35,11 +36,6 @@ namespace Scenery.Components.Tests
         /// <returns>A double equivalency for comparing <typeparamref name="TEntity"/>s.</returns>
         public EquivalencyAssertionOptions<TEntity> DoubleEquivalency<TEntity>(EquivalencyAssertionOptions<TEntity> options)
         {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-
             return options
                 .Using<double>(context => context.Subject.Should().BeApproximately(context.Expectation, this.Precision))
                 .WhenTypeIs<double>();

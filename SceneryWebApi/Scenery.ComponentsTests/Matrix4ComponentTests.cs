@@ -150,21 +150,10 @@ namespace Scenery.Components.Tests
         public void GivenTheTranslationIsNullWhenGetTranslationMatrixIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetTranslationMatrix(Vector3 translation)
-            {
-                return () => this.systemUnderTest.GetTranslationMatrix(translation);
-            }
+            Vector3 translation = null;
 
             // Act.
-            var action = GetTranslationMatrix(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetTranslationMatrix(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetTranslationMatrix(translation);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -230,21 +219,10 @@ namespace Scenery.Components.Tests
         public void GivenTheMatrixIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Multiply(Matrix4 matrix)
-            {
-                return () => this.systemUnderTest.Multiply(matrix, new Vector4());
-            }
+            Matrix4 matrix = null;
 
             // Act.
-            var action = Multiply(new Matrix4());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Multiply(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Multiply(matrix, new Vector4());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

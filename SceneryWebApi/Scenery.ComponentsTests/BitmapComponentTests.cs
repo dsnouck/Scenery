@@ -39,28 +39,10 @@ namespace Scenery.Components.Tests
         public void GivenTheBitmapIsNullWhenCreateSystemDrawingBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action CreateSystemDrawingBitmap(List<List<Color>> bitmap)
-            {
-                return () => this.systemUnderTest.CreateSystemDrawingBitmap(bitmap);
-            }
+            List<List<Color>> bitmap = null;
 
             // Act.
-            var action = CreateSystemDrawingBitmap(new List<List<Color>>
-            {
-                new List<Color>
-                {
-                    new Color(),
-                },
-            });
-
-            // TODO: Remove superfluous tests like this.
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = CreateSystemDrawingBitmap(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.CreateSystemDrawingBitmap(bitmap);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

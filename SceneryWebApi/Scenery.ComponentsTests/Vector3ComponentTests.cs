@@ -35,21 +35,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenAddIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Add(Vector3 vector)
-            {
-                return () => this.systemUnderTest.Add(vector, new Vector3());
-            }
+            Vector3 vector = null;
 
             // Act.
-            var action = Add(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Add(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Add(vector, new Vector3());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -62,21 +51,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenAddIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Add(Vector3 otherVector)
-            {
-                return () => this.systemUnderTest.Add(new Vector3(), otherVector);
-            }
+            Vector3 otherVector = null;
 
             // Act.
-            var action = Add(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Add(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Add(new Vector3(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -149,21 +127,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenCrossProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action CrossProduct(Vector3 vector)
-            {
-                return () => this.systemUnderTest.CrossProduct(vector, new Vector3());
-            }
+            Vector3 vector = null;
 
             // Act.
-            var action = CrossProduct(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = CrossProduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.CrossProduct(vector, new Vector3());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -176,21 +143,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenCrossProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Crossproduct(Vector3 otherVector)
-            {
-                return () => this.systemUnderTest.CrossProduct(new Vector3(), otherVector);
-            }
+            Vector3 otherVector = null;
 
             // Act.
-            var action = Crossproduct(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Crossproduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.CrossProduct(new Vector3(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -268,21 +224,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action DotProduct(Vector3 vector)
-            {
-                return () => this.systemUnderTest.DotProduct(vector, new Vector3());
-            }
+            Vector3 vector = null;
 
             // Act.
-            var action = DotProduct(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = DotProduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.DotProduct(vector, new Vector3());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -295,21 +240,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action DotProduct(Vector3 otherVector)
-            {
-                return () => this.systemUnderTest.DotProduct(new Vector3(), otherVector);
-            }
+            Vector3 otherVector = null;
 
             // Act.
-            var action = DotProduct(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = DotProduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.DotProduct(new Vector3(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -371,21 +305,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Multiply(Vector3 vector)
-            {
-                return () => this.systemUnderTest.Multiply(vector, 0D);
-            }
+            Vector3 vector = null;
 
             // Act.
-            var action = Multiply(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Multiply(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Multiply(vector, 0D);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -456,21 +379,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenSubtractIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Subtract(Vector3 vector)
-            {
-                return () => this.systemUnderTest.Subtract(vector, new Vector3());
-            }
+            Vector3 vector = null;
 
             // Act.
-            var action = Subtract(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Subtract(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Subtract(vector, new Vector3());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -483,21 +395,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenSubtractIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action Subtract(Vector3 otherVector)
-            {
-                return () => this.systemUnderTest.Subtract(new Vector3(), otherVector);
-            }
+            Vector3 otherVector = null;
 
             // Act.
-            var action = Subtract(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = Subtract(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Subtract(new Vector3(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

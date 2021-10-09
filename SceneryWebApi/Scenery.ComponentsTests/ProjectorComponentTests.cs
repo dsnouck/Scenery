@@ -50,21 +50,10 @@ namespace Scenery.Components.Tests
         public void GivenTheProjectorSettingsIsNullWhenProjectSceneToImageIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action ProjectSceneToImage(ProjectorSettings projectorSettings)
-            {
-                return () => this.systemUnderTest.ProjectSceneToImage(new Scene(), projectorSettings);
-            }
+            ProjectorSettings projectorSettings = null;
 
             // Act.
-            var action = ProjectSceneToImage(new ProjectorSettings());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = ProjectSceneToImage(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.ProjectSceneToImage(new Scene(), projectorSettings);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

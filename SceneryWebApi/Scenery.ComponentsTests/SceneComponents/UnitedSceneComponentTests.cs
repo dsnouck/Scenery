@@ -119,28 +119,10 @@ namespace Scenery.Components.Tests.SceneComponents
         public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetAllIntercepts(Line3 lineOfSight)
-            {
-                return () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
-            }
-
-            this.originalSceneComponentTestDouble
-                .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-                .Returns(new List<Intercept>());
-            this.otherOriginalSceneComponentTestDouble
-                .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-                .Returns(new List<Intercept>());
+            Line3 lineOfSight = null;
 
             // Act.
-            var action = GetAllIntercepts(new Line3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetAllIntercepts(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

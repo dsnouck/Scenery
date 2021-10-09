@@ -48,21 +48,10 @@ namespace Scenery.Components.Tests.SceneComponents
         public void GivenTheSceneIsNullWhenCreateSceneComponentIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action CreateSceneComponent(Scene scene)
-            {
-                return () => this.systemUnderTest.CreateSceneComponent(scene);
-            }
+            Scene scene = null;
 
             // Act.
-            var action = CreateSceneComponent(new SphereScene());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = CreateSceneComponent(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -72,22 +61,13 @@ namespace Scenery.Components.Tests.SceneComponents
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenANotImplementedSceneWhenCreateSceneComponentIsCalledThenANotSupportedExceptionIsThrown()
+        public void GivenANonspecificSceneWhenCreateSceneComponentIsCalledThenANotSupportedExceptionIsThrown()
         {
             // Arrange.
-            Action CreateSceneComponent(Scene scene)
-            {
-                return () => this.systemUnderTest.CreateSceneComponent(scene);
-            }
+            var scene = new Scene();
 
             // Act.
-            var action = CreateSceneComponent(new SphereScene());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-            action = CreateSceneComponent(new Scene());
+            Action action = () => this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
             action.Should().Throw<NotSupportedException>();

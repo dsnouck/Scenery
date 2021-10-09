@@ -50,24 +50,10 @@ namespace Scenery.Components.Tests.SceneComponents
         public void GivenThePointIsNullWhenContainsIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            this.matrix4ComponentTestDouble
-                .Setup(component => component.Multiply(It.IsAny<Matrix4>(), It.IsAny<Vector4>()))
-                .Returns(new Vector4());
-            Action Contains(Vector3 point)
-            {
-                return () => this.systemUnderTest.Contains(point);
-            }
+            Vector3 point = null;
 
             // Act.
-            var action = Contains(new Vector3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = action = Contains(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.Contains(point);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -102,31 +88,10 @@ namespace Scenery.Components.Tests.SceneComponents
         public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetAllIntercepts(Line3 lineOfSight)
-            {
-                return () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
-            }
-
-            this.matrix4ComponentTestDouble
-                .Setup(component => component.Multiply(It.IsAny<Matrix4>(), It.IsAny<Vector4>()))
-                .Returns(new Vector4());
-            this.originalSceneComponentTestDouble
-                .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-                .Returns(new List<Intercept>
-                {
-                    new Intercept(),
-                });
+            Line3 lineOfSight = null;
 
             // Act.
-            var action = GetAllIntercepts(new Line3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetAllIntercepts(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

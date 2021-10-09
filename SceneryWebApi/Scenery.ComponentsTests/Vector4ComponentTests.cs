@@ -35,21 +35,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action DotProduct(Vector4 vector)
-            {
-                return () => this.systemUnderTest.DotProduct(vector, new Vector4());
-            }
+            Vector4 vector = null;
 
             // Act.
-            var action = DotProduct(new Vector4());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = DotProduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.DotProduct(vector, new Vector4());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -62,21 +51,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action DotProduct(Vector4 otherVector)
-            {
-                return () => this.systemUnderTest.DotProduct(new Vector4(), otherVector);
-            }
+            Vector4 otherVector = null;
 
             // Act.
-            var action = DotProduct(new Vector4());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = DotProduct(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.DotProduct(new Vector4(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

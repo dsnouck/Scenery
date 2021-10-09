@@ -38,21 +38,10 @@ namespace Scenery.Components.Tests
         public void GivenTheLineIsNullWhenGetPointAtDistanceIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetPointAtDistance(Line3 line)
-            {
-                return () => this.systemUnderTest.GetPointAtDistance(line, 0D);
-            }
+            Line3 line = null;
 
             // Act.
-            var action = GetPointAtDistance(new Line3());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetPointAtDistance(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetPointAtDistance(line, 0D);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

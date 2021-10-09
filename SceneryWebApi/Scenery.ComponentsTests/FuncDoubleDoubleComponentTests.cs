@@ -36,21 +36,10 @@ namespace Scenery.Components.Tests
         public void GivenTheVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetLineThrough(Vector2 vector)
-            {
-                return () => this.systemUnderTest.GetLineThrough(vector, new Vector2());
-            }
+            Vector2 vector = null;
 
             // Act.
-            var action = GetLineThrough(new Vector2());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetLineThrough(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetLineThrough(vector, new Vector2());
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
@@ -63,21 +52,10 @@ namespace Scenery.Components.Tests
         public void GivenTheOtherVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action GetLineThrough(Vector2 otherVector)
-            {
-                return () => this.systemUnderTest.GetLineThrough(new Vector2(), otherVector);
-            }
+            Vector2 otherVector = null;
 
             // Act.
-            var action = GetLineThrough(new Vector2());
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = GetLineThrough(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.GetLineThrough(new Vector2(), otherVector);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();

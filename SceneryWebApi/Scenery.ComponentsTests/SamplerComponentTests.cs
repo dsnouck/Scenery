@@ -44,32 +44,10 @@ namespace Scenery.Components.Tests
         public void GivenTheSamplerSettingsIsNullWhenSampleImageToBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
-            Action SampleImageToBitmap(SamplerSettings samplerSettings)
-            {
-                return () => this.systemUnderTest.SampleImageToBitmap(vector => new Color(), samplerSettings);
-            }
-
-            this.funcDoubleDoubleComponentTestDouble
-                .Setup(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
-                .Returns(xCoordinate => 0D);
-
-            var samplerSettings = new SamplerSettings
-            {
-                ColumnCount = 1,
-                RowCount = 1,
-                SubsampleCount = 1,
-            };
+            SamplerSettings samplerSettings = null;
 
             // Act.
-            var action = SampleImageToBitmap(samplerSettings);
-
-            // Assert.
-            action.Should().NotThrow();
-
-            // Act.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            action = SampleImageToBitmap(null);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            Action action = () => this.systemUnderTest.SampleImageToBitmap(vector => new Color(), samplerSettings);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
