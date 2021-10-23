@@ -126,22 +126,6 @@ namespace Scenery.ControllersTests.Converters
         /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
         /// </summary>
         [Fact]
-        public void GivenASceneAsJsonWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
-        {
-            // Arrange.
-            const string json = @"{""type"":""scene""}";
-
-            // Act.
-            Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
-
-            // Assert.
-            action.Should().Throw<JsonException>();
-        }
-
-        /// <summary>
-        /// Tests <see cref="SceneJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
-        /// </summary>
-        [Fact]
         public void GivenAMissingStartObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
         {
             // Arrange.
