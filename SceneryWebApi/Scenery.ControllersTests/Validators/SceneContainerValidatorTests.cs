@@ -8,6 +8,8 @@ namespace Scenery.ControllersTests.Validators
     using System;
     using FluentAssertions;
     using FluentValidation.TestHelper;
+    using Moq;
+    using Scenery.Components.Interfaces;
     using Scenery.Controllers.Validators;
     using Scenery.Models;
     using Scenery.Models.Scenes;
@@ -19,13 +21,19 @@ namespace Scenery.ControllersTests.Validators
     public class SceneContainerValidatorTests
     {
         private readonly SceneContainerValidator systemUnderTest;
+        private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SceneContainerValidatorTests"/> class.
         /// </summary>
         public SceneContainerValidatorTests()
         {
-            this.systemUnderTest = new SceneContainerValidator();
+            this.vector3ComponentTestDouble = new Mock<IVector3Component>();
+            this.vector3ComponentTestDouble
+                .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+                .Returns(1D);
+
+            this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
         }
 
         /// <summary>

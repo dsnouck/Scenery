@@ -6,6 +6,7 @@
 namespace Scenery.Controllers.Validators
 {
     using FluentValidation;
+    using Scenery.Components.Interfaces;
     using Scenery.Models;
 
     /// <summary>
@@ -16,13 +17,19 @@ namespace Scenery.Controllers.Validators
         /// <summary>
         /// Initializes a new instance of the <see cref="SceneContainerValidator"/> class.
         /// </summary>
-        public SceneContainerValidator()
+        /// <param name="vector3Component">An <see cref="IVector3Component"/>.</param>
+        public SceneContainerValidator(IVector3Component vector3Component)
         {
             // TODO: Add unit tests.
-            // TODO: Add validators for all properties.
             this.RuleFor(sceneContainer => sceneContainer.Scene)
                 .NotNull()
                 .SetValidator(new SceneValidator());
+            this.RuleFor(sceneContainer => sceneContainer.ProjectorSettings)
+                .NotNull()
+                .SetValidator(new ProjectorSettingsValidator(vector3Component));
+            this.RuleFor(sceneContainer => sceneContainer.SamplerSettings)
+                .NotNull()
+                .SetValidator(new SamplerSettingsValidator());
         }
     }
 }
