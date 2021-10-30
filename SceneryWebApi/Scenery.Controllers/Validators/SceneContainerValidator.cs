@@ -10,7 +10,7 @@ namespace Scenery.Controllers.Validators
     using Scenery.Models;
 
     /// <summary>
-    /// Represents a validator for <see cref="SceneContainer"/>s.
+    /// Represents a validator for <see cref="SceneContainer"/>.
     /// </summary>
     public class SceneContainerValidator : AbstractValidator<SceneContainer>
     {
@@ -23,7 +23,7 @@ namespace Scenery.Controllers.Validators
             // TODO: Add unit tests.
             this.RuleFor(sceneContainer => sceneContainer.Scene)
                 .NotNull()
-                .SetValidator(new SceneValidator());
+                .SetValidator(new SceneValidator(vector3Component));
             this.RuleFor(sceneContainer => sceneContainer.ProjectorSettings)
                 .NotNull()
                 .SetValidator(new ProjectorSettingsValidator(vector3Component));

@@ -15,6 +15,8 @@ namespace Scenery.ControllersTests.Validators
     using Scenery.Models.Scenes;
     using Xunit;
 
+    // TODO: Create separate test classes for testing each validator.
+
     /// <summary>
     /// Provides tests for <see cref="SceneContainerValidator"/>.
     /// </summary>
