@@ -35,7 +35,7 @@ namespace Scenery.ControllersTests.Validators
         }
 
         /// <summary>
-        /// Tests <see cref="SceneContainerValidator"/>.
+        /// Tests <see cref="SceneValidator"/>.
         /// </summary>
         [Fact]
         public void GivenSceneIsOfTypeSceneWhenValidateIsCalledThenItFails()

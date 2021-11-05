@@ -69,5 +69,43 @@ namespace Scenery.ControllersTests.Validators
             // Assert.
             result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Scene);
         }
+
+        /// <summary>
+        /// Tests <see cref="SceneContainerValidator"/>.
+        /// </summary>
+        [Fact]
+        public void GivenProjectorSettingsIsNullWhenValidateIsCalledThenItFails()
+        {
+            // Arrange.
+            var sceneContainer = new SceneContainer
+            {
+                ProjectorSettings = null,
+            };
+
+            // Act.
+            var result = this.systemUnderTest.TestValidate(sceneContainer);
+
+            // Assert.
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings);
+        }
+
+        /// <summary>
+        /// Tests <see cref="SceneContainerValidator"/>.
+        /// </summary>
+        [Fact]
+        public void GivenSamplerSettingsIsNullWhenValidateIsCalledThenItFails()
+        {
+            // Arrange.
+            var sceneContainer = new SceneContainer
+            {
+                SamplerSettings = null,
+            };
+
+            // Act.
+            var result = this.systemUnderTest.TestValidate(sceneContainer);
+
+            // Assert.
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.SamplerSettings);
+        }
     }
 }
