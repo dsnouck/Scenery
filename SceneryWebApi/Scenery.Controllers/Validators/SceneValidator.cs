@@ -35,6 +35,7 @@ namespace Scenery.Controllers.Validators
             // TODO: Create issue for updates.
             // TODO: Create issue for .editorConfig.
             // TODO: Create issue or use existing for folder structure. Scenes under Validators? SceneFactory in Scenes?
+            // TODO: Create issue for more documentation in code explaining the algorithm.
             return context.InstanceToValidate switch
             {
                 ColoredScene coloredScene => new ColoredSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(coloredScene)),
