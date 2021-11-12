@@ -3,7 +3,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Controllers.Validators
+namespace Scenery.Controllers.Validators.SceneValidators
 {
     using FluentValidation;
     using FluentValidation.Results;
@@ -32,11 +32,6 @@ namespace Scenery.Controllers.Validators
         /// <inheritdoc/>
         public override ValidationResult Validate(ValidationContext<Scene> context)
         {
-            // TODO: Create issue for updates.
-            // TODO: Create issue for .editorConfig.
-            // TODO: Create issue or use existing for folder structure. Scenes under Validators? SceneFactory in Scenes?
-            // TODO: Create issue for more documentation in code explaining the algorithm.
-            // TODO: Create issue for .Net 6.
             return context.InstanceToValidate switch
             {
                 ColoredScene coloredScene => new ColoredSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(coloredScene)),

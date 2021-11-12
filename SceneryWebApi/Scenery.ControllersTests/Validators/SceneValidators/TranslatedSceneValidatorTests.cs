@@ -1,30 +1,31 @@
-﻿// <copyright file="InvisibleSceneValidatorTests.cs" company="dsnouck">
+﻿// <copyright file="TranslatedSceneValidatorTests.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators
+namespace Scenery.ControllersTests.Validators.SceneValidators
 {
     using FluentValidation.TestHelper;
     using Moq;
     using Scenery.Components.Interfaces;
     using Scenery.Controllers.Validators;
+    using Scenery.Controllers.Validators.SceneValidators;
     using Scenery.Models;
     using Scenery.Models.Scenes;
     using Xunit;
 
     /// <summary>
-    /// Provides tests for <see cref="InvisibleSceneValidator"/>.
+    /// Provides tests for <see cref="TranslatedSceneValidator"/>.
     /// </summary>
-    public class InvisibleSceneValidatorTests
+    public class TranslatedSceneValidatorTests
     {
         private readonly SceneContainerValidator systemUnderTest;
         private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvisibleSceneValidatorTests"/> class.
+        /// Initializes a new instance of the <see cref="TranslatedSceneValidatorTests"/> class.
         /// </summary>
-        public InvisibleSceneValidatorTests()
+        public TranslatedSceneValidatorTests()
         {
             this.vector3ComponentTestDouble = new Mock<IVector3Component>();
             this.vector3ComponentTestDouble
@@ -35,7 +36,29 @@ namespace Scenery.ControllersTests.Validators
         }
 
         /// <summary>
-        /// Tests <see cref="InvisibleSceneValidator"/>.
+        /// Tests <see cref="TranslatedSceneValidator"/>.
+        /// </summary>
+        [Fact]
+        public void GivenTranslationIsNullWhenValidateIsCalledThenItFails()
+        {
+            // Arrange.
+            var sceneContainer = new SceneContainer
+            {
+                Scene = new TranslatedScene
+                {
+                    Translation = null,
+                },
+            };
+
+            // Act.
+            var result = this.systemUnderTest.TestValidate(sceneContainer);
+
+            // Assert.
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as TranslatedScene).Translation);
+        }
+
+        /// <summary>
+        /// Tests <see cref="TranslatedSceneValidator"/>.
         /// </summary>
         [Fact]
         public void GivenOriginalSceneIsNullWhenValidateIsCalledThenItFails()
@@ -43,7 +66,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new InvisibleScene
+                Scene = new TranslatedScene
                 {
                     OriginalScene = null,
                 },
@@ -53,7 +76,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as InvisibleScene).OriginalScene);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as TranslatedScene).OriginalScene);
         }
     }
 }

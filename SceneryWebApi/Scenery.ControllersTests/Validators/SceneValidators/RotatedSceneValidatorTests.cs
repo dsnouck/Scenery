@@ -3,12 +3,13 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators
+namespace Scenery.ControllersTests.Validators.SceneValidators
 {
     using FluentValidation.TestHelper;
     using Moq;
     using Scenery.Components.Interfaces;
     using Scenery.Controllers.Validators;
+    using Scenery.Controllers.Validators.SceneValidators;
     using Scenery.Models;
     using Scenery.Models.Scenes;
     using Xunit;

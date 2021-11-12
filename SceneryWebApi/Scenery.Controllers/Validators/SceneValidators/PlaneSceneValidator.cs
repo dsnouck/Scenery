@@ -3,7 +3,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Controllers.Validators
+namespace Scenery.Controllers.Validators.SceneValidators
 {
     using FluentValidation;
     using Scenery.Models.Scenes;

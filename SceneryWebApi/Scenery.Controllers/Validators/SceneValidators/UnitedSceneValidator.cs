@@ -1,28 +1,28 @@
-﻿// <copyright file="TranslatedSceneValidator.cs" company="dsnouck">
+﻿// <copyright file="UnitedSceneValidator.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Controllers.Validators
+namespace Scenery.Controllers.Validators.SceneValidators
 {
     using FluentValidation;
     using Scenery.Components.Interfaces;
     using Scenery.Models.Scenes;
 
     /// <summary>
-    /// Represents a validator for <see cref="TranslatedScene"/>.
+    /// Represents a validator for <see cref="UnitedScene"/>.
     /// </summary>
-    public class TranslatedSceneValidator : AbstractValidator<TranslatedScene>
+    public class UnitedSceneValidator : AbstractValidator<UnitedScene>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TranslatedSceneValidator"/> class.
+        /// Initializes a new instance of the <see cref="UnitedSceneValidator"/> class.
         /// </summary>
         /// <param name="vector3Component">An <see cref="IVector3Component"/>.</param>
-        public TranslatedSceneValidator(IVector3Component vector3Component)
+        public UnitedSceneValidator(IVector3Component vector3Component)
         {
-            this.RuleFor(scene => scene.Translation)
+            this.RuleFor(scene => scene.Scenes)
                 .NotNull();
-            this.RuleFor(scene => scene.OriginalScene)
+            this.RuleForEach(scene => scene.Scenes)
                 .NotNull()
                 .SetValidator(new SceneValidator(vector3Component));
         }

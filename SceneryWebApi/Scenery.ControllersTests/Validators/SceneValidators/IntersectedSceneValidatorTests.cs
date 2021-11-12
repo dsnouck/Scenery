@@ -1,30 +1,32 @@
-﻿// <copyright file="TranslatedSceneValidatorTests.cs" company="dsnouck">
+﻿// <copyright file="IntersectedSceneValidatorTests.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators
+namespace Scenery.ControllersTests.Validators.SceneValidators
 {
+    using System.Collections.Generic;
     using FluentValidation.TestHelper;
     using Moq;
     using Scenery.Components.Interfaces;
     using Scenery.Controllers.Validators;
+    using Scenery.Controllers.Validators.SceneValidators;
     using Scenery.Models;
     using Scenery.Models.Scenes;
     using Xunit;
 
     /// <summary>
-    /// Provides tests for <see cref="TranslatedSceneValidator"/>.
+    /// Provides tests for <see cref="IntersectedSceneValidator"/>.
     /// </summary>
-    public class TranslatedSceneValidatorTests
+    public class IntersectedSceneValidatorTests
     {
         private readonly SceneContainerValidator systemUnderTest;
         private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TranslatedSceneValidatorTests"/> class.
+        /// Initializes a new instance of the <see cref="IntersectedSceneValidatorTests"/> class.
         /// </summary>
-        public TranslatedSceneValidatorTests()
+        public IntersectedSceneValidatorTests()
         {
             this.vector3ComponentTestDouble = new Mock<IVector3Component>();
             this.vector3ComponentTestDouble
@@ -35,17 +37,17 @@ namespace Scenery.ControllersTests.Validators
         }
 
         /// <summary>
-        /// Tests <see cref="TranslatedSceneValidator"/>.
+        /// Tests <see cref="IntersectedSceneValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenTranslationIsNullWhenValidateIsCalledThenItFails()
+        public void GivenScenesIsNullWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new TranslatedScene
+                Scene = new IntersectedScene
                 {
-                    Translation = null,
+                    Scenes = null,
                 },
             };
 
@@ -53,21 +55,24 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as TranslatedScene).Translation);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as IntersectedScene).Scenes);
         }
 
         /// <summary>
-        /// Tests <see cref="TranslatedSceneValidator"/>.
+        /// Tests <see cref="IntersectedSceneValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenOriginalSceneIsNullWhenValidateIsCalledThenItFails()
+        public void GivenScenesContainsNullWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new TranslatedScene
+                Scene = new IntersectedScene
                 {
-                    OriginalScene = null,
+                    Scenes = new List<Scene>
+                    {
+                        null,
+                    },
                 },
             };
 
@@ -75,7 +80,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as TranslatedScene).OriginalScene);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as IntersectedScene).Scenes);
         }
     }
 }

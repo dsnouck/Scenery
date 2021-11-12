@@ -7,6 +7,7 @@ namespace Scenery.Controllers.Validators
 {
     using FluentValidation;
     using Scenery.Components.Interfaces;
+    using Scenery.Controllers.Validators.SceneValidators;
     using Scenery.Models;
 
     /// <summary>
