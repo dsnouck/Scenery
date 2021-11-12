@@ -127,11 +127,6 @@ namespace Scenery.Controllers.Converters
 
             ReadEndObject(ref reader);
 
-            if (scene.GetType() == typeof(Scene))
-            {
-                throw new JsonException();
-            }
-
             return scene;
         }
 
