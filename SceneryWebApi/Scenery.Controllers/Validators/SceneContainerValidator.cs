@@ -20,7 +20,6 @@ namespace Scenery.Controllers.Validators
         /// <param name="vector3Component">An <see cref="IVector3Component"/>.</param>
         public SceneContainerValidator(IVector3Component vector3Component)
         {
-            // TODO: Add unit tests.
             this.RuleFor(sceneContainer => sceneContainer.Scene)
                 .NotNull()
                 .SetValidator(new SceneValidator(vector3Component));

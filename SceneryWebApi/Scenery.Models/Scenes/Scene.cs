@@ -5,8 +5,6 @@
 
 namespace Scenery.Models.Scenes
 {
-    // TODO: Make abstract.
-
     /// <summary>
     /// Describes a scene.
     /// </summary>

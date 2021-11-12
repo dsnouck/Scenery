@@ -5,8 +5,6 @@
 
 namespace Scenery.Models.Scenes
 {
-    // TODO: Make abstract.
-
     /// <inheritdoc/>
     public class TransformedScene : Scene
     {
