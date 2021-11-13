@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.Controllers", "Scen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41685725-68BC-4E37-88BD-B20A1B486AD0}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		SceneryWebApi.runsettings = SceneryWebApi.runsettings
 		stylecop.json = stylecop.json
@@ -20,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ComponentsTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ControllersTests", "Scenery.ControllersTests\Scenery.ControllersTests.csproj", "{A07BA576-ACD4-40FA-B9C1-9AA642B110C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenery.TestInstrumentation", "Scenery.TestInstrumentation\Scenery.TestInstrumentation.csproj", "{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.TestInstrumentation", "Scenery.TestInstrumentation\Scenery.TestInstrumentation.csproj", "{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
