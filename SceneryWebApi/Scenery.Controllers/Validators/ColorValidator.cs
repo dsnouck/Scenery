@@ -18,13 +18,13 @@ namespace Scenery.Controllers.Validators
         /// </summary>
         public ColorValidator()
         {
-            this.RuleFor(color => color.RedComponent)
+            this.RuleFor(color => color.R)
                 .GreaterThanOrEqualTo(0D)
                 .LessThanOrEqualTo(1D);
-            this.RuleFor(color => color.GreenComponent)
+            this.RuleFor(color => color.G)
                 .GreaterThanOrEqualTo(0D)
                 .LessThanOrEqualTo(1D);
-            this.RuleFor(color => color.BlueComponent)
+            this.RuleFor(color => color.B)
                 .GreaterThanOrEqualTo(0D)
                 .LessThanOrEqualTo(1D);
         }

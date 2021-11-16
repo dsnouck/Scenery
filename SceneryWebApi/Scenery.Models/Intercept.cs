@@ -17,9 +17,9 @@ namespace Scenery.Models
         /// </summary>
         public Color Color { get; set; } = new Color
         {
-            RedComponent = 0D,
-            GreenComponent = 0D,
-            BlueComponent = 1D,
+            R = 0D,
+            G = 0D,
+            B = 1D,
         };
 
         /// <summary>

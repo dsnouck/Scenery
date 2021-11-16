@@ -156,9 +156,9 @@ namespace Scenery.Controllers.Converters
             ReadStartObject(ref reader);
             var color = new Color
             {
-                RedComponent = ReadDoubleProperty(ref reader, nameof(Color.RedComponent)),
-                GreenComponent = ReadDoubleProperty(ref reader, nameof(Color.GreenComponent)),
-                BlueComponent = ReadDoubleProperty(ref reader, nameof(Color.BlueComponent)),
+                R = ReadDoubleProperty(ref reader, nameof(Color.R)),
+                G = ReadDoubleProperty(ref reader, nameof(Color.G)),
+                B = ReadDoubleProperty(ref reader, nameof(Color.B)),
             };
             ReadEndObject(ref reader);
             return color;
@@ -258,9 +258,9 @@ namespace Scenery.Controllers.Converters
         {
             WritePropertyName(writer, propertyName);
             WriteStartObject(writer);
-            WriteNumber(writer, nameof(Color.RedComponent), color.RedComponent);
-            WriteNumber(writer, nameof(Color.GreenComponent), color.GreenComponent);
-            WriteNumber(writer, nameof(Color.BlueComponent), color.BlueComponent);
+            WriteNumber(writer, nameof(Color.R), color.R);
+            WriteNumber(writer, nameof(Color.G), color.G);
+            WriteNumber(writer, nameof(Color.B), color.B);
             WriteEndObject(writer);
         }
 

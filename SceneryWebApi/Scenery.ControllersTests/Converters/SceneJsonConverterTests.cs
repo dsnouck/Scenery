@@ -34,7 +34,7 @@ namespace Scenery.ControllersTests.Converters
             };
         }
 
-        private static string CompleteJson => @"{""type"":""intersectedScene"",""scenes"":[{""type"":""unitedScene"",""scenes"":[{""type"":""coneScene""},{""type"":""cubeScene""}]},{""type"":""coloredScene"",""color"":{""redComponent"":1,""greenComponent"":0,""blueComponent"":0},""originalScene"":{""type"":""cylinderScene""}},{""type"":""invertedScene"",""originalScene"":{""type"":""dodecahedronScene""}},{""type"":""invisibleScene"",""originalScene"":{""type"":""emptyScene""}},{""type"":""rotatedScene"",""axis"":{""xCoordinate"":0,""yCoordinate"":0,""zCoordinate"":1},""angle"":3.141592653589793,""originalScene"":{""type"":""fullScene""}},{""type"":""scaledScene"",""factor"":0.5,""originalScene"":{""type"":""icosahedronScene""}},{""type"":""translatedScene"",""translation"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1},""originalScene"":{""type"":""octahedronScene""}},{""type"":""planeScene"",""normal"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1}},{""type"":""sphereScene""},{""type"":""tetrahedronScene""}]}";
+        private static string CompleteJson => @"{""type"":""intersectedScene"",""scenes"":[{""type"":""unitedScene"",""scenes"":[{""type"":""coneScene""},{""type"":""cubeScene""}]},{""type"":""coloredScene"",""color"":{""r"":1,""g"":0,""b"":0},""originalScene"":{""type"":""cylinderScene""}},{""type"":""invertedScene"",""originalScene"":{""type"":""dodecahedronScene""}},{""type"":""invisibleScene"",""originalScene"":{""type"":""emptyScene""}},{""type"":""rotatedScene"",""axis"":{""xCoordinate"":0,""yCoordinate"":0,""zCoordinate"":1},""angle"":3.141592653589793,""originalScene"":{""type"":""fullScene""}},{""type"":""scaledScene"",""factor"":0.5,""originalScene"":{""type"":""icosahedronScene""}},{""type"":""translatedScene"",""translation"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1},""originalScene"":{""type"":""octahedronScene""}},{""type"":""planeScene"",""normal"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1}},{""type"":""sphereScene""},{""type"":""tetrahedronScene""}]}";
 
         private static IntersectedScene CompleteScene => new ()
         {
@@ -52,9 +52,9 @@ namespace Scenery.ControllersTests.Converters
                     {
                         Color = new Color
                         {
-                            RedComponent = 1D,
-                            GreenComponent = 0D,
-                            BlueComponent = 0D,
+                            R = 1D,
+                            G = 0D,
+                            B = 0D,
                         },
                         OriginalScene = new CylinderScene(),
                     },

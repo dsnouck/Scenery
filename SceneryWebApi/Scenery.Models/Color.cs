@@ -13,16 +13,16 @@ namespace Scenery.Models
         /// <summary>
         /// Gets or sets the red component.
         /// </summary>
-        public double RedComponent { get; set; } = 0D;
+        public double R { get; set; } = 0D;
 
         /// <summary>
         /// Gets or sets the green component.
         /// </summary>
-        public double GreenComponent { get; set; } = 0D;
+        public double G { get; set; } = 0D;
 
         /// <summary>
         /// Gets or sets the blue component.
         /// </summary>
-        public double BlueComponent { get; set; } = 0D;
+        public double B { get; set; } = 0D;
     }
 }

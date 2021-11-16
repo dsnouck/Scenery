@@ -46,9 +46,9 @@ namespace Scenery.Components.Implementations
                         {
                             Color = new Color
                             {
-                                RedComponent = 1D,
-                                GreenComponent = 0D,
-                                BlueComponent = 0D,
+                                R = 1D,
+                                G = 0D,
+                                B = 0D,
                             },
                             OriginalScene = new CubeScene(),
                         },
@@ -56,9 +56,9 @@ namespace Scenery.Components.Implementations
                         {
                             Color = new Color
                             {
-                                RedComponent = 0D,
-                                GreenComponent = 0D,
-                                BlueComponent = 1D,
+                                R = 0D,
+                                G = 0D,
+                                B = 1D,
                             },
                             OriginalScene = new InvertedScene
                             {
@@ -88,9 +88,9 @@ namespace Scenery.Components.Implementations
                     HorizontalOpeningAngle = 0.7853981633974483D,
                     BackgroundColor = new Color
                     {
-                        RedComponent = 1D,
-                        GreenComponent = 1D,
-                        BlueComponent = 1D,
+                        R = 1D,
+                        G = 1D,
+                        B = 1D,
                     },
                 },
                 SamplerSettings = new SamplerSettings
