@@ -8,6 +8,8 @@ namespace Scenery.Models.Scenes
     /// <inheritdoc/>
     public class ColoredScene : TransformedScene
     {
+        // TODO: Simplify names in Scenery.Models.Scenes.
+
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
