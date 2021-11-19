@@ -45,9 +45,9 @@ namespace Scenery.Components.Implementations.SceneComponents
 
             var horizontalPoint = new Vector3
             {
-                XCoordinate = point.XCoordinate,
-                YCoordinate = point.YCoordinate,
-                ZCoordinate = 0D,
+                X = point.X,
+                Y = point.Y,
+                Z = 0D,
             };
 
             return this.vector3Component.DotProduct(horizontalPoint, horizontalPoint) <= 1D;
@@ -65,15 +65,15 @@ namespace Scenery.Components.Implementations.SceneComponents
             {
                 Origin = new Vector3
                 {
-                    XCoordinate = lineOfSight.Origin.XCoordinate,
-                    YCoordinate = lineOfSight.Origin.YCoordinate,
-                    ZCoordinate = 0D,
+                    X = lineOfSight.Origin.X,
+                    Y = lineOfSight.Origin.Y,
+                    Z = 0D,
                 },
                 Direction = new Vector3
                 {
-                    XCoordinate = lineOfSight.Direction.XCoordinate,
-                    YCoordinate = lineOfSight.Direction.YCoordinate,
-                    ZCoordinate = 0D,
+                    X = lineOfSight.Direction.X,
+                    Y = lineOfSight.Direction.Y,
+                    Z = 0D,
                 },
             };
 
@@ -101,9 +101,9 @@ namespace Scenery.Components.Implementations.SceneComponents
                         var intercept = this.line3Component.GetPointAtDistance(lineOfSight, zero);
                         var horizontalIntercept = new Vector3
                         {
-                            XCoordinate = intercept.XCoordinate,
-                            YCoordinate = intercept.YCoordinate,
-                            ZCoordinate = 0D,
+                            X = intercept.X,
+                            Y = intercept.Y,
+                            Z = 0D,
                         };
 
                         return this.vector3Component.Multiply(

@@ -27,7 +27,7 @@ namespace Scenery.Controllers.Validators
             this.RuleFor(projectorSettings => projectorSettings)
                 .Must(projectorSettings => vector3Component.GetLength(vector3Component.Subtract(projectorSettings.Focus, projectorSettings.Eye)) > 0D)
                 .WithMessage("Eye and focus must not coincide.");
-            this.RuleFor(projectorSettings => projectorSettings.BackgroundColor)
+            this.RuleFor(projectorSettings => projectorSettings.Background)
                 .NotNull()
                 .SetValidator(new ColorValidator());
         }

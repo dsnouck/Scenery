@@ -30,8 +30,8 @@ namespace Scenery.Components.Implementations
             return parameters => this.vector3Component.Add(
                 origin,
                 this.vector3Component.Add(
-                    this.vector3Component.Multiply(xDirection, parameters.XCoordinate),
-                    this.vector3Component.Multiply(yDirection, parameters.YCoordinate)));
+                    this.vector3Component.Multiply(xDirection, parameters.X),
+                    this.vector3Component.Multiply(yDirection, parameters.Y)));
         }
     }
 }

@@ -107,54 +107,54 @@ namespace Scenery.Components.Implementations.SceneComponents
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = 0D,
-                            ZCoordinate = -1D,
+                            X = 0D,
+                            Y = 0D,
+                            Z = -1D,
                         },
                     },
                     new PlaneScene
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 1D,
-                            YCoordinate = 0D,
-                            ZCoordinate = 0D,
+                            X = 1D,
+                            Y = 0D,
+                            Z = 0D,
                         },
                     },
                     new PlaneScene
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = 1D,
-                            ZCoordinate = 0D,
+                            X = 0D,
+                            Y = 1D,
+                            Z = 0D,
                         },
                     },
                     new PlaneScene
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = -1D,
-                            YCoordinate = 0D,
-                            ZCoordinate = 0D,
+                            X = -1D,
+                            Y = 0D,
+                            Z = 0D,
                         },
                     },
                     new PlaneScene
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = -1D,
-                            ZCoordinate = 0D,
+                            X = 0D,
+                            Y = -1D,
+                            Z = 0D,
                         },
                     },
                     new PlaneScene
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = 0D,
-                            ZCoordinate = 1D,
+                            X = 0D,
+                            Y = 0D,
+                            Z = 1D,
                         },
                     },
                 },

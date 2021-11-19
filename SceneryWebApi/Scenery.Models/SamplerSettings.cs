@@ -13,16 +13,16 @@ namespace Scenery.Models
         /// <summary>
         /// Gets or sets the column count.
         /// </summary>
-        public int ColumnCount { get; set; } = 128;
+        public int Columns { get; set; } = 128;
 
         /// <summary>
         /// Gets or sets the row count.
         /// </summary>
-        public int RowCount { get; set; } = 128;
+        public int Rows { get; set; } = 128;
 
         /// <summary>
         /// Gets or sets the subsample count.
         /// </summary>
-        public int SubsampleCount { get; set; } = 2;
+        public int Subsamples { get; set; } = 2;
     }
 }

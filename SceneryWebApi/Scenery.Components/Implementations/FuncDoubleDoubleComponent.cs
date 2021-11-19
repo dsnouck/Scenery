@@ -27,13 +27,13 @@ namespace Scenery.Components.Implementations
             }
 
             var slope =
-                (otherPoint.YCoordinate - point.YCoordinate)
-                / (otherPoint.XCoordinate - point.XCoordinate);
+                (otherPoint.Y - point.Y)
+                / (otherPoint.X - point.X);
             var yIntercept =
-                ((point.YCoordinate * otherPoint.XCoordinate) - (point.XCoordinate * otherPoint.YCoordinate))
-                / (otherPoint.XCoordinate - point.XCoordinate);
+                ((point.Y * otherPoint.X) - (point.X * otherPoint.Y))
+                / (otherPoint.X - point.X);
 
-            return xCoordinate => (xCoordinate * slope) + yIntercept;
+            return x => (x * slope) + yIntercept;
         }
 
         /// <inheritdoc/>

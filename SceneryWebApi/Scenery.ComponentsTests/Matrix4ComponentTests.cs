@@ -44,9 +44,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var axis = new Vector3
             {
-                XCoordinate = 0D,
-                YCoordinate = 0D,
-                ZCoordinate = 1D,
+                X = 0D,
+                Y = 0D,
+                Z = 1D,
             };
             var angle = Math.PI / 4D;
             this.vector3ComponentTestDouble
@@ -62,31 +62,31 @@ namespace Scenery.Components.Tests
                 {
                     FirstRow = new Vector4
                     {
-                        XCoordinate = Math.Sqrt(2D) / 2D,
-                        YCoordinate = -Math.Sqrt(2D) / 2D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = Math.Sqrt(2D) / 2D,
+                        Y = -Math.Sqrt(2D) / 2D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     SecondRow = new Vector4
                     {
-                        XCoordinate = Math.Sqrt(2D) / 2D,
-                        YCoordinate = Math.Sqrt(2D) / 2D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = Math.Sqrt(2D) / 2D,
+                        Y = Math.Sqrt(2D) / 2D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     ThirdRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 1D,
-                        WCoordinate = 0D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 1D,
+                        W = 0D,
                     },
                     FourthRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 1D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 0D,
+                        W = 1D,
                     },
                 },
                 Equivalencies.DoubleEquivalency);
@@ -112,31 +112,31 @@ namespace Scenery.Components.Tests
                 {
                     FirstRow = new Vector4
                     {
-                        XCoordinate = 2D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = 2D,
+                        Y = 0D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     SecondRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 2D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = 0D,
+                        Y = 2D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     ThirdRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 2D,
-                        WCoordinate = 0D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 2D,
+                        W = 0D,
                     },
                     FourthRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 1D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 0D,
+                        W = 1D,
                     },
                 },
                 Equivalencies.DoubleEquivalency);
@@ -167,9 +167,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var translation = new Vector3
             {
-                XCoordinate = 0D,
-                YCoordinate = 0D,
-                ZCoordinate = 1D,
+                X = 0D,
+                Y = 0D,
+                Z = 1D,
             };
 
             // Act.
@@ -181,31 +181,31 @@ namespace Scenery.Components.Tests
                 {
                     FirstRow = new Vector4
                     {
-                        XCoordinate = 1D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = 1D,
+                        Y = 0D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     SecondRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 1D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 0D,
+                        X = 0D,
+                        Y = 1D,
+                        Z = 0D,
+                        W = 0D,
                     },
                     ThirdRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 1D,
-                        WCoordinate = 1D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 1D,
+                        W = 1D,
                     },
                     FourthRow = new Vector4
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
-                        WCoordinate = 1D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 0D,
+                        W = 1D,
                     },
                 },
                 Equivalencies.DoubleEquivalency);

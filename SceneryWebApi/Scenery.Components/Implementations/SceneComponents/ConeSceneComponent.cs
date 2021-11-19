@@ -45,9 +45,9 @@ namespace Scenery.Components.Implementations.SceneComponents
 
             var mirroredPoint = new Vector3
             {
-                XCoordinate = point.XCoordinate,
-                YCoordinate = point.YCoordinate,
-                ZCoordinate = -point.ZCoordinate,
+                X = point.X,
+                Y = point.Y,
+                Z = -point.Z,
             };
 
             return this.vector3Component.DotProduct(
@@ -68,15 +68,15 @@ namespace Scenery.Components.Implementations.SceneComponents
             {
                 Origin = new Vector3
                 {
-                    XCoordinate = lineOfSight.Origin.XCoordinate,
-                    YCoordinate = lineOfSight.Origin.YCoordinate,
-                    ZCoordinate = -lineOfSight.Origin.ZCoordinate,
+                    X = lineOfSight.Origin.X,
+                    Y = lineOfSight.Origin.Y,
+                    Z = -lineOfSight.Origin.Z,
                 },
                 Direction = new Vector3
                 {
-                    XCoordinate = lineOfSight.Direction.XCoordinate,
-                    YCoordinate = lineOfSight.Direction.YCoordinate,
-                    ZCoordinate = -lineOfSight.Direction.ZCoordinate,
+                    X = lineOfSight.Direction.X,
+                    Y = lineOfSight.Direction.Y,
+                    Z = -lineOfSight.Direction.Z,
                 },
             };
 
@@ -103,9 +103,9 @@ namespace Scenery.Components.Implementations.SceneComponents
                         var intercept = this.line3Component.GetPointAtDistance(lineOfSight, zero);
                         var mirroredIntercept = new Vector3
                         {
-                            XCoordinate = intercept.XCoordinate,
-                            YCoordinate = intercept.YCoordinate,
-                            ZCoordinate = -intercept.ZCoordinate,
+                            X = intercept.X,
+                            Y = intercept.Y,
+                            Z = -intercept.Z,
                         };
 
                         return this.vector3Component.Multiply(

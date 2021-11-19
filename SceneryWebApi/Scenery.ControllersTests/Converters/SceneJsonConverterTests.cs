@@ -34,7 +34,7 @@ namespace Scenery.ControllersTests.Converters
             };
         }
 
-        private static string CompleteJson => @"{""type"":""intersectedScene"",""scenes"":[{""type"":""unitedScene"",""scenes"":[{""type"":""coneScene""},{""type"":""cubeScene""}]},{""type"":""coloredScene"",""color"":{""r"":1,""g"":0,""b"":0},""originalScene"":{""type"":""cylinderScene""}},{""type"":""invertedScene"",""originalScene"":{""type"":""dodecahedronScene""}},{""type"":""invisibleScene"",""originalScene"":{""type"":""emptyScene""}},{""type"":""rotatedScene"",""axis"":{""xCoordinate"":0,""yCoordinate"":0,""zCoordinate"":1},""angle"":3.141592653589793,""originalScene"":{""type"":""fullScene""}},{""type"":""scaledScene"",""factor"":0.5,""originalScene"":{""type"":""icosahedronScene""}},{""type"":""translatedScene"",""translation"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1},""originalScene"":{""type"":""octahedronScene""}},{""type"":""planeScene"",""normal"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1}},{""type"":""sphereScene""},{""type"":""tetrahedronScene""}]}";
+        private static string CompleteJson => @"{""type"":""intersectedScene"",""scenes"":[{""type"":""unitedScene"",""scenes"":[{""type"":""coneScene""},{""type"":""cubeScene""}]},{""type"":""coloredScene"",""color"":{""r"":1,""g"":0,""b"":0},""originalScene"":{""type"":""cylinderScene""}},{""type"":""invertedScene"",""originalScene"":{""type"":""dodecahedronScene""}},{""type"":""invisibleScene"",""originalScene"":{""type"":""emptyScene""}},{""type"":""rotatedScene"",""axis"":{""x"":0,""y"":0,""z"":1},""angle"":3.141592653589793,""originalScene"":{""type"":""fullScene""}},{""type"":""scaledScene"",""factor"":0.5,""originalScene"":{""type"":""icosahedronScene""}},{""type"":""translatedScene"",""translation"":{""x"":1,""y"":1,""z"":1},""originalScene"":{""type"":""octahedronScene""}},{""type"":""planeScene"",""normal"":{""x"":1,""y"":1,""z"":1}},{""type"":""sphereScene""},{""type"":""tetrahedronScene""}]}";
 
         private static IntersectedScene CompleteScene => new ()
         {
@@ -70,9 +70,9 @@ namespace Scenery.ControllersTests.Converters
                     {
                         Axis = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = 0D,
-                            ZCoordinate = 1D,
+                            X = 0D,
+                            Y = 0D,
+                            Z = 1D,
                         },
                         Angle = Math.PI,
                         OriginalScene = new FullScene(),
@@ -86,9 +86,9 @@ namespace Scenery.ControllersTests.Converters
                     {
                         Translation = new Vector3
                         {
-                            XCoordinate = 1D,
-                            YCoordinate = 1D,
-                            ZCoordinate = 1D,
+                            X = 1D,
+                            Y = 1D,
+                            Z = 1D,
                         },
                         OriginalScene = new OctahedronScene(),
                     },
@@ -96,9 +96,9 @@ namespace Scenery.ControllersTests.Converters
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 1D,
-                            YCoordinate = 1D,
-                            ZCoordinate = 1D,
+                            X = 1D,
+                            Y = 1D,
+                            Z = 1D,
                         },
                     },
                     new SphereScene(),

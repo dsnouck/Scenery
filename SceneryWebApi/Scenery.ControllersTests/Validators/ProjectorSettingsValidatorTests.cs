@@ -42,7 +42,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                ProjectorSettings = new ProjectorSettings
+                Projector = new ProjectorSettings
                 {
                     Eye = null,
                 },
@@ -52,7 +52,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings.Eye);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector.Eye);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                ProjectorSettings = new ProjectorSettings
+                Projector = new ProjectorSettings
                 {
                     Focus = null,
                 },
@@ -74,7 +74,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings.Focus);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector.Focus);
         }
 
         /// <summary>
@@ -93,21 +93,21 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector);
         }
 
         /// <summary>
         /// Tests <see cref="ProjectorSettingsValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenBackgroundColorIsNullWhenValidateIsCalledThenItFails()
+        public void GivenBackgroundIsNullWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                ProjectorSettings = new ProjectorSettings
+                Projector = new ProjectorSettings
                 {
-                    BackgroundColor = null,
+                    Background = null,
                 },
             };
 
@@ -115,7 +115,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings.BackgroundColor);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector.Background);
         }
     }
 }

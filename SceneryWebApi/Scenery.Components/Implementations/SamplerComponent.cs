@@ -38,47 +38,47 @@ namespace Scenery.Components.Implementations
                 throw new ArgumentNullException(nameof(samplerSettings));
             }
 
-            var columnIndexToXCoordinate = this.GetColumnIndexToXCoordinate(samplerSettings);
-            var rowIndexToYCoordinate = this.GetRowIndexToYCoordinate(samplerSettings);
+            var columnToX = this.GetColumnToX(samplerSettings);
+            var rowToY = this.GetRowToY(samplerSettings);
 
-            return Enumerable.Range(0, samplerSettings.RowCount)
+            return Enumerable.Range(0, samplerSettings.Rows)
                 .AsParallel()
                 .AsOrdered()
-                .Select(rowIndex => Enumerable.Range(0, samplerSettings.ColumnCount)
-                    .Select(columnIndex => this.colorComponent.Average(
-                        Enumerable.Range(0, samplerSettings.SubsampleCount)
-                        .Select(subrowIndex => rowIndexToYCoordinate((rowIndex * samplerSettings.SubsampleCount) + subrowIndex))
-                        .SelectMany(yCoordinate => Enumerable.Range(0, samplerSettings.SubsampleCount)
-                            .Select(subcolumnIndex => columnIndexToXCoordinate((columnIndex * samplerSettings.SubsampleCount) + subcolumnIndex))
-                            .Select(xCoordinate => new Vector2 { XCoordinate = xCoordinate, YCoordinate = yCoordinate })
+                .Select(row => Enumerable.Range(0, samplerSettings.Columns)
+                    .Select(column => this.colorComponent.Average(
+                        Enumerable.Range(0, samplerSettings.Subsamples)
+                        .Select(subrow => rowToY((row * samplerSettings.Subsamples) + subrow))
+                        .SelectMany(y => Enumerable.Range(0, samplerSettings.Subsamples)
+                            .Select(subcolumn => columnToX((column * samplerSettings.Subsamples) + subcolumn))
+                            .Select(x => new Vector2 { X = x, Y = y })
                             .Select(image))
                         .ToList()))
                     .ToList())
                 .ToList();
         }
 
-        private Func<double, double> GetColumnIndexToXCoordinate(SamplerSettings samplerSettings)
+        private Func<double, double> GetColumnToX(SamplerSettings samplerSettings)
         {
-            // The interval [-1D, 1D] is divided into samplerSettings.ColumnCount * samplerSettings.SubsampleCount equal subintervals.
-            // The xCoordinate for a columnIndex is the center of the subinterval.
+            // The interval [-1D, 1D] is divided into samplerSettings.Columns * samplerSettings.Subsamples equal subintervals.
+            // The x-component for a column is the center of the subinterval.
             // The columns are counted from left to right.
-            // The xCoordinate runs from left to right.
+            // The x-component runs from left to right.
             return this.funcDoubleDoubleComponent.GetLineThrough(
-                new Vector2 { XCoordinate = -0.5D, YCoordinate = -1D },
-                new Vector2 { XCoordinate = (samplerSettings.ColumnCount * samplerSettings.SubsampleCount) - 0.5D, YCoordinate = 1D });
+                new Vector2 { X = -0.5D, Y = -1D },
+                new Vector2 { X = (samplerSettings.Columns * samplerSettings.Subsamples) - 0.5D, Y = 1D });
         }
 
-        private Func<double, double> GetRowIndexToYCoordinate(SamplerSettings samplerSettings)
+        private Func<double, double> GetRowToY(SamplerSettings samplerSettings)
         {
-            var aspectRatio = (double)samplerSettings.RowCount / samplerSettings.ColumnCount;
+            var aspectRatio = (double)samplerSettings.Rows / samplerSettings.Columns;
 
-            // The interval [-aspectRatio, aspectRatio] is divided into samplerSettings.RowCount * samplerSettings.SubsampleCount equal subintervals.
-            // The yCoordinate for a rowIndex is the center of the subinterval.
+            // The interval [-aspectRatio, aspectRatio] is divided into samplerSettings.Rows * samplerSettings.Subsamples equal subintervals.
+            // The y-component for a row is the center of the subinterval.
             // The rows are counted from top to bottom.
-            // The yCoordinate runs from bottom to top.
+            // The y-component runs from bottom to top.
             return this.funcDoubleDoubleComponent.GetLineThrough(
-                new Vector2 { XCoordinate = -0.5D, YCoordinate = aspectRatio },
-                new Vector2 { XCoordinate = (samplerSettings.RowCount * samplerSettings.SubsampleCount) - 0.5D, YCoordinate = -aspectRatio });
+                new Vector2 { X = -0.5D, Y = aspectRatio },
+                new Vector2 { X = (samplerSettings.Rows * samplerSettings.Subsamples) - 0.5D, Y = -aspectRatio });
         }
     }
 }

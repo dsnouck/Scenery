@@ -78,18 +78,18 @@ namespace Scenery.Components.Implementations.SceneComponents
         {
             var direction4 = new Vector4
             {
-                XCoordinate = direction.XCoordinate,
-                YCoordinate = direction.YCoordinate,
-                ZCoordinate = direction.ZCoordinate,
-                WCoordinate = 0D,
+                X = direction.X,
+                Y = direction.Y,
+                Z = direction.Z,
+                W = 0D,
             };
             var transformedDirection4 = this.matrix4Component.Multiply(this.transformation, direction4);
 
             return new Vector3
             {
-                XCoordinate = transformedDirection4.XCoordinate,
-                YCoordinate = transformedDirection4.YCoordinate,
-                ZCoordinate = transformedDirection4.ZCoordinate,
+                X = transformedDirection4.X,
+                Y = transformedDirection4.Y,
+                Z = transformedDirection4.Z,
             };
         }
 
@@ -97,18 +97,18 @@ namespace Scenery.Components.Implementations.SceneComponents
         {
             var direction4 = new Vector4
             {
-                XCoordinate = direction.XCoordinate,
-                YCoordinate = direction.YCoordinate,
-                ZCoordinate = direction.ZCoordinate,
-                WCoordinate = 0D,
+                X = direction.X,
+                Y = direction.Y,
+                Z = direction.Z,
+                W = 0D,
             };
             var transformedDirection4 = this.matrix4Component.Multiply(this.backwardTransformation, direction4);
 
             return new Vector3
             {
-                XCoordinate = transformedDirection4.XCoordinate,
-                YCoordinate = transformedDirection4.YCoordinate,
-                ZCoordinate = transformedDirection4.ZCoordinate,
+                X = transformedDirection4.X,
+                Y = transformedDirection4.Y,
+                Z = transformedDirection4.Z,
             };
         }
 
@@ -116,18 +116,18 @@ namespace Scenery.Components.Implementations.SceneComponents
         {
             var point4 = new Vector4
             {
-                XCoordinate = point.XCoordinate,
-                YCoordinate = point.YCoordinate,
-                ZCoordinate = point.ZCoordinate,
-                WCoordinate = 1D,
+                X = point.X,
+                Y = point.Y,
+                Z = point.Z,
+                W = 1D,
             };
             var transformedPoint4 = this.matrix4Component.Multiply(this.backwardTransformation, point4);
 
             return new Vector3
             {
-                XCoordinate = transformedPoint4.XCoordinate,
-                YCoordinate = transformedPoint4.YCoordinate,
-                ZCoordinate = transformedPoint4.ZCoordinate,
+                X = transformedPoint4.X,
+                Y = transformedPoint4.Y,
+                Z = transformedPoint4.Z,
             };
         }
     }

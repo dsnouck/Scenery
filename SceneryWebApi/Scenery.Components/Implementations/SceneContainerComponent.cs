@@ -46,9 +46,9 @@ namespace Scenery.Components.Implementations
                         {
                             Color = new Color
                             {
-                                R = 1D,
+                                R = 0D,
                                 G = 0D,
-                                B = 0D,
+                                B = 1D,
                             },
                             OriginalScene = new CubeScene(),
                         },
@@ -56,9 +56,9 @@ namespace Scenery.Components.Implementations
                         {
                             Color = new Color
                             {
-                                R = 0D,
+                                R = 1D,
                                 G = 0D,
-                                B = 1D,
+                                B = 0D,
                             },
                             OriginalScene = new InvertedScene
                             {
@@ -71,33 +71,33 @@ namespace Scenery.Components.Implementations
                         },
                     },
                 },
-                ProjectorSettings = new ProjectorSettings
+                Projector = new ProjectorSettings
                 {
                     Eye = new Vector3
                     {
-                        XCoordinate = 4.430761575624772D,
-                        YCoordinate = -2.4205360806680094D,
-                        ZCoordinate = 3.2418138352088386D,
+                        X = 4.430761575624772D,
+                        Y = -2.4205360806680094D,
+                        Z = 3.2418138352088386D,
                     },
                     Focus = new Vector3
                     {
-                        XCoordinate = 0D,
-                        YCoordinate = 0D,
-                        ZCoordinate = 0D,
+                        X = 0D,
+                        Y = 0D,
+                        Z = 0D,
                     },
-                    HorizontalOpeningAngle = 0.7853981633974483D,
-                    BackgroundColor = new Color
+                    FieldOfView = 0.7853981633974483D,
+                    Background = new Color
                     {
-                        R = 1D,
-                        G = 1D,
-                        B = 1D,
+                        R = 0D,
+                        G = 0D,
+                        B = 0D,
                     },
                 },
-                SamplerSettings = new SamplerSettings
+                Sampler = new SamplerSettings
                 {
-                    ColumnCount = 160,
-                    RowCount = 120,
-                    SubsampleCount = 2,
+                    Columns = 160,
+                    Rows = 120,
+                    Subsamples = 2,
                 },
             };
         }
@@ -105,8 +105,8 @@ namespace Scenery.Components.Implementations
         /// <inheritdoc/>
         public Stream GetStream(SceneContainer sceneContainer)
         {
-            var image = this.projectorComponent.ProjectSceneToImage(sceneContainer.Scene, sceneContainer.ProjectorSettings);
-            var bitmap = this.samplerComponent.SampleImageToBitmap(image, sceneContainer.SamplerSettings);
+            var image = this.projectorComponent.ProjectSceneToImage(sceneContainer.Scene, sceneContainer.Projector);
+            var bitmap = this.samplerComponent.SampleImageToBitmap(image, sceneContainer.Sampler);
             return this.bitmapFileComponent.GetStream(bitmap);
         }
     }

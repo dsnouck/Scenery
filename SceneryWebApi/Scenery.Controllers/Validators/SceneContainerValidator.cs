@@ -24,10 +24,10 @@ namespace Scenery.Controllers.Validators
             this.RuleFor(sceneContainer => sceneContainer.Scene)
                 .NotNull()
                 .SetValidator(new SceneValidator(vector3Component));
-            this.RuleFor(sceneContainer => sceneContainer.ProjectorSettings)
+            this.RuleFor(sceneContainer => sceneContainer.Projector)
                 .NotNull()
                 .SetValidator(new ProjectorSettingsValidator(vector3Component));
-            this.RuleFor(sceneContainer => sceneContainer.SamplerSettings)
+            this.RuleFor(sceneContainer => sceneContainer.Sampler)
                 .NotNull()
                 .SetValidator(new SamplerSettingsValidator());
         }

@@ -15,9 +15,9 @@ namespace Scenery.Models.Scenes
         /// </summary>
         public Vector3 Axis { get; set; } = new Vector3
         {
-            XCoordinate = 0D,
-            YCoordinate = 0D,
-            ZCoordinate = 1D,
+            X = 0D,
+            Y = 0D,
+            Z = 1D,
         };
 
         /// <summary>

@@ -34,18 +34,18 @@ namespace Scenery.Components.Implementations
                 throw new ArgumentNullException(nameof(bitmap));
             }
 
-            var rowCount = bitmap.Count;
-            var columnCount = bitmap.First().Count;
+            var rows = bitmap.Count;
+            var columns = bitmap.First().Count;
 
-            var systemDrawingBitmap = new System.Drawing.Bitmap(columnCount, rowCount);
-            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++)
+            var systemDrawingBitmap = new System.Drawing.Bitmap(columns, rows);
+            for (var row = 0; row < rows; row++)
             {
-                for (var columnIndex = 0; columnIndex < columnCount; columnIndex++)
+                for (var column = 0; column < columns; column++)
                 {
                     systemDrawingBitmap.SetPixel(
-                        columnIndex,
-                        rowIndex,
-                        this.colorComponent.GetSystemDrawingColorFromColor(bitmap[rowIndex][columnIndex]));
+                        column,
+                        row,
+                        this.colorComponent.GetSystemDrawingColorFromColor(bitmap[row][column]));
                 }
             }
 

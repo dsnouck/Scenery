@@ -69,13 +69,13 @@ namespace Scenery.Components.Tests
             // Arrange.
             var point = new Vector2
             {
-                XCoordinate = 0D,
-                YCoordinate = 1D,
+                X = 0D,
+                Y = 1D,
             };
             var otherPoint = new Vector2
             {
-                XCoordinate = 2D,
-                YCoordinate = 3D,
+                X = 2D,
+                Y = 3D,
             };
 
             // Act.

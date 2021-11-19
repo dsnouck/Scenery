@@ -79,14 +79,14 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                ProjectorSettings = null,
+                Projector = null,
             };
 
             // Act.
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.ProjectorSettings);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector);
         }
 
         /// <summary>
@@ -98,14 +98,14 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                SamplerSettings = null,
+                Sampler = null,
             };
 
             // Act.
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.SamplerSettings);
+            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Sampler);
         }
     }
 }

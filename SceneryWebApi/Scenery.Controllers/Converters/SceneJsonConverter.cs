@@ -170,9 +170,9 @@ namespace Scenery.Controllers.Converters
             ReadStartObject(ref reader);
             var vector = new Vector3
             {
-                XCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.XCoordinate)),
-                YCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.YCoordinate)),
-                ZCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.ZCoordinate)),
+                X = ReadDoubleProperty(ref reader, nameof(Vector3.X)),
+                Y = ReadDoubleProperty(ref reader, nameof(Vector3.Y)),
+                Z = ReadDoubleProperty(ref reader, nameof(Vector3.Z)),
             };
             ReadEndObject(ref reader);
             return vector;
@@ -268,9 +268,9 @@ namespace Scenery.Controllers.Converters
         {
             WritePropertyName(writer, propertyName);
             WriteStartObject(writer);
-            WriteNumber(writer, nameof(Vector3.XCoordinate), vector.XCoordinate);
-            WriteNumber(writer, nameof(Vector3.YCoordinate), vector.YCoordinate);
-            WriteNumber(writer, nameof(Vector3.ZCoordinate), vector.ZCoordinate);
+            WriteNumber(writer, nameof(Vector3.X), vector.X);
+            WriteNumber(writer, nameof(Vector3.Y), vector.Y);
+            WriteNumber(writer, nameof(Vector3.Z), vector.Z);
             WriteEndObject(writer);
         }
     }
