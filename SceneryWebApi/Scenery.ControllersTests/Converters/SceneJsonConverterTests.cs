@@ -34,75 +34,75 @@ namespace Scenery.ControllersTests.Converters
             };
         }
 
-        private static string CompleteJson => @"{""type"":""intersectedScene"",""scenes"":[{""type"":""unitedScene"",""scenes"":[{""type"":""coneScene""},{""type"":""cubeScene""}]},{""type"":""coloredScene"",""color"":{""redComponent"":1,""greenComponent"":0,""blueComponent"":0},""originalScene"":{""type"":""cylinderScene""}},{""type"":""invertedScene"",""originalScene"":{""type"":""dodecahedronScene""}},{""type"":""invisibleScene"",""originalScene"":{""type"":""emptyScene""}},{""type"":""rotatedScene"",""axis"":{""xCoordinate"":0,""yCoordinate"":0,""zCoordinate"":1},""angle"":3.141592653589793,""originalScene"":{""type"":""fullScene""}},{""type"":""scaledScene"",""factor"":0.5,""originalScene"":{""type"":""icosahedronScene""}},{""type"":""translatedScene"",""translation"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1},""originalScene"":{""type"":""octahedronScene""}},{""type"":""planeScene"",""normal"":{""xCoordinate"":1,""yCoordinate"":1,""zCoordinate"":1}},{""type"":""sphereScene""},{""type"":""tetrahedronScene""}]}";
+        private static string CompleteJson => @"{""type"":""intersection"",""scenes"":[{""type"":""union"",""scenes"":[{""type"":""cone""},{""type"":""cube""}]},{""type"":""colored"",""color"":{""r"":1,""g"":0,""b"":0},""scene"":{""type"":""cylinder""}},{""type"":""inverted"",""scene"":{""type"":""dodecahedron""}},{""type"":""transparent"",""scene"":{""type"":""empty""}},{""type"":""rotated"",""axis"":{""x"":0,""y"":0,""z"":1},""angle"":3.141592653589793,""scene"":{""type"":""full""}},{""type"":""scaled"",""factor"":0.5,""scene"":{""type"":""icosahedron""}},{""type"":""translated"",""translation"":{""x"":1,""y"":1,""z"":1},""scene"":{""type"":""octahedron""}},{""type"":""plane"",""normal"":{""x"":1,""y"":1,""z"":1}},{""type"":""sphere""},{""type"":""tetrahedron""}]}";
 
-        private static IntersectedScene CompleteScene => new ()
+        private static Intersection CompleteScene => new ()
         {
             Scenes =
                 {
-                    new UnitedScene
+                    new Union
                     {
                         Scenes =
                         {
-                            new ConeScene(),
-                            new CubeScene(),
+                            new Cone(),
+                            new Cube(),
                         },
                     },
-                    new ColoredScene
+                    new Colored
                     {
                         Color = new Color
                         {
-                            RedComponent = 1D,
-                            GreenComponent = 0D,
-                            BlueComponent = 0D,
+                            R = 1D,
+                            G = 0D,
+                            B = 0D,
                         },
-                        OriginalScene = new CylinderScene(),
+                        Scene = new Cylinder(),
                     },
-                    new InvertedScene
+                    new Inverted
                     {
-                        OriginalScene = new DodecahedronScene(),
+                        Scene = new Dodecahedron(),
                     },
-                    new InvisibleScene
+                    new Transparent
                     {
-                        OriginalScene = new EmptyScene(),
+                        Scene = new Empty(),
                     },
-                    new RotatedScene
+                    new Rotated
                     {
                         Axis = new Vector3
                         {
-                            XCoordinate = 0D,
-                            YCoordinate = 0D,
-                            ZCoordinate = 1D,
+                            X = 0D,
+                            Y = 0D,
+                            Z = 1D,
                         },
                         Angle = Math.PI,
-                        OriginalScene = new FullScene(),
+                        Scene = new Full(),
                     },
-                    new ScaledScene
+                    new Scaled
                     {
                         Factor = 0.5D,
-                        OriginalScene = new IcosahedronScene(),
+                        Scene = new Icosahedron(),
                     },
-                    new TranslatedScene
+                    new Translated
                     {
                         Translation = new Vector3
                         {
-                            XCoordinate = 1D,
-                            YCoordinate = 1D,
-                            ZCoordinate = 1D,
+                            X = 1D,
+                            Y = 1D,
+                            Z = 1D,
                         },
-                        OriginalScene = new OctahedronScene(),
+                        Scene = new Octahedron(),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
-                            XCoordinate = 1D,
-                            YCoordinate = 1D,
-                            ZCoordinate = 1D,
+                            X = 1D,
+                            Y = 1D,
+                            Z = 1D,
                         },
                     },
-                    new SphereScene(),
-                    new TetrahedronScene(),
+                    new Sphere(),
+                    new Tetrahedron(),
                 },
         };
 
@@ -145,7 +145,7 @@ namespace Scenery.ControllersTests.Converters
         public void GivenAMissingEndObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
         {
             // Arrange.
-            const string json = @"{""type"":""sphereScene"",""string"":""string""}";
+            const string json = @"{""type"":""sphere"",""string"":""string""}";
 
             // Act.
             Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
@@ -161,7 +161,7 @@ namespace Scenery.ControllersTests.Converters
         public void GivenAMissingStartArrayWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
         {
             // Arrange.
-            const string json = @"{""type"":""intersectedScene"",""scenes"":""string""}";
+            const string json = @"{""type"":""intersection"",""scenes"":""string""}";
 
             // Act.
             Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
@@ -209,7 +209,7 @@ namespace Scenery.ControllersTests.Converters
         public void GivenAMissingNumberWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
         {
             // Arrange.
-            const string json = @"{""type"":""scaledScene"",""factor"":""string""}";
+            const string json = @"{""type"":""scaled"",""factor"":""string""}";
 
             // Act.
             Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);

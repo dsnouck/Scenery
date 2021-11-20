@@ -66,16 +66,16 @@ namespace Scenery.Components.Tests
 
             var samplerSettings = new SamplerSettings
             {
-                ColumnCount = 3,
-                RowCount = 2,
-                SubsampleCount = 1,
+                Columns = 3,
+                Rows = 2,
+                Subsamples = 1,
             };
             this.colorComponentTestDouble
                 .Setup(component => component.Average(It.IsAny<List<Color>>()))
                 .Returns(new Color());
             this.funcDoubleDoubleComponentTestDouble
                 .Setup(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
-                .Returns(xCoordinate => 0D);
+                .Returns(x => 0D);
 
             // Act.
             var result = this.systemUnderTest.SampleImageToBitmap(Image, samplerSettings);
@@ -118,16 +118,16 @@ namespace Scenery.Components.Tests
 
             var samplerSettings = new SamplerSettings
             {
-                ColumnCount = 3,
-                RowCount = 2,
-                SubsampleCount = 2,
+                Columns = 3,
+                Rows = 2,
+                Subsamples = 2,
             };
             this.colorComponentTestDouble
                 .Setup(component => component.Average(It.IsAny<List<Color>>()))
                 .Returns(new Color());
             this.funcDoubleDoubleComponentTestDouble
                 .Setup(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
-                .Returns(xCoordinate => 0D);
+                .Returns(x => 0D);
 
             // Act.
             var result = this.systemUnderTest.SampleImageToBitmap(Image, samplerSettings);

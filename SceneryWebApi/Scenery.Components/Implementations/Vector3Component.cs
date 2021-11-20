@@ -27,9 +27,9 @@ namespace Scenery.Components.Implementations
 
             return new Vector3
             {
-                XCoordinate = vector.XCoordinate + otherVector.XCoordinate,
-                YCoordinate = vector.YCoordinate + otherVector.YCoordinate,
-                ZCoordinate = vector.ZCoordinate + otherVector.ZCoordinate,
+                X = vector.X + otherVector.X,
+                Y = vector.Y + otherVector.Y,
+                Z = vector.Z + otherVector.Z,
             };
         }
 
@@ -43,9 +43,9 @@ namespace Scenery.Components.Implementations
 
             return new Vector3
             {
-                XCoordinate = radius * sineOfInclination * cosineOfAzimuth,
-                YCoordinate = radius * sineOfInclination * sineOfAzimuth,
-                ZCoordinate = radius * cosineOfInclination,
+                X = radius * sineOfInclination * cosineOfAzimuth,
+                Y = radius * sineOfInclination * sineOfAzimuth,
+                Z = radius * cosineOfInclination,
             };
         }
 
@@ -64,9 +64,9 @@ namespace Scenery.Components.Implementations
 
             return new Vector3
             {
-                XCoordinate = (vector.YCoordinate * otherVector.ZCoordinate) - (vector.ZCoordinate * otherVector.YCoordinate),
-                YCoordinate = (vector.ZCoordinate * otherVector.XCoordinate) - (vector.XCoordinate * otherVector.ZCoordinate),
-                ZCoordinate = (vector.XCoordinate * otherVector.YCoordinate) - (vector.YCoordinate * otherVector.XCoordinate),
+                X = (vector.Y * otherVector.Z) - (vector.Z * otherVector.Y),
+                Y = (vector.Z * otherVector.X) - (vector.X * otherVector.Z),
+                Z = (vector.X * otherVector.Y) - (vector.Y * otherVector.X),
             };
         }
 
@@ -90,9 +90,9 @@ namespace Scenery.Components.Implementations
             }
 
             return
-                (vector.XCoordinate * otherVector.XCoordinate) +
-                (vector.YCoordinate * otherVector.YCoordinate) +
-                (vector.ZCoordinate * otherVector.ZCoordinate);
+                (vector.X * otherVector.X) +
+                (vector.Y * otherVector.Y) +
+                (vector.Z * otherVector.Z);
         }
 
         /// <inheritdoc/>
@@ -111,9 +111,9 @@ namespace Scenery.Components.Implementations
 
             return new Vector3
             {
-                XCoordinate = factor * vector.XCoordinate,
-                YCoordinate = factor * vector.YCoordinate,
-                ZCoordinate = factor * vector.ZCoordinate,
+                X = factor * vector.X,
+                Y = factor * vector.Y,
+                Z = factor * vector.Z,
             };
         }
 
@@ -138,9 +138,9 @@ namespace Scenery.Components.Implementations
 
             return new Vector3
             {
-                XCoordinate = vector.XCoordinate - otherVector.XCoordinate,
-                YCoordinate = vector.YCoordinate - otherVector.YCoordinate,
-                ZCoordinate = vector.ZCoordinate - otherVector.ZCoordinate,
+                X = vector.X - otherVector.X,
+                Y = vector.Y - otherVector.Y,
+                Z = vector.Z - otherVector.Z,
             };
         }
     }

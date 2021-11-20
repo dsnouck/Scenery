@@ -18,13 +18,13 @@ namespace Scenery.Controllers.Validators
         /// </summary>
         public SamplerSettingsValidator()
         {
-            this.RuleFor(samplerSettings => samplerSettings.ColumnCount)
+            this.RuleFor(samplerSettings => samplerSettings.Columns)
                 .GreaterThanOrEqualTo(1)
                 .LessThanOrEqualTo(7680);
-            this.RuleFor(samplerSettings => samplerSettings.RowCount)
+            this.RuleFor(samplerSettings => samplerSettings.Rows)
                 .GreaterThanOrEqualTo(1)
                 .LessThanOrEqualTo(4320);
-            this.RuleFor(samplerSettings => samplerSettings.SubsampleCount)
+            this.RuleFor(samplerSettings => samplerSettings.Subsamples)
                 .GreaterThanOrEqualTo(1)
                 .LessThanOrEqualTo(16);
         }

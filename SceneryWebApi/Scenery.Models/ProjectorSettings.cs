@@ -13,28 +13,28 @@ namespace Scenery.Models
     public class ProjectorSettings
     {
         /// <summary>
-        /// Gets or sets the eye, i.e. the three-dimensional point we are looking from.
+        /// Gets or sets the eye, i.e. the point we are looking from.
         /// </summary>
         public Vector3 Eye { get; set; } = new Vector3
         {
-            XCoordinate = 2D,
-            YCoordinate = 2D,
-            ZCoordinate = 2D,
+            X = 2D,
+            Y = 2D,
+            Z = 2D,
         };
 
         /// <summary>
-        /// Gets or sets the focus, i.e. the three-dimensional point we are looking at.
+        /// Gets or sets the focus, i.e. the point we are looking at.
         /// </summary>
         public Vector3 Focus { get; set; } = new Vector3();
 
         /// <summary>
-        /// Gets or sets the horizontal opening angle.
+        /// Gets or sets the horizontal field of view.
         /// </summary>
-        public double HorizontalOpeningAngle { get; set; } = Math.PI / 4D;
+        public double FieldOfView { get; set; } = Math.PI / 4D;
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
-        public Color BackgroundColor { get; set; } = new Color();
+        public Color Background { get; set; } = new Color();
     }
 }

@@ -63,7 +63,7 @@ namespace Scenery.Components.Tests
         /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
         /// </summary>
         [Fact]
-        public void GivenNoInterceptsWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
+        public void GivenNoInterceptsWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
         {
             // Arrange.
             var scene = new Scene();
@@ -71,8 +71,8 @@ namespace Scenery.Components.Tests
             {
                 Eye = new Vector3(),
                 Focus = new Vector3(),
-                HorizontalOpeningAngle = Math.PI / 4D,
-                BackgroundColor = new Color(),
+                FieldOfView = Math.PI / 4D,
+                Background = new Color(),
             };
             this.funcVector2Vector3ComponentTestDouble
                 .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
@@ -89,7 +89,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.ProjectSceneToImage(scene, projectorSettings);
 
             // Assert.
-            result(new Vector2()).Should().Be(projectorSettings.BackgroundColor);
+            result(new Vector2()).Should().Be(projectorSettings.Background);
             this.funcVector2Vector3ComponentTestDouble
                 .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
             this.sceneComponentFactoryTestDouble
@@ -110,7 +110,7 @@ namespace Scenery.Components.Tests
         /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnInterceptBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
+        public void GivenAnInterceptBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
         {
             // Arrange.
             var scene = new Scene();
@@ -130,7 +130,7 @@ namespace Scenery.Components.Tests
             var result = this.systemUnderTest.ProjectSceneToImage(scene, projectorSettings);
 
             // Assert.
-            result(new Vector2()).Should().Be(projectorSettings.BackgroundColor);
+            result(new Vector2()).Should().Be(projectorSettings.Background);
             this.funcVector2Vector3ComponentTestDouble
                 .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
             this.sceneComponentFactoryTestDouble

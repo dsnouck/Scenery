@@ -32,7 +32,7 @@ namespace Scenery.Components.Interfaces
         /// </summary>
         /// <param name="color">The color.</param>
         /// <returns>The red, green and blue bytes from <paramref name="color"/>.</returns>
-        List<byte> GetRedGreenBlueBytesFromColor(Color color);
+        List<byte> GetRgbBytesFromColor(Color color);
 
         /// <summary>
         /// Multiplies <paramref name="color"/> with <paramref name="factor"/>.

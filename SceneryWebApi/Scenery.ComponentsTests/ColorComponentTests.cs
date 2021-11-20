@@ -39,15 +39,15 @@ namespace Scenery.Components.Tests
             {
                 new Color
                 {
-                    RedComponent = 0D,
-                    GreenComponent = 0.5D,
-                    BlueComponent = 1D,
+                    R = 0D,
+                    G = 0.5D,
+                    B = 1D,
                 },
                 new Color
                 {
-                    RedComponent = 1D,
-                    GreenComponent = 0.5D,
-                    BlueComponent = 0D,
+                    R = 1D,
+                    G = 0.5D,
+                    B = 0D,
                 },
             };
 
@@ -58,9 +58,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Color
                 {
-                    RedComponent = 0.5D,
-                    GreenComponent = 0.5D,
-                    BlueComponent = 0.5D,
+                    R = 0.5D,
+                    G = 0.5D,
+                    B = 0.5D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -90,9 +90,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var color = new Color
             {
-                RedComponent = 0D,
-                GreenComponent = 0.5D,
-                BlueComponent = 1D,
+                R = 0D,
+                G = 0.5D,
+                B = 1D,
             };
 
             // Act.
@@ -104,37 +104,37 @@ namespace Scenery.Components.Tests
         }
 
         /// <summary>
-        /// Tests <see cref="ColorComponent.GetRedGreenBlueBytesFromColor(Color)"/>.
+        /// Tests <see cref="ColorComponent.GetRgbBytesFromColor(Color)"/>.
         /// </summary>
         [Fact]
-        public void GivenTheColorIsNullWhenGetRedGreenBlueBytesFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
+        public void GivenTheColorIsNullWhenGetRgbBytesFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
         {
             // Arrange.
             Color color = null;
 
             // Act.
-            Action action = () => this.systemUnderTest.GetRedGreenBlueBytesFromColor(color);
+            Action action = () => this.systemUnderTest.GetRgbBytesFromColor(color);
 
             // Assert.
             action.Should().Throw<ArgumentNullException>();
         }
 
         /// <summary>
-        /// Tests <see cref="ColorComponent.GetRedGreenBlueBytesFromColor(Color)"/>.
+        /// Tests <see cref="ColorComponent.GetRgbBytesFromColor(Color)"/>.
         /// </summary>
         [Fact]
-        public void GivenAColorWhenGetRedGreenBlueBytesFromColorIsCalledThenTheCorrectBytesAreReturned()
+        public void GivenAColorWhenGetRgbBytesFromColorIsCalledThenTheCorrectBytesAreReturned()
         {
             // Arrange.
             var color = new Color
             {
-                RedComponent = 0D,
-                GreenComponent = 0.5D,
-                BlueComponent = 1D,
+                R = 0D,
+                G = 0.5D,
+                B = 1D,
             };
 
             // Act.
-            var result = this.systemUnderTest.GetRedGreenBlueBytesFromColor(color);
+            var result = this.systemUnderTest.GetRgbBytesFromColor(color);
 
             // Assert.
             result.Should().BeEquivalentTo(
@@ -171,9 +171,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var color = new Color
             {
-                RedComponent = 0D,
-                GreenComponent = 0.5D,
-                BlueComponent = 1D,
+                R = 0D,
+                G = 0.5D,
+                B = 1D,
             };
             var factor = 0.5D;
 
@@ -184,9 +184,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Color
                 {
-                    RedComponent = 0D,
-                    GreenComponent = 0.25D,
-                    BlueComponent = 0.5D,
+                    R = 0D,
+                    G = 0.25D,
+                    B = 0.5D,
                 },
                 Equivalencies.DoubleEquivalency);
         }

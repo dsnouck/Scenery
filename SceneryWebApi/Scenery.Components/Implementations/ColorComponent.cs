@@ -19,9 +19,9 @@ namespace Scenery.Components.Implementations
         {
             return new Color
             {
-                RedComponent = colors.Average(color => color.RedComponent),
-                GreenComponent = colors.Average(color => color.GreenComponent),
-                BlueComponent = colors.Average(color => color.BlueComponent),
+                R = colors.Average(color => color.R),
+                G = colors.Average(color => color.G),
+                B = colors.Average(color => color.B),
             };
         }
 
@@ -34,13 +34,13 @@ namespace Scenery.Components.Implementations
             }
 
             return System.Drawing.Color.FromArgb(
-                GetByteFromComponent(color.RedComponent),
-                GetByteFromComponent(color.GreenComponent),
-                GetByteFromComponent(color.BlueComponent));
+                GetByteFromComponent(color.R),
+                GetByteFromComponent(color.G),
+                GetByteFromComponent(color.B));
         }
 
         /// <inheritdoc/>
-        public List<byte> GetRedGreenBlueBytesFromColor(Color color)
+        public List<byte> GetRgbBytesFromColor(Color color)
         {
             if (color == null)
             {
@@ -49,9 +49,9 @@ namespace Scenery.Components.Implementations
 
             var components = new List<double>
             {
-                color.RedComponent,
-                color.GreenComponent,
-                color.BlueComponent,
+                color.R,
+                color.G,
+                color.B,
             };
 
             return components.Select(GetByteFromComponent).ToList();
@@ -67,9 +67,9 @@ namespace Scenery.Components.Implementations
 
             return new Color
             {
-                RedComponent = color.RedComponent * factor,
-                GreenComponent = color.GreenComponent * factor,
-                BlueComponent = color.BlueComponent * factor,
+                R = color.R * factor,
+                G = color.G * factor,
+                B = color.B * factor,
             };
         }
 

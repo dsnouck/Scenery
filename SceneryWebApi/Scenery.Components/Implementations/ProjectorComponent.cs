@@ -67,7 +67,7 @@ namespace Scenery.Components.Implementations
                     .FirstOrDefault();
                 if (firstOrDefaultIntercept == null)
                 {
-                    return projectorSettings.BackgroundColor;
+                    return projectorSettings.Background;
                 }
 
                 var intensity = Math.Abs(this.vector3Component.DotProduct(firstOrDefaultIntercept.Normal(), direction));
@@ -80,7 +80,7 @@ namespace Scenery.Components.Implementations
             var viewingDirection = this.vector3Component.Normalize(
                 this.vector3Component.Subtract(projectorSettings.Focus, projectorSettings.Eye));
             var centerScreen = this.vector3Component.Add(projectorSettings.Eye, viewingDirection);
-            var vertical = new Vector3 { XCoordinate = 0D, YCoordinate = 0D, ZCoordinate = 1D };
+            var vertical = new Vector3 { X = 0D, Y = 0D, Z = 1D };
             var xVector = this.vector3Component.Normalize(
                 this.vector3Component.CrossProduct(
                     viewingDirection,
@@ -89,7 +89,7 @@ namespace Scenery.Components.Implementations
                     this.vector3Component.CrossProduct(
                         xVector,
                         viewingDirection));
-            var halfScreenExtent = Math.Tan(projectorSettings.HorizontalOpeningAngle * 0.5D);
+            var halfScreenExtent = Math.Tan(projectorSettings.FieldOfView * 0.5D);
             xVector = this.vector3Component.Multiply(xVector, halfScreenExtent);
             yVector = this.vector3Component.Multiply(yVector, halfScreenExtent);
             return this.funcVector2Vector3Component.GetPlane(centerScreen, xVector, yVector);

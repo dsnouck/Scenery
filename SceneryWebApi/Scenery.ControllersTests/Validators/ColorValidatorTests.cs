@@ -38,18 +38,18 @@ namespace Scenery.ControllersTests.Validators
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenRedComponentIsTooSmallWhenValidateIsCalledThenItFails()
+        public void GivenRIsTooSmallWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = -1D,
-                        GreenComponent = 0D,
-                        BlueComponent = 0D,
+                        R = -1D,
+                        G = 0D,
+                        B = 0D,
                     },
                 },
             };
@@ -58,25 +58,25 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.RedComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.R);
         }
 
         /// <summary>
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenRedComponentIsTooLargeWhenValidateIsCalledThenItFails()
+        public void GivenRIsTooLargeWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = 2D,
-                        GreenComponent = 0D,
-                        BlueComponent = 0D,
+                        R = 2D,
+                        G = 0D,
+                        B = 0D,
                     },
                 },
             };
@@ -85,25 +85,25 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.RedComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.R);
         }
 
         /// <summary>
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenGreenComponentIsTooSmallWhenValidateIsCalledThenItFails()
+        public void GivenGIsTooSmallWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = 0D,
-                        GreenComponent = -1D,
-                        BlueComponent = 0D,
+                        R = 0D,
+                        G = -1D,
+                        B = 0D,
                     },
                 },
             };
@@ -112,25 +112,25 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.GreenComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.G);
         }
 
         /// <summary>
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenGreenComponentIsTooLargeWhenValidateIsCalledThenItFails()
+        public void GivenGIsTooLargeWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = 0D,
-                        GreenComponent = 2D,
-                        BlueComponent = 0D,
+                        R = 0D,
+                        G = 2D,
+                        B = 0D,
                     },
                 },
             };
@@ -139,25 +139,25 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.GreenComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.G);
         }
 
         /// <summary>
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenBlueComponentIsTooSmallWhenValidateIsCalledThenItFails()
+        public void GivenBIsTooSmallWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = 0D,
-                        GreenComponent = 0D,
-                        BlueComponent = -1D,
+                        R = 0D,
+                        G = 0D,
+                        B = -1D,
                     },
                 },
             };
@@ -166,25 +166,25 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.BlueComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.B);
         }
 
         /// <summary>
         /// Tests <see cref="ColorValidator"/>.
         /// </summary>
         [Fact]
-        public void GivenBlueComponentIsTooLargeWhenValidateIsCalledThenItFails()
+        public void GivenBIsTooLargeWhenValidateIsCalledThenItFails()
         {
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
-                        RedComponent = 0D,
-                        GreenComponent = 0D,
-                        BlueComponent = 2D,
+                        R = 0D,
+                        G = 0D,
+                        B = 2D,
                     },
                 },
             };
@@ -193,7 +193,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.BlueComponent);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.B);
         }
     }
 }

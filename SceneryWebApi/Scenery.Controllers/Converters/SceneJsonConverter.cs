@@ -34,93 +34,93 @@ namespace Scenery.Controllers.Converters
 
             switch (type)
             {
-                case nameof(ColoredScene):
-                    scene = new ColoredScene
+                case nameof(Colored):
+                    scene = new Colored
                     {
-                        Color = ReadColor(ref reader, nameof(ColoredScene.Color)),
-                        OriginalScene = ReadScene(ref reader, nameof(ColoredScene.OriginalScene)),
+                        Color = ReadColor(ref reader, nameof(Colored.Color)),
+                        Scene = ReadScene(ref reader, nameof(Colored.Scene)),
                     };
                     break;
-                case nameof(ConeScene):
-                    scene = new ConeScene();
+                case nameof(Cone):
+                    scene = new Cone();
                     break;
-                case nameof(CubeScene):
-                    scene = new CubeScene();
+                case nameof(Cube):
+                    scene = new Cube();
                     break;
-                case nameof(CylinderScene):
-                    scene = new CylinderScene();
+                case nameof(Cylinder):
+                    scene = new Cylinder();
                     break;
-                case nameof(DodecahedronScene):
-                    scene = new DodecahedronScene();
+                case nameof(Dodecahedron):
+                    scene = new Dodecahedron();
                     break;
-                case nameof(EmptyScene):
-                    scene = new EmptyScene();
+                case nameof(Empty):
+                    scene = new Empty();
                     break;
-                case nameof(FullScene):
-                    scene = new FullScene();
+                case nameof(Full):
+                    scene = new Full();
                     break;
-                case nameof(IcosahedronScene):
-                    scene = new IcosahedronScene();
+                case nameof(Icosahedron):
+                    scene = new Icosahedron();
                     break;
-                case nameof(IntersectedScene):
-                    scene = new IntersectedScene
+                case nameof(Intersection):
+                    scene = new Intersection
                     {
-                        Scenes = ReadSceneList(ref reader, nameof(IntersectedScene.Scenes)),
+                        Scenes = ReadSceneList(ref reader, nameof(Intersection.Scenes)),
                     };
                     break;
-                case nameof(InvertedScene):
-                    scene = new InvertedScene
+                case nameof(Inverted):
+                    scene = new Inverted
                     {
-                        OriginalScene = ReadScene(ref reader, nameof(InvertedScene.OriginalScene)),
+                        Scene = ReadScene(ref reader, nameof(Inverted.Scene)),
                     };
                     break;
-                case nameof(InvisibleScene):
-                    scene = new InvisibleScene
+                case nameof(Transparent):
+                    scene = new Transparent
                     {
-                        OriginalScene = ReadScene(ref reader, nameof(InvisibleScene.OriginalScene)),
+                        Scene = ReadScene(ref reader, nameof(Transparent.Scene)),
                     };
                     break;
-                case nameof(OctahedronScene):
-                    scene = new OctahedronScene();
+                case nameof(Octahedron):
+                    scene = new Octahedron();
                     break;
-                case nameof(PlaneScene):
-                    scene = new PlaneScene
+                case nameof(Plane):
+                    scene = new Plane
                     {
-                        Normal = ReadVector(ref reader, nameof(PlaneScene.Normal)),
+                        Normal = ReadVector(ref reader, nameof(Plane.Normal)),
                     };
                     break;
-                case nameof(RotatedScene):
-                    scene = new RotatedScene
+                case nameof(Rotated):
+                    scene = new Rotated
                     {
-                        Axis = ReadVector(ref reader, nameof(RotatedScene.Axis)),
-                        Angle = ReadDoubleProperty(ref reader, nameof(RotatedScene.Angle)),
-                        OriginalScene = ReadScene(ref reader, nameof(RotatedScene.OriginalScene)),
+                        Axis = ReadVector(ref reader, nameof(Rotated.Axis)),
+                        Angle = ReadDoubleProperty(ref reader, nameof(Rotated.Angle)),
+                        Scene = ReadScene(ref reader, nameof(Rotated.Scene)),
                     };
                     break;
-                case nameof(ScaledScene):
-                    scene = new ScaledScene
+                case nameof(Scaled):
+                    scene = new Scaled
                     {
-                        Factor = ReadDoubleProperty(ref reader, nameof(ScaledScene.Factor)),
-                        OriginalScene = ReadScene(ref reader, nameof(ScaledScene.OriginalScene)),
+                        Factor = ReadDoubleProperty(ref reader, nameof(Scaled.Factor)),
+                        Scene = ReadScene(ref reader, nameof(Scaled.Scene)),
                     };
                     break;
-                case nameof(SphereScene):
-                    scene = new SphereScene();
+                case nameof(Sphere):
+                    scene = new Sphere();
                     break;
-                case nameof(TetrahedronScene):
-                    scene = new TetrahedronScene();
+                case nameof(Tetrahedron):
+                    scene = new Tetrahedron();
                     break;
-                case nameof(TranslatedScene):
-                    scene = new TranslatedScene
+                case nameof(Translated):
+                    scene = new Translated
                     {
-                        Translation = ReadVector(ref reader, nameof(TranslatedScene.Translation)),
-                        OriginalScene = ReadScene(ref reader, nameof(TranslatedScene.OriginalScene)),
+                        Translation = ReadVector(ref reader, nameof(Translated.Translation)),
+                        Scene = ReadScene(ref reader, nameof(Translated.Scene)),
                     };
                     break;
-                case nameof(UnitedScene):
-                    scene = new UnitedScene
+                case nameof(Union):
+                    scene = new Union
                     {
-                        Scenes = ReadSceneList(ref reader, nameof(UnitedScene.Scenes)),
+                        Scenes = ReadSceneList(ref reader, nameof(Union.Scenes)),
                     };
                     break;
             }
@@ -156,9 +156,9 @@ namespace Scenery.Controllers.Converters
             ReadStartObject(ref reader);
             var color = new Color
             {
-                RedComponent = ReadDoubleProperty(ref reader, nameof(Color.RedComponent)),
-                GreenComponent = ReadDoubleProperty(ref reader, nameof(Color.GreenComponent)),
-                BlueComponent = ReadDoubleProperty(ref reader, nameof(Color.BlueComponent)),
+                R = ReadDoubleProperty(ref reader, nameof(Color.R)),
+                G = ReadDoubleProperty(ref reader, nameof(Color.G)),
+                B = ReadDoubleProperty(ref reader, nameof(Color.B)),
             };
             ReadEndObject(ref reader);
             return color;
@@ -170,9 +170,9 @@ namespace Scenery.Controllers.Converters
             ReadStartObject(ref reader);
             var vector = new Vector3
             {
-                XCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.XCoordinate)),
-                YCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.YCoordinate)),
-                ZCoordinate = ReadDoubleProperty(ref reader, nameof(Vector3.ZCoordinate)),
+                X = ReadDoubleProperty(ref reader, nameof(Vector3.X)),
+                Y = ReadDoubleProperty(ref reader, nameof(Vector3.Y)),
+                Z = ReadDoubleProperty(ref reader, nameof(Vector3.Z)),
             };
             ReadEndObject(ref reader);
             return vector;
@@ -185,48 +185,48 @@ namespace Scenery.Controllers.Converters
 
             switch (scene)
             {
-                case ConeScene:
-                case CubeScene:
-                case CylinderScene:
-                case DodecahedronScene:
-                case EmptyScene:
-                case FullScene:
-                case IcosahedronScene:
-                case OctahedronScene:
-                case SphereScene:
-                case TetrahedronScene:
+                case Cone:
+                case Cube:
+                case Cylinder:
+                case Dodecahedron:
+                case Empty:
+                case Full:
+                case Icosahedron:
+                case Octahedron:
+                case Sphere:
+                case Tetrahedron:
                     break;
-                case ColoredScene colored:
-                    WriteColor(writer, nameof(ColoredScene.Color), colored.Color);
-                    WriteScene(writer, nameof(ColoredScene.OriginalScene), colored.OriginalScene);
+                case Colored colored:
+                    WriteColor(writer, nameof(Colored.Color), colored.Color);
+                    WriteScene(writer, nameof(Colored.Scene), colored.Scene);
                     break;
-                case IntersectedScene intersected:
-                    WriteSceneArray(writer, nameof(IntersectedScene.Scenes), intersected.Scenes);
+                case Intersection intersected:
+                    WriteSceneArray(writer, nameof(Intersection.Scenes), intersected.Scenes);
                     break;
-                case InvertedScene inverted:
-                    WriteScene(writer, nameof(InvertedScene.OriginalScene), inverted.OriginalScene);
+                case Inverted inverted:
+                    WriteScene(writer, nameof(Inverted.Scene), inverted.Scene);
                     break;
-                case InvisibleScene invisible:
-                    WriteScene(writer, nameof(InvisibleScene.OriginalScene), invisible.OriginalScene);
+                case Transparent invisible:
+                    WriteScene(writer, nameof(Transparent.Scene), invisible.Scene);
                     break;
-                case PlaneScene plane:
-                    WriteVector(writer, nameof(PlaneScene.Normal), plane.Normal);
+                case Plane plane:
+                    WriteVector(writer, nameof(Plane.Normal), plane.Normal);
                     break;
-                case RotatedScene rotated:
-                    WriteVector(writer, nameof(RotatedScene.Axis), rotated.Axis);
-                    WriteNumber(writer, nameof(RotatedScene.Angle), rotated.Angle);
-                    WriteScene(writer, nameof(RotatedScene.OriginalScene), rotated.OriginalScene);
+                case Rotated rotated:
+                    WriteVector(writer, nameof(Rotated.Axis), rotated.Axis);
+                    WriteNumber(writer, nameof(Rotated.Angle), rotated.Angle);
+                    WriteScene(writer, nameof(Rotated.Scene), rotated.Scene);
                     break;
-                case ScaledScene scaled:
-                    WriteNumber(writer, nameof(ScaledScene.Factor), scaled.Factor);
-                    WriteScene(writer, nameof(ScaledScene.OriginalScene), scaled.OriginalScene);
+                case Scaled scaled:
+                    WriteNumber(writer, nameof(Scaled.Factor), scaled.Factor);
+                    WriteScene(writer, nameof(Scaled.Scene), scaled.Scene);
                     break;
-                case TranslatedScene translated:
-                    WriteVector(writer, nameof(TranslatedScene.Translation), translated.Translation);
-                    WriteScene(writer, nameof(TranslatedScene.OriginalScene), translated.OriginalScene);
+                case Translated translated:
+                    WriteVector(writer, nameof(Translated.Translation), translated.Translation);
+                    WriteScene(writer, nameof(Translated.Scene), translated.Scene);
                     break;
-                case UnitedScene united:
-                    WriteSceneArray(writer, nameof(UnitedScene.Scenes), united.Scenes);
+                case Union united:
+                    WriteSceneArray(writer, nameof(Union.Scenes), united.Scenes);
                     break;
                 default:
                     throw new JsonException();
@@ -258,9 +258,9 @@ namespace Scenery.Controllers.Converters
         {
             WritePropertyName(writer, propertyName);
             WriteStartObject(writer);
-            WriteNumber(writer, nameof(Color.RedComponent), color.RedComponent);
-            WriteNumber(writer, nameof(Color.GreenComponent), color.GreenComponent);
-            WriteNumber(writer, nameof(Color.BlueComponent), color.BlueComponent);
+            WriteNumber(writer, nameof(Color.R), color.R);
+            WriteNumber(writer, nameof(Color.G), color.G);
+            WriteNumber(writer, nameof(Color.B), color.B);
             WriteEndObject(writer);
         }
 
@@ -268,9 +268,9 @@ namespace Scenery.Controllers.Converters
         {
             WritePropertyName(writer, propertyName);
             WriteStartObject(writer);
-            WriteNumber(writer, nameof(Vector3.XCoordinate), vector.XCoordinate);
-            WriteNumber(writer, nameof(Vector3.YCoordinate), vector.YCoordinate);
-            WriteNumber(writer, nameof(Vector3.ZCoordinate), vector.ZCoordinate);
+            WriteNumber(writer, nameof(Vector3.X), vector.X);
+            WriteNumber(writer, nameof(Vector3.Y), vector.Y);
+            WriteNumber(writer, nameof(Vector3.Z), vector.Z);
             WriteEndObject(writer);
         }
     }

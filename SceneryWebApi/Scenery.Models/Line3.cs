@@ -20,9 +20,9 @@ namespace Scenery.Models
         /// </summary>
         public Vector3 Direction { get; set; } = new Vector3
         {
-            XCoordinate = 1D,
-            YCoordinate = 0D,
-            ZCoordinate = 0D,
+            X = 1D,
+            Y = 0D,
+            Z = 0D,
         };
     }
 }

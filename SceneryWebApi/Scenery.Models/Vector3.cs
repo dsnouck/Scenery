@@ -11,18 +11,18 @@ namespace Scenery.Models
     public class Vector3
     {
         /// <summary>
-        /// Gets or sets the x-coordinate.
+        /// Gets or sets the x-component.
         /// </summary>
-        public double XCoordinate { get; set; } = 0D;
+        public double X { get; set; } = 0D;
 
         /// <summary>
-        /// Gets or sets the y-coordinate.
+        /// Gets or sets the y-component.
         /// </summary>
-        public double YCoordinate { get; set; } = 0D;
+        public double Y { get; set; } = 0D;
 
         /// <summary>
-        /// Gets or sets the z-coordinate.
+        /// Gets or sets the z-component.
         /// </summary>
-        public double ZCoordinate { get; set; } = 0D;
+        public double Z { get; set; } = 0D;
     }
 }

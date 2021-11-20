@@ -32,9 +32,9 @@ namespace Scenery.Components.Implementations
         public Matrix4 GetRotationMatrix(Vector3 axis, double angle)
         {
             axis = this.vector3Component.Normalize(axis);
-            var l = axis.XCoordinate;
-            var m = axis.YCoordinate;
-            var n = axis.ZCoordinate;
+            var l = axis.X;
+            var m = axis.Y;
+            var n = axis.Z;
             var cosine = Math.Cos(angle);
             var sine = Math.Sin(angle);
             var oneMinusCosine = 1D - cosine;
@@ -43,31 +43,31 @@ namespace Scenery.Components.Implementations
             {
                 FirstRow = new Vector4
                 {
-                    XCoordinate = (l * l * oneMinusCosine) + cosine,
-                    YCoordinate = (m * l * oneMinusCosine) - (n * sine),
-                    ZCoordinate = (n * l * oneMinusCosine) + (m * sine),
-                    WCoordinate = 0D,
+                    X = (l * l * oneMinusCosine) + cosine,
+                    Y = (m * l * oneMinusCosine) - (n * sine),
+                    Z = (n * l * oneMinusCosine) + (m * sine),
+                    W = 0D,
                 },
                 SecondRow = new Vector4
                 {
-                    XCoordinate = (l * m * oneMinusCosine) + (n * sine),
-                    YCoordinate = (m * m * oneMinusCosine) + cosine,
-                    ZCoordinate = (n * m * oneMinusCosine) - (l * sine),
-                    WCoordinate = 0D,
+                    X = (l * m * oneMinusCosine) + (n * sine),
+                    Y = (m * m * oneMinusCosine) + cosine,
+                    Z = (n * m * oneMinusCosine) - (l * sine),
+                    W = 0D,
                 },
                 ThirdRow = new Vector4
                 {
-                    XCoordinate = (l * n * oneMinusCosine) - (m * sine),
-                    YCoordinate = (m * n * oneMinusCosine) + (l * sine),
-                    ZCoordinate = (n * n * oneMinusCosine) + cosine,
-                    WCoordinate = 0D,
+                    X = (l * n * oneMinusCosine) - (m * sine),
+                    Y = (m * n * oneMinusCosine) + (l * sine),
+                    Z = (n * n * oneMinusCosine) + cosine,
+                    W = 0D,
                 },
                 FourthRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 0D,
-                    WCoordinate = 1D,
+                    X = 0D,
+                    Y = 0D,
+                    Z = 0D,
+                    W = 1D,
                 },
             };
         }
@@ -79,31 +79,31 @@ namespace Scenery.Components.Implementations
             {
                 FirstRow = new Vector4
                 {
-                    XCoordinate = factor,
-                    YCoordinate = 0D,
-                    ZCoordinate = 0D,
-                    WCoordinate = 0D,
+                    X = factor,
+                    Y = 0D,
+                    Z = 0D,
+                    W = 0D,
                 },
                 SecondRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = factor,
-                    ZCoordinate = 0D,
-                    WCoordinate = 0D,
+                    X = 0D,
+                    Y = factor,
+                    Z = 0D,
+                    W = 0D,
                 },
                 ThirdRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = factor,
-                    WCoordinate = 0D,
+                    X = 0D,
+                    Y = 0D,
+                    Z = factor,
+                    W = 0D,
                 },
                 FourthRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 0D,
-                    WCoordinate = 1D,
+                    X = 0D,
+                    Y = 0D,
+                    Z = 0D,
+                    W = 1D,
                 },
             };
         }
@@ -120,31 +120,31 @@ namespace Scenery.Components.Implementations
             {
                 FirstRow = new Vector4
                 {
-                    XCoordinate = 1D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 0D,
-                    WCoordinate = translation.XCoordinate,
+                    X = 1D,
+                    Y = 0D,
+                    Z = 0D,
+                    W = translation.X,
                 },
                 SecondRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 1D,
-                    ZCoordinate = 0D,
-                    WCoordinate = translation.YCoordinate,
+                    X = 0D,
+                    Y = 1D,
+                    Z = 0D,
+                    W = translation.Y,
                 },
                 ThirdRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 1D,
-                    WCoordinate = translation.ZCoordinate,
+                    X = 0D,
+                    Y = 0D,
+                    Z = 1D,
+                    W = translation.Z,
                 },
                 FourthRow = new Vector4
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 0D,
-                    WCoordinate = 1D,
+                    X = 0D,
+                    Y = 0D,
+                    Z = 0D,
+                    W = 1D,
                 },
             };
         }
@@ -159,10 +159,10 @@ namespace Scenery.Components.Implementations
 
             return new Vector4
             {
-                XCoordinate = this.vector4Component.DotProduct(matrix.FirstRow, vector),
-                YCoordinate = this.vector4Component.DotProduct(matrix.SecondRow, vector),
-                ZCoordinate = this.vector4Component.DotProduct(matrix.ThirdRow, vector),
-                WCoordinate = this.vector4Component.DotProduct(matrix.FourthRow, vector),
+                X = this.vector4Component.DotProduct(matrix.FirstRow, vector),
+                Y = this.vector4Component.DotProduct(matrix.SecondRow, vector),
+                Z = this.vector4Component.DotProduct(matrix.ThirdRow, vector),
+                W = this.vector4Component.DotProduct(matrix.FourthRow, vector),
             };
         }
     }

@@ -26,10 +26,10 @@ namespace Scenery.Components.Implementations
             }
 
             return
-                (vector.XCoordinate * otherVector.XCoordinate) +
-                (vector.YCoordinate * otherVector.YCoordinate) +
-                (vector.ZCoordinate * otherVector.ZCoordinate) +
-                (vector.WCoordinate * otherVector.WCoordinate);
+                (vector.X * otherVector.X) +
+                (vector.Y * otherVector.Y) +
+                (vector.Z * otherVector.Z) +
+                (vector.W * otherVector.W);
         }
     }
 }

@@ -68,16 +68,16 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var otherVector = new Vector3
             {
-                XCoordinate = 4D,
-                YCoordinate = 5D,
-                ZCoordinate = 6D,
+                X = 4D,
+                Y = 5D,
+                Z = 6D,
             };
 
             // Act.
@@ -87,9 +87,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = 5D,
-                    YCoordinate = 7D,
-                    ZCoordinate = 9D,
+                    X = 5D,
+                    Y = 7D,
+                    Z = 9D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -112,9 +112,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = 0D,
-                    YCoordinate = 0D,
-                    ZCoordinate = 1D,
+                    X = 0D,
+                    Y = 0D,
+                    Z = 1D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -160,16 +160,16 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var otherVector = new Vector3
             {
-                XCoordinate = 4D,
-                YCoordinate = 5D,
-                ZCoordinate = 6D,
+                X = 4D,
+                Y = 5D,
+                Z = 6D,
             };
 
             // Act.
@@ -179,9 +179,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = -3D,
-                    YCoordinate = 6D,
-                    ZCoordinate = -3D,
+                    X = -3D,
+                    Y = 6D,
+                    Z = -3D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -195,9 +195,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var divisor = 2D;
@@ -209,9 +209,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = 0.5D,
-                    YCoordinate = 1D,
-                    ZCoordinate = 1.5D,
+                    X = 0.5D,
+                    Y = 1D,
+                    Z = 1.5D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -257,16 +257,16 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var otherVector = new Vector3
             {
-                XCoordinate = 4D,
-                YCoordinate = 5D,
-                ZCoordinate = 6D,
+                X = 4D,
+                Y = 5D,
+                Z = 6D,
             };
 
             // Act.
@@ -285,9 +285,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             // Act.
@@ -322,9 +322,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var factor = 2D;
@@ -336,9 +336,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = 2D,
-                    YCoordinate = 4D,
-                    ZCoordinate = 6D,
+                    X = 2D,
+                    Y = 4D,
+                    Z = 6D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -352,9 +352,9 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             // Act.
@@ -364,9 +364,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = 0.267D,
-                    YCoordinate = 0.535D,
-                    ZCoordinate = 0.802D,
+                    X = 0.267D,
+                    Y = 0.535D,
+                    Z = 0.802D,
                 },
                 Equivalencies.DoubleEquivalency);
         }
@@ -412,16 +412,16 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector3
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
             };
 
             var otherVector = new Vector3
             {
-                XCoordinate = 4D,
-                YCoordinate = 5D,
-                ZCoordinate = 6D,
+                X = 4D,
+                Y = 5D,
+                Z = 6D,
             };
 
             // Act.
@@ -431,9 +431,9 @@ namespace Scenery.Components.Tests
             result.Should().BeEquivalentTo(
                 new Vector3
                 {
-                    XCoordinate = -3D,
-                    YCoordinate = -3D,
-                    ZCoordinate = -3D,
+                    X = -3D,
+                    Y = -3D,
+                    Z = -3D,
                 },
                 Equivalencies.DoubleEquivalency);
         }

@@ -68,17 +68,17 @@ namespace Scenery.Components.Tests
             // Arrange.
             var vector = new Vector4
             {
-                XCoordinate = 1D,
-                YCoordinate = 2D,
-                ZCoordinate = 3D,
-                WCoordinate = 4D,
+                X = 1D,
+                Y = 2D,
+                Z = 3D,
+                W = 4D,
             };
             var otherVector = new Vector4
             {
-                XCoordinate = 5D,
-                YCoordinate = 6D,
-                ZCoordinate = 7D,
-                WCoordinate = 8D,
+                X = 5D,
+                Y = 6D,
+                Z = 7D,
+                W = 8D,
             };
 
             // Act.
