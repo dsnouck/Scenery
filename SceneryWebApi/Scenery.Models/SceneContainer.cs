@@ -15,7 +15,7 @@ namespace Scenery.Models
         /// <summary>
         /// Gets or sets the scene.
         /// </summary>
-        public Scene Scene { get; set; } = new SphereScene();
+        public Scene Scene { get; set; } = new Sphere();
 
         /// <summary>
         /// Gets or sets the projector settings.

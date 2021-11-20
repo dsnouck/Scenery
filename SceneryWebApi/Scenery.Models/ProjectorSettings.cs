@@ -13,7 +13,7 @@ namespace Scenery.Models
     public class ProjectorSettings
     {
         /// <summary>
-        /// Gets or sets the eye, i.e. the three-dimensional point we are looking from.
+        /// Gets or sets the eye, i.e. the point we are looking from.
         /// </summary>
         public Vector3 Eye { get; set; } = new Vector3
         {
@@ -23,7 +23,7 @@ namespace Scenery.Models
         };
 
         /// <summary>
-        /// Gets or sets the focus, i.e. the three-dimensional point we are looking at.
+        /// Gets or sets the focus, i.e. the point we are looking at.
         /// </summary>
         public Vector3 Focus { get; set; } = new Vector3();
 

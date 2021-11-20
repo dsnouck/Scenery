@@ -11,17 +11,17 @@ namespace Scenery.Models
     public class SamplerSettings
     {
         /// <summary>
-        /// Gets or sets the column count.
+        /// Gets or sets the number of columns.
         /// </summary>
         public int Columns { get; set; } = 128;
 
         /// <summary>
-        /// Gets or sets the row count.
+        /// Gets or sets the number of rows.
         /// </summary>
         public int Rows { get; set; } = 128;
 
         /// <summary>
-        /// Gets or sets the subsample count.
+        /// Gets or sets the number of subsamples.
         /// </summary>
         public int Subsamples { get; set; } = 2;
     }

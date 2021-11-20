@@ -49,61 +49,61 @@ namespace Scenery.Components.Implementations.SceneComponents
 
             return scene switch
             {
-                ColoredScene coloredScene => this.CreateColoredSceneComponent(coloredScene),
-                ConeScene _ => this.CreateConeSceneComponent(),
-                CubeScene _ => this.CreateCubeSceneComponent(),
-                CylinderScene _ => this.CreateCylinderSceneComponent(),
-                DodecahedronScene _ => this.CreateDodecahedronSceneComponent(),
-                EmptyScene _ => CreateEmptySceneComponent(),
-                FullScene _ => CreateFullSceneComponent(),
-                IcosahedronScene _ => this.CreateIcosahedronSceneComponent(),
-                IntersectedScene intersectedScene => this.CreateIntersectedSceneComponent(intersectedScene),
-                InvertedScene invertedScene => this.CreateInvertedSceneComponent(invertedScene),
-                InvisibleScene invisibleScene => this.CreateInvisibleSceneComponent(invisibleScene),
-                OctahedronScene _ => this.CreateOctahedronSceneComponent(),
-                PlaneScene planeScene => this.CreatePlaneSceneComponent(planeScene),
-                RotatedScene rotatedScene => this.CreateRotatedSceneComponent(rotatedScene),
-                ScaledScene scaledScene => this.CreateScaledSceneComponent(scaledScene),
-                SphereScene _ => this.CreateSphereSceneComponent(),
-                TetrahedronScene _ => this.CreateTetrahedronSceneComponent(),
-                TranslatedScene translatedScene => this.CreateTranslatedSceneComponent(translatedScene),
-                UnitedScene unitedScene => this.CreateUnitedSceneComponent(unitedScene),
+                Colored colored => this.CreateColoredComponent(colored),
+                Cone _ => this.CreateConeComponent(),
+                Cube _ => this.CreateCubeComponent(),
+                Cylinder _ => this.CreateCylinderComponent(),
+                Dodecahedron _ => this.CreateDodecahedronComponent(),
+                Empty _ => CreateEmptyComponent(),
+                Full _ => CreateFullComponent(),
+                Icosahedron _ => this.CreateIcosahedronComponent(),
+                Intersection intersection => this.CreateIntersectionComponent(intersection),
+                Inverted inverted => this.CreateInvertedComponent(inverted),
+                Transparent transparent => this.CreateTransparentComponent(transparent),
+                Octahedron _ => this.CreateOctahedronComponent(),
+                Plane plane => this.CreatePlaneComponent(plane),
+                Rotated rotated => this.CreateRotatedComponent(rotated),
+                Scaled scaled => this.CreateScaledComponent(scaled),
+                Sphere _ => this.CreateSphereComponent(),
+                Tetrahedron _ => this.CreateTetrahedronComponent(),
+                Translated translated => this.CreateTranslatedComponent(translated),
+                Union union => this.CreateUnionComponent(union),
                 _ => throw new NotSupportedException($"Unknown {nameof(Scene)} {scene.GetType().Name}."),
             };
         }
 
-        private static ISceneComponent CreateEmptySceneComponent()
+        private static ISceneComponent CreateEmptyComponent()
         {
-            return new EmptySceneComponent();
+            return new EmptyComponent();
         }
 
-        private static ISceneComponent CreateFullSceneComponent()
+        private static ISceneComponent CreateFullComponent()
         {
-            return new FullSceneComponent();
+            return new FullComponent();
         }
 
-        private ISceneComponent CreateColoredSceneComponent(ColoredScene coloredScene)
+        private ISceneComponent CreateColoredComponent(Colored colored)
         {
-            return new ColoredSceneComponent(
-                this.CreateSceneComponent(coloredScene.OriginalScene),
-                coloredScene.Color);
+            return new ColoredComponent(
+                this.CreateSceneComponent(colored.Scene),
+                colored.Color);
         }
 
-        private ISceneComponent CreateConeSceneComponent()
+        private ISceneComponent CreateConeComponent()
         {
-            return new ConeSceneComponent(
+            return new ConeComponent(
                 this.funcDoubleDoubleComponent,
                 this.line3Component,
                 this.vector3Component);
         }
 
-        private ISceneComponent CreateCubeSceneComponent()
+        private ISceneComponent CreateCubeComponent()
         {
-            var intersectedScene = new IntersectedScene
+            var intersection = new Intersection
             {
                 Scenes =
                 {
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -112,7 +112,7 @@ namespace Scenery.Components.Implementations.SceneComponents
                             Z = -1D,
                         },
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -121,7 +121,7 @@ namespace Scenery.Components.Implementations.SceneComponents
                             Z = 0D,
                         },
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -130,7 +130,7 @@ namespace Scenery.Components.Implementations.SceneComponents
                             Z = 0D,
                         },
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -139,7 +139,7 @@ namespace Scenery.Components.Implementations.SceneComponents
                             Z = 0D,
                         },
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -148,7 +148,7 @@ namespace Scenery.Components.Implementations.SceneComponents
                             Z = 0D,
                         },
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = new Vector3
                         {
@@ -160,329 +160,329 @@ namespace Scenery.Components.Implementations.SceneComponents
                 },
             };
 
-            return this.CreateSceneComponent(intersectedScene);
+            return this.CreateSceneComponent(intersection);
         }
 
-        private ISceneComponent CreateCylinderSceneComponent()
+        private ISceneComponent CreateCylinderComponent()
         {
-            return new CylinderSceneComponent(
+            return new CylinderComponent(
                 this.funcDoubleDoubleComponent,
                 this.line3Component,
                 this.vector3Component);
         }
 
-        private ISceneComponent CreateDodecahedronSceneComponent()
+        private ISceneComponent CreateDodecahedronComponent()
         {
             var dihedralAngle = Math.Acos(-1D / Math.Sqrt(5D));
             const double azimuthStep = Math.PI / 5D;
 
-            var intersectedScene = new IntersectedScene
+            var intersection = new Intersection
             {
                 Scenes =
                 {
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI, 0D),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 0D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 2D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 4D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 6D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 8D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 1D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 3D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 5D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 7D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 9D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, 0D, 0D),
                     },
                 },
             };
 
-            return this.CreateSceneComponent(intersectedScene);
+            return this.CreateSceneComponent(intersection);
         }
 
-        private ISceneComponent CreateIcosahedronSceneComponent()
+        private ISceneComponent CreateIcosahedronComponent()
         {
             var dihedralAngle = Math.Acos(-Math.Sqrt(5D) / 3D);
             var secondInclination = Math.Acos(-1D / 3D);
             const double azimuthStep = Math.PI / 3D;
             var azimuthOffset = (Math.PI / 3D) - Math.Acos(Math.Sqrt(5D / 8D));
 
-            var intersectedScene = new IntersectedScene
+            var intersection = new Intersection
             {
                 Scenes =
                 {
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI, 0D),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 0D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 2D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 4D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (1D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (1D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (3D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (3D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (5D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, secondInclination, (5D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (0D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (0D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (2D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (2D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (4D * azimuthStep) - azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - secondInclination, (4D * azimuthStep) + azimuthOffset),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 1D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 3D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 5D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, 0D, 0D),
                     },
                 },
             };
 
-            return this.CreateSceneComponent(intersectedScene);
+            return this.CreateSceneComponent(intersection);
         }
 
-        private ISceneComponent CreateIntersectedSceneComponent(IntersectedScene intersectedScene)
+        private ISceneComponent CreateIntersectionComponent(Intersection intersection)
         {
-            return intersectedScene.Scenes.Aggregate(
-                this.CreateSceneComponent(new FullScene()),
-                (originalSceneComponent, otherScene)
-                    => new IntersectedSceneComponent(
+            return intersection.Scenes.Aggregate(
+                this.CreateSceneComponent(new Full()),
+                (sceneComponent, otherScene)
+                    => new IntersectionComponent(
                         this.line3Component,
-                        originalSceneComponent,
+                        sceneComponent,
                         this.CreateSceneComponent(otherScene)));
         }
 
-        private ISceneComponent CreateInvertedSceneComponent(InvertedScene invertedScene)
+        private ISceneComponent CreateInvertedComponent(Inverted inverted)
         {
-            return new InvertedSceneComponent(
+            return new InvertedComponent(
                 this.vector3Component,
-                this.CreateSceneComponent(invertedScene.OriginalScene));
+                this.CreateSceneComponent(inverted.Scene));
         }
 
-        private ISceneComponent CreateInvisibleSceneComponent(InvisibleScene invisibleScene)
+        private ISceneComponent CreateTransparentComponent(Transparent transparent)
         {
-            return new InvisibleSceneComponent(
-                this.CreateSceneComponent(invisibleScene.OriginalScene));
+            return new TransparentComponent(
+                this.CreateSceneComponent(transparent.Scene));
         }
 
-        private ISceneComponent CreateOctahedronSceneComponent()
+        private ISceneComponent CreateOctahedronComponent()
         {
             var dihedralAngle = Math.Acos(-1D / 3D);
             const double azimuthStep = Math.PI / 3D;
 
-            var intersectedScene = new IntersectedScene
+            var intersection = new Intersection
             {
                 Scenes =
                 {
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI, 0D),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 0D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 2D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 4D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 1D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 3D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI - dihedralAngle, 5D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, 0D, 0D),
                     },
                 },
             };
 
-            return this.CreateSceneComponent(intersectedScene);
+            return this.CreateSceneComponent(intersection);
         }
 
-        private ISceneComponent CreatePlaneSceneComponent(PlaneScene planeScene)
+        private ISceneComponent CreatePlaneComponent(Plane plane)
         {
-            return new PlaneSceneComponent(
+            return new PlaneComponent(
                 this.vector3Component,
-                planeScene.Normal);
+                plane.Normal);
         }
 
-        private ISceneComponent CreateRotatedSceneComponent(RotatedScene rotatedScene)
+        private ISceneComponent CreateRotatedComponent(Rotated rotated)
         {
-            return new AffinelyTransformedSceneComponent(
+            return new AffinelyTransformedComponent(
                 this.matrix4Component,
-                this.CreateSceneComponent(rotatedScene.OriginalScene),
-                this.matrix4Component.GetRotationMatrix(rotatedScene.Axis, rotatedScene.Angle),
-                this.matrix4Component.GetRotationMatrix(rotatedScene.Axis, -rotatedScene.Angle));
+                this.CreateSceneComponent(rotated.Scene),
+                this.matrix4Component.GetRotationMatrix(rotated.Axis, rotated.Angle),
+                this.matrix4Component.GetRotationMatrix(rotated.Axis, -rotated.Angle));
         }
 
-        private ISceneComponent CreateScaledSceneComponent(ScaledScene scaledScene)
+        private ISceneComponent CreateScaledComponent(Scaled scaled)
         {
-            return new AffinelyTransformedSceneComponent(
+            return new AffinelyTransformedComponent(
                 this.matrix4Component,
-                this.CreateSceneComponent(scaledScene.OriginalScene),
-                this.matrix4Component.GetScalingMatrix(scaledScene.Factor),
-                this.matrix4Component.GetScalingMatrix(1 / scaledScene.Factor));
+                this.CreateSceneComponent(scaled.Scene),
+                this.matrix4Component.GetScalingMatrix(scaled.Factor),
+                this.matrix4Component.GetScalingMatrix(1 / scaled.Factor));
         }
 
-        private ISceneComponent CreateSphereSceneComponent()
+        private ISceneComponent CreateSphereComponent()
         {
-            return new SphereSceneComponent(
+            return new SphereComponent(
                 this.funcDoubleDoubleComponent,
                 this.line3Component,
                 this.vector3Component);
         }
 
-        private ISceneComponent CreateTetrahedronSceneComponent()
+        private ISceneComponent CreateTetrahedronComponent()
         {
             var dihedralAngle = Math.Acos(1D / 3D);
             const double azimuthStep = 2D * Math.PI / 3D;
 
-            var intersectedScene = new IntersectedScene
+            var intersection = new Intersection
             {
                 Scenes =
                 {
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, Math.PI, 0D),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 0D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 1D * azimuthStep),
                     },
-                    new PlaneScene
+                    new Plane
                     {
                         Normal = this.vector3Component.CreateVector3FromSphericalCoordinates(1D, dihedralAngle, 2D * azimuthStep),
                     },
                 },
             };
 
-            return this.CreateSceneComponent(intersectedScene);
+            return this.CreateSceneComponent(intersection);
         }
 
-        private ISceneComponent CreateTranslatedSceneComponent(TranslatedScene translatedScene)
+        private ISceneComponent CreateTranslatedComponent(Translated translated)
         {
-            return new AffinelyTransformedSceneComponent(
+            return new AffinelyTransformedComponent(
                 this.matrix4Component,
-                this.CreateSceneComponent(translatedScene.OriginalScene),
-                this.matrix4Component.GetTranslationMatrix(translatedScene.Translation),
-                this.matrix4Component.GetTranslationMatrix(this.vector3Component.Multiply(translatedScene.Translation, -1D)));
+                this.CreateSceneComponent(translated.Scene),
+                this.matrix4Component.GetTranslationMatrix(translated.Translation),
+                this.matrix4Component.GetTranslationMatrix(this.vector3Component.Multiply(translated.Translation, -1D)));
         }
 
-        private ISceneComponent CreateUnitedSceneComponent(UnitedScene unitedScene)
+        private ISceneComponent CreateUnionComponent(Union union)
         {
-            return unitedScene.Scenes.Aggregate(
-                this.CreateSceneComponent(new EmptyScene()),
-                (originalSceneComponent, otherScene)
-                    => new UnitedSceneComponent(
+            return union.Scenes.Aggregate(
+                this.CreateSceneComponent(new Empty()),
+                (sceneComponent, otherScene)
+                    => new UnionComponent(
                         this.line3Component,
-                        originalSceneComponent,
+                        sceneComponent,
                         this.CreateSceneComponent(otherScene)));
         }
     }

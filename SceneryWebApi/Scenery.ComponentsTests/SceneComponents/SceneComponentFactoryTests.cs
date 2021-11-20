@@ -77,147 +77,147 @@ namespace Scenery.Components.Tests.SceneComponents
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAColoredSceneWhenCreateSceneComponentIsCalledThenAColoredSceneComponentIsReturned()
+        public void GivenAColoredWhenCreateSceneComponentIsCalledThenAColoredComponentIsReturned()
         {
             // Arrange.
-            var scene = new ColoredScene
+            var scene = new Colored
             {
                 Color = new Color(),
-                OriginalScene = new SphereScene(),
+                Scene = new Sphere(),
             };
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<ColoredSceneComponent>();
+            result.Should().BeOfType<ColoredComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAConeSceneWhenCreateSceneComponentIsCalledThenAConeSceneComponentIsReturned()
+        public void GivenAConeWhenCreateSceneComponentIsCalledThenAConeComponentIsReturned()
         {
             // Arrange.
-            var scene = new ConeScene();
+            var scene = new Cone();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<ConeSceneComponent>();
+            result.Should().BeOfType<ConeComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenACubeSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenACubeWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new CubeScene();
+            var scene = new Cube();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenACylinderSceneWhenCreateSceneComponentIsCalledThenACylinderSceneComponentIsReturned()
+        public void GivenACylinderWhenCreateSceneComponentIsCalledThenACylinderComponentIsReturned()
         {
             // Arrange.
-            var scene = new CylinderScene();
+            var scene = new Cylinder();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<CylinderSceneComponent>();
+            result.Should().BeOfType<CylinderComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenADodecahedronSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenADodecahedronWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new DodecahedronScene();
+            var scene = new Dodecahedron();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnEmptySceneWhenCreateSceneComponentIsCalledThenAnEmptySceneComponentIsReturned()
+        public void GivenAnEmptyWhenCreateSceneComponentIsCalledThenAnEmptyComponentIsReturned()
         {
             // Arrange.
-            var scene = new EmptyScene();
+            var scene = new Empty();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<EmptySceneComponent>();
+            result.Should().BeOfType<EmptyComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAFullSceneWhenCreateSceneComponentIsCalledThenAFullSceneComponentIsReturned()
+        public void GivenAFullWhenCreateSceneComponentIsCalledThenAFullComponentIsReturned()
         {
             // Arrange.
-            var scene = new FullScene();
+            var scene = new Full();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<FullSceneComponent>();
+            result.Should().BeOfType<FullComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnIcosahedronSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenAnIcosahedronWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new IcosahedronScene();
+            var scene = new Icosahedron();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnIntersectedSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenAnIntersectionWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new IntersectedScene
+            var scene = new Intersection
             {
                 Scenes =
                 {
-                    new CubeScene(),
-                    new SphereScene(),
+                    new Cube(),
+                    new Sphere(),
                 },
             };
 
@@ -225,179 +225,179 @@ namespace Scenery.Components.Tests.SceneComponents
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnInvisibleSceneWhenCreateSceneComponentIsCalledThenAnInvisibleSceneComponentIsReturned()
+        public void GivenAnTransparentWhenCreateSceneComponentIsCalledThenAnTransparentComponentIsReturned()
         {
             // Arrange.
-            var scene = new InvisibleScene();
+            var scene = new Transparent();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<InvisibleSceneComponent>();
+            result.Should().BeOfType<TransparentComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAnInvertedSceneWhenCreateSceneComponentIsCalledThenAnInvertedSceneComponentIsReturned()
+        public void GivenAnInvertedWhenCreateSceneComponentIsCalledThenAnInvertedComponentIsReturned()
         {
             // Arrange.
-            var scene = new InvertedScene();
+            var scene = new Inverted();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<InvertedSceneComponent>();
+            result.Should().BeOfType<InvertedComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAOctahedronSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenAOctahedronWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new OctahedronScene();
+            var scene = new Octahedron();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAPlaneSceneWhenCreateSceneComponentIsCalledThenAPlaneSceneComponentIsReturned()
+        public void GivenAPlaneWhenCreateSceneComponentIsCalledThenAPlaneComponentIsReturned()
         {
             // Arrange.
-            var scene = new PlaneScene();
+            var scene = new Plane();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<PlaneSceneComponent>();
+            result.Should().BeOfType<PlaneComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenARotatedSceneWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedSceneComponentIsReturned()
+        public void GivenARotatedWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedComponentIsReturned()
         {
             // Arrange.
-            var scene = new RotatedScene
+            var scene = new Rotated
             {
                 Axis = new Vector3(),
                 Angle = Math.PI / 4D,
-                OriginalScene = new SphereScene(),
+                Scene = new Sphere(),
             };
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<AffinelyTransformedSceneComponent>();
+            result.Should().BeOfType<AffinelyTransformedComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAScaledSceneWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedSceneComponentIsReturned()
+        public void GivenAScaledWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedComponentIsReturned()
         {
             // Arrange.
-            var scene = new ScaledScene
+            var scene = new Scaled
             {
                 Factor = 0.5D,
-                OriginalScene = new SphereScene(),
+                Scene = new Sphere(),
             };
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<AffinelyTransformedSceneComponent>();
+            result.Should().BeOfType<AffinelyTransformedComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenASphereSceneWhenCreateSceneComponentIsCalledThenASphereSceneComponentIsReturned()
+        public void GivenASphereWhenCreateSceneComponentIsCalledThenASphereComponentIsReturned()
         {
             // Arrange.
-            var scene = new SphereScene();
+            var scene = new Sphere();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<SphereSceneComponent>();
+            result.Should().BeOfType<SphereComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenATetrahedronSceneWhenCreateSceneComponentIsCalledThenAnIntersectedSceneComponentIsReturned()
+        public void GivenATetrahedronWhenCreateSceneComponentIsCalledThenAnIntersectionComponentIsReturned()
         {
             // Arrange.
-            var scene = new TetrahedronScene();
+            var scene = new Tetrahedron();
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<IntersectedSceneComponent>();
+            result.Should().BeOfType<IntersectionComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenATranslatedSceneWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedSceneComponentIsReturned()
+        public void GivenATranslatedWhenCreateSceneComponentIsCalledThenAnAffinelyTransformedComponentIsReturned()
         {
             // Arrange.
-            var scene = new TranslatedScene
+            var scene = new Translated
             {
                 Translation = new Vector3(),
-                OriginalScene = new SphereScene(),
+                Scene = new Sphere(),
             };
 
             // Act.
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<AffinelyTransformedSceneComponent>();
+            result.Should().BeOfType<AffinelyTransformedComponent>();
         }
 
         /// <summary>
         /// Tests <see cref="SceneComponentFactory.CreateSceneComponent(Scene)"/>.
         /// </summary>
         [Fact]
-        public void GivenAUnitedSceneWhenCreateSceneComponentIsCalledThenAUnitedSceneComponentIsReturned()
+        public void GivenAUnionWhenCreateSceneComponentIsCalledThenAUnionComponentIsReturned()
         {
             // Arrange.
-            var scene = new UnitedScene
+            var scene = new Union
             {
                 Scenes =
                 {
-                    new CubeScene(),
-                    new SphereScene(),
+                    new Cube(),
+                    new Sphere(),
                 },
             };
 
@@ -405,7 +405,7 @@ namespace Scenery.Components.Tests.SceneComponents
             var result = this.systemUnderTest.CreateSceneComponent(scene);
 
             // Assert.
-            result.Should().BeOfType<UnitedSceneComponent>();
+            result.Should().BeOfType<UnionComponent>();
         }
     }
 }

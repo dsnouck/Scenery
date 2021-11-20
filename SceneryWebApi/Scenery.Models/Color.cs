@@ -5,8 +5,6 @@
 
 namespace Scenery.Models
 {
-    // TODO: Check all comments in Scenery.Models.
-
     /// <summary>
     /// Represents a color.
     /// </summary>

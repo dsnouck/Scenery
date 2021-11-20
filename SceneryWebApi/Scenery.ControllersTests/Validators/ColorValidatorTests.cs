@@ -43,7 +43,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -58,7 +58,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.R);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.R);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -85,7 +85,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.R);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.R);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -112,7 +112,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.G);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.G);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -139,7 +139,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.G);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.G);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -166,7 +166,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.B);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.B);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Scenery.ControllersTests.Validators
             // Arrange.
             var sceneContainer = new SceneContainer
             {
-                Scene = new ColoredScene
+                Scene = new Colored
                 {
                     Color = new Color
                     {
@@ -193,7 +193,7 @@ namespace Scenery.ControllersTests.Validators
             var result = this.systemUnderTest.TestValidate(sceneContainer);
 
             // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as ColoredScene).Color.B);
+            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Colored).Color.B);
         }
     }
 }

@@ -34,15 +34,15 @@ namespace Scenery.Controllers.Validators.SceneValidators
         {
             return context.InstanceToValidate switch
             {
-                ColoredScene coloredScene => new ColoredSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(coloredScene)),
-                IntersectedScene intersectedScene => new IntersectedSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(intersectedScene)),
-                InvertedScene invertedScene => new InvertedSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(invertedScene)),
-                InvisibleScene invisibleScene => new InvisibleSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(invisibleScene)),
-                PlaneScene planeScene => new PlaneSceneValidator().Validate(context.CloneForChildValidator(planeScene)),
-                RotatedScene rotatedScene => new RotatedSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(rotatedScene)),
-                ScaledScene scaledScene => new ScaledSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(scaledScene)),
-                TranslatedScene translatedScene => new TranslatedSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(translatedScene)),
-                UnitedScene unitedScene => new UnitedSceneValidator(this.vector3Component).Validate(context.CloneForChildValidator(unitedScene)),
+                Colored colored => new ColoredValidator(this.vector3Component).Validate(context.CloneForChildValidator(colored)),
+                Intersection intersection => new IntersectionValidator(this.vector3Component).Validate(context.CloneForChildValidator(intersection)),
+                Inverted inverted => new InvertedValidator(this.vector3Component).Validate(context.CloneForChildValidator(inverted)),
+                Transparent transparent => new TransparentValidator(this.vector3Component).Validate(context.CloneForChildValidator(transparent)),
+                Plane plane => new PlaneValidator().Validate(context.CloneForChildValidator(plane)),
+                Rotated rotated => new RotatedValidator(this.vector3Component).Validate(context.CloneForChildValidator(rotated)),
+                Scaled scaled => new ScaledValidator(this.vector3Component).Validate(context.CloneForChildValidator(scaled)),
+                Translated translated => new TranslatedValidator(this.vector3Component).Validate(context.CloneForChildValidator(translated)),
+                Union union => new UnionValidator(this.vector3Component).Validate(context.CloneForChildValidator(union)),
                 _ => base.Validate(context)
             };
         }

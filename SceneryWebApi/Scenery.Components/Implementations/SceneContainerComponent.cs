@@ -38,11 +38,11 @@ namespace Scenery.Components.Implementations
         {
             return new SceneContainer
             {
-                Scene = new IntersectedScene
+                Scene = new Intersection
                 {
                     Scenes =
                     {
-                        new ColoredScene
+                        new Colored
                         {
                             Color = new Color
                             {
@@ -50,9 +50,9 @@ namespace Scenery.Components.Implementations
                                 G = 0D,
                                 B = 1D,
                             },
-                            OriginalScene = new CubeScene(),
+                            Scene = new Cube(),
                         },
-                        new ColoredScene
+                        new Colored
                         {
                             Color = new Color
                             {
@@ -60,12 +60,12 @@ namespace Scenery.Components.Implementations
                                 G = 0D,
                                 B = 0D,
                             },
-                            OriginalScene = new InvertedScene
+                            Scene = new Inverted
                             {
-                                OriginalScene = new ScaledScene
+                                Scene = new Scaled
                                 {
                                     Factor = 1.3D,
-                                    OriginalScene = new SphereScene(),
+                                    Scene = new Sphere(),
                                 },
                             },
                         },
