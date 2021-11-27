@@ -5,25 +5,102 @@
 
 namespace Scenery.IntegrationTests
 {
+    using System;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Text;
+    using System.Threading.Tasks;
+    using FluentAssertions;
+    using Microsoft.AspNetCore.Mvc.Testing;
+    using Scenery.Controllers;
     using Xunit;
 
     /// <summary>
     /// Provides integration tests for rendering scenes.
     /// </summary>
-    public class RenderingTests
+    public class RenderingTests : IDisposable
     {
+        private readonly WebApplicationFactory<Startup> factory;
+        private readonly HttpClient client;
+        private readonly Uri uri;
+        private bool disposed;
+
+        // TODO: Add more tests.
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RenderingTests"/> class.
+        /// </summary>
+        public RenderingTests()
+        {
+            this.factory = new WebApplicationFactory<Startup>();
+            this.client = this.factory.CreateClient();
+            this.uri = new Uri("http://localhost/Scenes");
+        }
+
         /// <summary>
         /// Tests the WebApi.
         /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Fact]
-        public void GivenASceneContainerWhenPostIsCalledThenItIsCorrectlyRendered()
+        public async Task WhenGetIsCalledThenAnExampleSceneIsReturned()
         {
-            // TODO: Implement.
-            // Arrange.
-
             // Act.
+            var response = await this.client.GetAsync(this.uri);
 
             // Assert.
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            var actualJson = await response.Content.ReadAsStringAsync();
+            var expectedJson = File.ReadAllText("scene.json");
+            actualJson.Should().Be(expectedJson);
+        }
+
+        /// <summary>
+        /// Tests the WebApi.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [Fact]
+        public async Task GivenASceneContainerAsJsonWhenPostIsCalledThenItIsRendered()
+        {
+            // Arrange.
+            var json = File.ReadAllText("scene.json");
+            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Act.
+            var response = await this.client.PostAsync(this.uri, stringContent);
+
+            // Assert.
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            var actualFile = await response.Content.ReadAsByteArrayAsync();
+            var expectedFile = File.ReadAllBytes("scene.png");
+            actualFile.Should().BeEquivalentTo(expectedFile);
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposes of resources.
+        /// </summary>
+        /// <param name="disposing">Whether we are disposing.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                this.client.Dispose();
+                this.factory.Dispose();
+            }
+
+            this.disposed = true;
         }
     }
 }
