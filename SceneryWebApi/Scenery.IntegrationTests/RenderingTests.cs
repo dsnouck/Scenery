@@ -51,19 +51,26 @@ namespace Scenery.IntegrationTests
             // Assert.
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var actualJson = await response.Content.ReadAsStringAsync();
-            var expectedJson = File.ReadAllText("scene.json");
+            var expectedJson = File.ReadAllText("Scenes\\scene.json");
             actualJson.Should().Be(expectedJson);
         }
 
         /// <summary>
         /// Tests the WebApi.
         /// </summary>
+        /// <param name="jsonFilename">The name of a json file containing a scene.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
-        [Fact]
-        public async Task GivenASceneContainerAsJsonWhenPostIsCalledThenItIsRendered()
+        [Theory]
+        [ClassData(typeof(SceneTestData))]
+        public async Task GivenASceneWhenPostIsCalledThenItIsRendered(string jsonFilename)
         {
             // Arrange.
-            var json = File.ReadAllText("scene.json");
+            if (string.IsNullOrWhiteSpace(jsonFilename))
+            {
+                throw new ArgumentException($"'{nameof(jsonFilename)}' cannot be null or whitespace.", nameof(jsonFilename));
+            }
+
+            var json = File.ReadAllText(jsonFilename);
             using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
             // Act.
@@ -72,7 +79,7 @@ namespace Scenery.IntegrationTests
             // Assert.
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var actualFile = await response.Content.ReadAsByteArrayAsync();
-            var expectedFile = File.ReadAllBytes("scene.png");
+            var expectedFile = File.ReadAllBytes(jsonFilename.Replace(".json", ".png"));
             actualFile.Should().BeEquivalentTo(expectedFile);
         }
 
