@@ -26,8 +26,6 @@ namespace Scenery.IntegrationTests
         private readonly Uri uri;
         private bool disposed;
 
-        // TODO: Add more tests.
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderingTests"/> class.
         /// </summary>
@@ -58,11 +56,29 @@ namespace Scenery.IntegrationTests
         /// <summary>
         /// Tests the WebApi.
         /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [Fact]
+        public async Task GivenABadSceneWhenPostIsCalledThenTheStatusCodeIsBadRequest()
+        {
+            // Arrange.
+            var json = string.Empty;
+            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Act.
+            var response = await this.client.PostAsync(this.uri, stringContent);
+
+            // Assert.
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        /// <summary>
+        /// Tests the WebApi.
+        /// </summary>
         /// <param name="jsonFilename">The name of a json file containing a scene.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Theory]
         [ClassData(typeof(SceneTestData))]
-        public async Task GivenASceneWhenPostIsCalledThenItIsRendered(string jsonFilename)
+        public async Task GivenASceneWhenPostIsCalledThenItIsCorrectlyRendered(string jsonFilename)
         {
             // Arrange.
             if (string.IsNullOrWhiteSpace(jsonFilename))

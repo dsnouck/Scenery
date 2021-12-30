@@ -1,9 +1,9 @@
 ﻿{
   "scene": {
     "type": "scaled",
-    "factor": 0.7348469228349535,
+    "factor": 0.2886751345948129,
     "scene": {
-      "type": "sphere"
+      "type": "cube"
     }
   },
   "projector": {

@@ -1,0 +1,52 @@
+﻿{
+  "scene": {
+    "type": "intersection",
+    "scenes": [
+      {
+        "type": "scaled",
+        "factor": 0.5773502691896258,
+        "scene": {
+          "type": "cube"
+        }
+      },
+      {
+        "type": "scaled",
+        "factor": 0.7348469228349535,
+        "scene": {
+          "type": "colored",
+          "color": {
+            "r": 1,
+            "g": 0,
+            "b": 0
+          },
+          "scene": {
+            "type": "sphere"
+          }
+        }
+      }
+    ]
+  },
+  "projector": {
+    "eye": {
+      "x": 2.1,
+      "y": 2.7,
+      "z": 2
+    },
+    "focus": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "fieldOfView": 0.7853981633974483,
+    "background": {
+      "r": 0,
+      "g": 0,
+      "b": 0
+    }
+  },
+  "sampler": {
+    "columns": 160,
+    "rows": 120,
+    "subsamples": 2
+  }
+}

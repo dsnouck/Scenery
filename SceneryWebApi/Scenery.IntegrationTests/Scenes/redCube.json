@@ -1,9 +1,17 @@
 ﻿{
   "scene": {
-    "type": "scaled",
-    "factor": 0.7348469228349535,
+    "type": "colored",
+    "color": {
+      "r": 1,
+      "g": 0,
+      "b": 0
+    },
     "scene": {
-      "type": "sphere"
+      "type": "scaled",
+      "factor": 0.5773502691896258,
+      "scene": {
+        "type": "cube"
+      }
     }
   },
   "projector": {

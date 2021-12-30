@@ -1,9 +1,18 @@
 ﻿{
   "scene": {
-    "type": "scaled",
-    "factor": 0.7348469228349535,
+    "type": "rotated",
+    "axis": {
+      "x": 0,
+      "y": 0,
+      "z": 1
+    },
+    "angle": 0.7853981633974483,
     "scene": {
-      "type": "sphere"
+      "type": "scaled",
+      "factor": 0.5773502691896258,
+      "scene": {
+        "type": "cube"
+      }
     }
   },
   "projector": {

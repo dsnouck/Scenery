@@ -5,6 +5,8 @@
 
 namespace Scenery.Components.Implementations
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using Scenery.Components.Interfaces;
     using Scenery.Models;
@@ -40,31 +42,26 @@ namespace Scenery.Components.Implementations
             {
                 Scene = new Intersection
                 {
-                    Scenes =
+                    Scenes = new List<Scene>
                     {
-                        new Colored
-                        {
-                            Color = new Color
+                        new Scaled
                             {
-                                R = 0D,
-                                G = 0D,
-                                B = 1D,
+                                Factor = 1 / Math.Sqrt(3D),
+                                Scene = new Cube(),
                             },
-                            Scene = new Cube(),
-                        },
-                        new Colored
+                        new Inverted
                         {
-                            Color = new Color
+                            Scene = new Scaled
                             {
-                                R = 1D,
-                                G = 0D,
-                                B = 0D,
-                            },
-                            Scene = new Inverted
-                            {
-                                Scene = new Scaled
+                                Factor = 0.9D * Math.Sqrt(2D / 3D),
+                                Scene = new Colored
                                 {
-                                    Factor = 1.3D,
+                                    Color = new Color
+                                    {
+                                        R = 1D,
+                                        G = 0D,
+                                        B = 0D,
+                                    },
                                     Scene = new Sphere(),
                                 },
                             },
@@ -75,9 +72,9 @@ namespace Scenery.Components.Implementations
                 {
                     Eye = new Vector3
                     {
-                        X = 4.430761575624772D,
-                        Y = -2.4205360806680094D,
-                        Z = 3.2418138352088386D,
+                        X = 2.1D,
+                        Y = 2.7D,
+                        Z = 2D,
                     },
                     Focus = new Vector3
                     {
@@ -85,7 +82,7 @@ namespace Scenery.Components.Implementations
                         Y = 0D,
                         Z = 0D,
                     },
-                    FieldOfView = 0.7853981633974483D,
+                    FieldOfView = Math.PI / 4D,
                     Background = new Color
                     {
                         R = 0D,
