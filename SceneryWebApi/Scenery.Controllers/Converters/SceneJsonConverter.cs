@@ -11,6 +11,8 @@ namespace Scenery.Controllers.Converters
     using Scenery.Models;
     using Scenery.Models.Scenes;
 
+    // TODO: Improve code coverage from integration tests.
+
     /// <inheritdoc/>
     public class SceneJsonConverter : CustomJsonConverter<Scene>
     {
