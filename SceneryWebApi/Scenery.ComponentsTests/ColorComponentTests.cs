@@ -104,49 +104,6 @@ namespace Scenery.Components.Tests
         }
 
         /// <summary>
-        /// Tests <see cref="ColorComponent.GetRgbBytesFromColor(Color)"/>.
-        /// </summary>
-        [Fact]
-        public void GivenTheColorIsNullWhenGetRgbBytesFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
-        {
-            // Arrange.
-            Color color = null;
-
-            // Act.
-            Action action = () => this.systemUnderTest.GetRgbBytesFromColor(color);
-
-            // Assert.
-            action.Should().Throw<ArgumentNullException>();
-        }
-
-        /// <summary>
-        /// Tests <see cref="ColorComponent.GetRgbBytesFromColor(Color)"/>.
-        /// </summary>
-        [Fact]
-        public void GivenAColorWhenGetRgbBytesFromColorIsCalledThenTheCorrectBytesAreReturned()
-        {
-            // Arrange.
-            var color = new Color
-            {
-                R = 0D,
-                G = 0.5D,
-                B = 1D,
-            };
-
-            // Act.
-            var result = this.systemUnderTest.GetRgbBytesFromColor(color);
-
-            // Assert.
-            result.Should().BeEquivalentTo(
-                new List<byte>
-                {
-                    0,
-                    127,
-                    255,
-                });
-        }
-
-        /// <summary>
         /// Tests <see cref="ColorComponent.Multiply(Color, double)"/>.
         /// </summary>
         [Fact]

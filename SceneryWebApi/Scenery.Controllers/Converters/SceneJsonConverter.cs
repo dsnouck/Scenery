@@ -206,8 +206,8 @@ namespace Scenery.Controllers.Converters
                 case Inverted inverted:
                     WriteScene(writer, nameof(Inverted.Scene), inverted.Scene);
                     break;
-                case Transparent invisible:
-                    WriteScene(writer, nameof(Transparent.Scene), invisible.Scene);
+                case Transparent transparant:
+                    WriteScene(writer, nameof(Transparent.Scene), transparant.Scene);
                     break;
                 case Plane plane:
                     WriteVector(writer, nameof(Plane.Normal), plane.Normal);
