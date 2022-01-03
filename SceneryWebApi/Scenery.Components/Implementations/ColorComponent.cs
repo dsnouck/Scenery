@@ -39,7 +39,6 @@ namespace Scenery.Components.Implementations
                 GetByteFromComponent(color.B));
         }
 
-
         /// <inheritdoc/>
         public Color Multiply(Color color, double factor)
         {

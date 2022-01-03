@@ -22,7 +22,9 @@ namespace Scenery.IntegrationTests
         /// </summary>
         public SceneTestData()
         {
+            // scenes.json is used to test the output of GET ​/Scenes.
             this.jsonFilenames = Directory.GetFiles("Scenes", "*.json")
+                .Where(filename => filename != "Scenes\\scenes.json")
                 .Select(filename => (new object[] { filename }))
                 .ToList();
         }

@@ -34,6 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Scenes\coloredCube.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scenes\coloredCube.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Scenes\cone.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -106,12 +112,6 @@
     <None Update="Scenes\plane.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scenes\redCube.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scenes\redCube.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Scenes\rotatedCube.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -124,10 +124,7 @@
     <None Update="Scenes\scaledCube.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scenes\scene.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scenes\scene.png">
+    <None Update="Scenes\scenes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Scenes\sphere.json">

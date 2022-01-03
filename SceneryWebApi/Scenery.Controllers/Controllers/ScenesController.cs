@@ -28,14 +28,14 @@ namespace Scenery.Controllers.Controllers
         }
 
         /// <summary>
-        /// Gets an example of a scene.
+        /// Gets examples of scenes.
         /// </summary>
-        /// <returns>An example of a scene.</returns>
+        /// <returns>Examples of scenes.</returns>
         [HttpGet]
         public IActionResult Get()
         {
-            var scene = this.sceneContainerComponent.GetExample();
-            return this.Ok(scene);
+            var scenes = this.sceneContainerComponent.GetExamples();
+            return this.Ok(scenes);
         }
 
         /// <summary>

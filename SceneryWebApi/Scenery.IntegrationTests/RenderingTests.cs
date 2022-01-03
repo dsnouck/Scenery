@@ -41,7 +41,7 @@ namespace Scenery.IntegrationTests
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [Fact]
-        public async Task WhenGetIsCalledThenAnExampleSceneIsReturned()
+        public async Task WhenGetIsCalledThenExampleScenesAreReturned()
         {
             // Act.
             var response = await this.client.GetAsync(this.uri);
@@ -49,7 +49,7 @@ namespace Scenery.IntegrationTests
             // Assert.
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var actualJson = await response.Content.ReadAsStringAsync();
-            var expectedJson = File.ReadAllText("Scenes\\scene.json");
+            var expectedJson = File.ReadAllText("Scenes\\scenes.json");
             actualJson.Should().Be(expectedJson);
         }
 
