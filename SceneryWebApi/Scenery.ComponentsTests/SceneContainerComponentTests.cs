@@ -40,15 +40,15 @@ namespace Scenery.Components.Tests
         }
 
         /// <summary>
-        /// Tests <see cref="SceneContainerComponent.GetExample"/>.
+        /// Tests <see cref="SceneContainerComponent.GetExamples"/>.
         /// </summary>
         [Fact]
-        public void WhenGetExampleIsCalledThenTheResultIsNotNull()
+        public void WhenGetExamplesIsCalledThenTheResultIsNotNull()
         {
             // Arrange.
 
             // Act.
-            var result = this.systemUnderTest.GetExample();
+            var result = this.systemUnderTest.GetExamples();
 
             // Assert.
             result.Should().NotBeNull();

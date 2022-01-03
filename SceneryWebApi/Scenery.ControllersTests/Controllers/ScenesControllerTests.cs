@@ -36,7 +36,7 @@ namespace Scenery.ControllersTests.Controllers
         /// Tests <see cref="ScenesController.Get"/>.
         /// </summary>
         [Fact]
-        public void WhenGetIsCalledThenAnExampleSceneIsReturned()
+        public void WhenGetIsCalledThenExampleScenesAreReturned()
         {
             // Act.
             var result = this.systemUnderTest.Get();
@@ -44,7 +44,7 @@ namespace Scenery.ControllersTests.Controllers
             // Assert.
             result.Should().BeOfType<OkObjectResult>();
             this.sceneContainerComponentTestDouble
-                .Verify(component => component.GetExample(), Times.Once);
+                .Verify(component => component.GetExamples(), Times.Once);
         }
 
         /// <summary>

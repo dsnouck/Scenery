@@ -40,24 +40,6 @@ namespace Scenery.Components.Implementations
         }
 
         /// <inheritdoc/>
-        public List<byte> GetRgbBytesFromColor(Color color)
-        {
-            if (color == null)
-            {
-                throw new ArgumentNullException(nameof(color));
-            }
-
-            var components = new List<double>
-            {
-                color.R,
-                color.G,
-                color.B,
-            };
-
-            return components.Select(GetByteFromComponent).ToList();
-        }
-
-        /// <inheritdoc/>
         public Color Multiply(Color color, double factor)
         {
             if (color == null)

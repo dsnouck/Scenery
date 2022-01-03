@@ -5,6 +5,7 @@
 
 namespace Scenery.Components.Interfaces
 {
+    using System.Collections.Generic;
     using System.IO;
     using Scenery.Models;
 
@@ -14,10 +15,10 @@ namespace Scenery.Components.Interfaces
     public interface ISceneContainerComponent
     {
         /// <summary>
-        /// Gets an example <see cref="SceneContainer"/>.
+        /// Gets examples of <see cref="SceneContainer"/>s.
         /// </summary>
-        /// <returns>An example <see cref="SceneContainer"/>.</returns>
-        SceneContainer GetExample();
+        /// <returns>Examples of <see cref="SceneContainer"/>s.</returns>
+        Dictionary<string, SceneContainer> GetExamples();
 
         /// <summary>
         /// Gets the <paramref name="sceneContainer"/> rendered to a <see cref="Stream"/>.
