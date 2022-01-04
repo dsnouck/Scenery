@@ -3,109 +3,108 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators
+namespace Scenery.ControllersTests.Validators;
+
+using System;
+using FluentAssertions;
+using FluentValidation.TestHelper;
+using Moq;
+using Scenery.Components.Interfaces;
+using Scenery.Controllers.Validators;
+using Scenery.Models;
+using Xunit;
+
+/// <summary>
+/// Provides tests for <see cref="SceneContainerValidator"/>.
+/// </summary>
+public class SceneContainerValidatorTests
 {
-    using System;
-    using FluentAssertions;
-    using FluentValidation.TestHelper;
-    using Moq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Controllers.Validators;
-    using Scenery.Models;
-    using Xunit;
+    private readonly SceneContainerValidator systemUnderTest;
+    private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
     /// <summary>
-    /// Provides tests for <see cref="SceneContainerValidator"/>.
+    /// Initializes a new instance of the <see cref="SceneContainerValidatorTests"/> class.
     /// </summary>
-    public class SceneContainerValidatorTests
+    public SceneContainerValidatorTests()
     {
-        private readonly SceneContainerValidator systemUnderTest;
-        private readonly Mock<IVector3Component> vector3ComponentTestDouble;
+        this.vector3ComponentTestDouble = new Mock<IVector3Component>();
+        this.vector3ComponentTestDouble
+            .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+            .Returns(1D);
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SceneContainerValidatorTests"/> class.
-        /// </summary>
-        public SceneContainerValidatorTests()
+        this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
+    }
+
+    /// <summary>
+    /// Tests <see cref="SceneContainerValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenSceneContainerIsNullWhenValidateIsCalledThenAnArgumentNullExceptionIsThrown()
+    {
+        // Arrange.
+        SceneContainer sceneContainer = null;
+
+        // Act.
+        Action action = () => this.systemUnderTest.TestValidate(sceneContainer);
+
+        // Assert.
+        action.Should().Throw<ArgumentNullException>();
+    }
+
+    /// <summary>
+    /// Tests <see cref="SceneContainerValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenSceneIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            this.vector3ComponentTestDouble = new Mock<IVector3Component>();
-            this.vector3ComponentTestDouble
-                .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
-                .Returns(1D);
+            Scene = null,
+        };
 
-            this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
-        }
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-        /// <summary>
-        /// Tests <see cref="SceneContainerValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenSceneContainerIsNullWhenValidateIsCalledThenAnArgumentNullExceptionIsThrown()
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Scene);
+    }
+
+    /// <summary>
+    /// Tests <see cref="SceneContainerValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenProjectorSettingsIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            // Arrange.
-            SceneContainer sceneContainer = null;
+            Projector = null,
+        };
 
-            // Act.
-            Action action = () => this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            action.Should().Throw<ArgumentNullException>();
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector);
+    }
 
-        /// <summary>
-        /// Tests <see cref="SceneContainerValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenSceneIsNullWhenValidateIsCalledThenItFails()
+    /// <summary>
+    /// Tests <see cref="SceneContainerValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenSamplerSettingsIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            // Arrange.
-            var sceneContainer = new SceneContainer
-            {
-                Scene = null,
-            };
+            Sampler = null,
+        };
 
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Scene);
-        }
-
-        /// <summary>
-        /// Tests <see cref="SceneContainerValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenProjectorSettingsIsNullWhenValidateIsCalledThenItFails()
-        {
-            // Arrange.
-            var sceneContainer = new SceneContainer
-            {
-                Projector = null,
-            };
-
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
-
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Projector);
-        }
-
-        /// <summary>
-        /// Tests <see cref="SceneContainerValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenSamplerSettingsIsNullWhenValidateIsCalledThenItFails()
-        {
-            // Arrange.
-            var sceneContainer = new SceneContainer
-            {
-                Sampler = null,
-            };
-
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
-
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Sampler);
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => sceneContainer.Sampler);
     }
 }

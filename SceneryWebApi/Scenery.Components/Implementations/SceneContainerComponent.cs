@@ -3,103 +3,103 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+using Scenery.Models.Scenes;
+
+/// <inheritdoc/>
+public class SceneContainerComponent : ISceneContainerComponent
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
-    using Scenery.Models.Scenes;
+    private readonly IBitmapFileComponent bitmapFileComponent;
+    private readonly IProjectorComponent projectorComponent;
+    private readonly ISamplerComponent samplerComponent;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SceneContainerComponent"/> class.
+    /// </summary>
+    /// <param name="bitmapFileComponent">An <see cref="IBitmapFileComponent"/>.</param>
+    /// <param name="projectorComponent">An <see cref="IProjectorComponent"/>.</param>
+    /// <param name="samplerComponent">An <see cref="ISamplerComponent"/>.</param>
+    public SceneContainerComponent(
+        IBitmapFileComponent bitmapFileComponent,
+        IProjectorComponent projectorComponent,
+        ISamplerComponent samplerComponent)
+    {
+        this.bitmapFileComponent = bitmapFileComponent;
+        this.projectorComponent = projectorComponent;
+        this.samplerComponent = samplerComponent;
+    }
 
     /// <inheritdoc/>
-    public class SceneContainerComponent : ISceneContainerComponent
+    public Dictionary<string, SceneContainer> GetExamples()
     {
-        private readonly IBitmapFileComponent bitmapFileComponent;
-        private readonly IProjectorComponent projectorComponent;
-        private readonly ISamplerComponent samplerComponent;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SceneContainerComponent"/> class.
-        /// </summary>
-        /// <param name="bitmapFileComponent">An <see cref="IBitmapFileComponent"/>.</param>
-        /// <param name="projectorComponent">An <see cref="IProjectorComponent"/>.</param>
-        /// <param name="samplerComponent">An <see cref="ISamplerComponent"/>.</param>
-        public SceneContainerComponent(
-            IBitmapFileComponent bitmapFileComponent,
-            IProjectorComponent projectorComponent,
-            ISamplerComponent samplerComponent)
+        // Settings that nicely project a unit sphere.
+        var projector = new ProjectorSettings
         {
-            this.bitmapFileComponent = bitmapFileComponent;
-            this.projectorComponent = projectorComponent;
-            this.samplerComponent = samplerComponent;
-        }
+            Eye = new Vector3
+            {
+                X = 2.1D,
+                Y = 2.7D,
+                Z = 2D,
+            },
+            Focus = new Vector3
+            {
+                X = 0D,
+                Y = 0D,
+                Z = 0D,
+            },
+            FieldOfView = Math.PI / 4D,
+            Background = new Color
+            {
+                R = 0D,
+                G = 0D,
+                B = 0D,
+            },
+        };
 
-        /// <inheritdoc/>
-        public Dictionary<string, SceneContainer> GetExamples()
+        var sampler = new SamplerSettings
         {
-            // Settings that nicely project a unit sphere.
-            var projector = new ProjectorSettings
-            {
-                Eye = new Vector3
-                {
-                    X = 2.1D,
-                    Y = 2.7D,
-                    Z = 2D,
-                },
-                Focus = new Vector3
-                {
-                    X = 0D,
-                    Y = 0D,
-                    Z = 0D,
-                },
-                FieldOfView = Math.PI / 4D,
-                Background = new Color
-                {
-                    R = 0D,
-                    G = 0D,
-                    B = 0D,
-                },
-            };
+            Columns = 160,
+            Rows = 120,
+            Subsamples = 2,
+        };
 
-            var sampler = new SamplerSettings
+        return new Dictionary<string, SceneContainer>
+        {
+            ["coloredCube"] = new SceneContainer
             {
-                Columns = 160,
-                Rows = 120,
-                Subsamples = 2,
-            };
-
-            return new Dictionary<string, SceneContainer>
-            {
-                ["coloredCube"] = new SceneContainer
+                Scene = new Colored
                 {
-                    Scene = new Colored
+                    Color = new Color
                     {
-                        Color = new Color
-                        {
-                            R = 1D,
-                            G = 0D,
-                            B = 0D,
-                        },
-                        Scene = new Scaled
-                        {
-                            // Make the circumradius 1.
-                            Factor = 1D / Math.Sqrt(3D),
-                            Scene = new Cube(),
-                        },
+                        R = 1D,
+                        G = 0D,
+                        B = 0D,
                     },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["cone"] = new SceneContainer
-                {
                     Scene = new Scaled
                     {
-                        // Make the radii of the top and the bottom plane 0.9 the midradius of the cube.
-                        Factor = 0.9D * Math.Sqrt(2D / 3D),
-                        Scene = new Intersection
-                        {
-                            Scenes = new List<Scene>
+                        // Make the circumradius 1.
+                        Factor = 1D / Math.Sqrt(3D),
+                        Scene = new Cube(),
+                    },
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cone"] = new SceneContainer
+            {
+                Scene = new Scaled
+                {
+                    // Make the radii of the top and the bottom plane 0.9 the midradius of the cube.
+                    Factor = 0.9D * Math.Sqrt(2D / 3D),
+                    Scene = new Intersection
+                    {
+                        Scenes = new List<Scene>
                             {
                                 new Cone(),
                                 new Plane
@@ -121,27 +121,27 @@ namespace Scenery.Components.Implementations
                                     },
                                 },
                             },
-                        },
                     },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["cube"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cube"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Scaled
-                    {
-                        // Make the circumradius 1.
-                        Factor = 1D / Math.Sqrt(3D),
-                        Scene = new Cube(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
+                    // Make the circumradius 1.
+                    Factor = 1D / Math.Sqrt(3D),
+                    Scene = new Cube(),
                 },
-                ["cubeExceptSphere"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cubeExceptSphere"] = new SceneContainer
+            {
+                Scene = new Intersection
                 {
-                    Scene = new Intersection
-                    {
-                        Scenes = new List<Scene>
+                    Scenes = new List<Scene>
                         {
                             new Scaled
                             {
@@ -168,83 +168,83 @@ namespace Scenery.Components.Implementations
                                 },
                             },
                         },
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["cubeSphereIntersection"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cubeSphereIntersection"] = new SceneContainer
+            {
+                Scene = new Intersection
                 {
+                    Scenes = new List<Scene>
+                        {
+                            new Scaled
+                            {
+                                // Make the circumradius 1.
+                                Factor = 1D / Math.Sqrt(3D),
+                                Scene = new Cube(),
+                            },
+                            new Scaled
+                            {
+                                // Make the radius 0.9 times the midradius of the cube.
+                                Factor = 0.9D * Math.Sqrt(2D / 3D),
+                                Scene = new Colored
+                                {
+                                    Color = new Color
+                                    {
+                                        R = 1D,
+                                        G = 0D,
+                                        B = 0D,
+                                    },
+                                    Scene = new Sphere(),
+                                },
+                            },
+                        },
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cubeSphereUnion"] = new SceneContainer
+            {
+                Scene = new Union
+                {
+                    Scenes = new List<Scene>
+                        {
+                            new Scaled
+                            {
+                                // Make the circumradius 1.
+                                Factor = 1D / Math.Sqrt(3D),
+                                Scene = new Cube(),
+                            },
+                            new Scaled
+                            {
+                                // Make the radius 0.9 times the midradius of the cube.
+                                Factor = 0.9D * Math.Sqrt(2D / 3D),
+                                Scene = new Colored
+                                {
+                                    Color = new Color
+                                    {
+                                        R = 1D,
+                                        G = 0D,
+                                        B = 0D,
+                                    },
+                                    Scene = new Sphere(),
+                                },
+                            },
+                        },
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["cylinder"] = new SceneContainer
+            {
+                Scene = new Scaled
+                {
+                    // Make the radius 0.9 times the midradius of the cube.
+                    Factor = 0.9D * Math.Sqrt(2D / 3D),
                     Scene = new Intersection
                     {
                         Scenes = new List<Scene>
-                        {
-                            new Scaled
-                            {
-                                // Make the circumradius 1.
-                                Factor = 1D / Math.Sqrt(3D),
-                                Scene = new Cube(),
-                            },
-                            new Scaled
-                            {
-                                // Make the radius 0.9 times the midradius of the cube.
-                                Factor = 0.9D * Math.Sqrt(2D / 3D),
-                                Scene = new Colored
-                                {
-                                    Color = new Color
-                                    {
-                                        R = 1D,
-                                        G = 0D,
-                                        B = 0D,
-                                    },
-                                    Scene = new Sphere(),
-                                },
-                            },
-                        },
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["cubeSphereUnion"] = new SceneContainer
-                {
-                    Scene = new Union
-                    {
-                        Scenes = new List<Scene>
-                        {
-                            new Scaled
-                            {
-                                // Make the circumradius 1.
-                                Factor = 1D / Math.Sqrt(3D),
-                                Scene = new Cube(),
-                            },
-                            new Scaled
-                            {
-                                // Make the radius 0.9 times the midradius of the cube.
-                                Factor = 0.9D * Math.Sqrt(2D / 3D),
-                                Scene = new Colored
-                                {
-                                    Color = new Color
-                                    {
-                                        R = 1D,
-                                        G = 0D,
-                                        B = 0D,
-                                    },
-                                    Scene = new Sphere(),
-                                },
-                            },
-                        },
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["cylinder"] = new SceneContainer
-                {
-                    Scene = new Scaled
-                    {
-                        // Make the radius 0.9 times the midradius of the cube.
-                        Factor = 0.9D * Math.Sqrt(2D / 3D),
-                        Scene = new Intersection
-                        {
-                            Scenes = new List<Scene>
                             {
                                 new Cylinder(),
                                 new Plane
@@ -266,65 +266,65 @@ namespace Scenery.Components.Implementations
                                     },
                                 },
                             },
-                        },
                     },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["dodecahedron"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["dodecahedron"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Scaled
+                    // Make the circumradius 1.
+                    Factor = (1D + Math.Sqrt(5D)) / Math.Sqrt(6D * (5D - Math.Sqrt(5D))),
+                    Scene = new Dodecahedron(),
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["empty"] = new SceneContainer
+            {
+                Scene = new Empty(),
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["full"] = new SceneContainer
+            {
+                Scene = new Full(),
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["icosahedron"] = new SceneContainer
+            {
+                Scene = new Scaled
+                {
+                    // Make the circumradius 1.
+                    Factor = (1D + Math.Sqrt(5D)) / Math.Sqrt(6D * (5D - Math.Sqrt(5D))),
+                    Scene = new Icosahedron(),
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["octahedron"] = new SceneContainer
+            {
+                Scene = new Scaled
+                {
+                    // Make the circumradius 1.
+                    Factor = 1D / Math.Sqrt(3D),
+                    Scene = new Octahedron(),
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["plane"] = new SceneContainer
+            {
+                Scene = new Scaled
+                {
+                    // This is the bottom plane of the cube.
+                    Factor = 1D / Math.Sqrt(3D),
+                    Scene = new Intersection
                     {
-                        // Make the circumradius 1.
-                        Factor = (1D + Math.Sqrt(5D)) / Math.Sqrt(6D * (5D - Math.Sqrt(5D))),
-                        Scene = new Dodecahedron(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["empty"] = new SceneContainer
-                {
-                    Scene = new Empty(),
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["full"] = new SceneContainer
-                {
-                    Scene = new Full(),
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["icosahedron"] = new SceneContainer
-                {
-                    Scene = new Scaled
-                    {
-                        // Make the circumradius 1.
-                        Factor = (1D + Math.Sqrt(5D)) / Math.Sqrt(6D * (5D - Math.Sqrt(5D))),
-                        Scene = new Icosahedron(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["octahedron"] = new SceneContainer
-                {
-                    Scene = new Scaled
-                    {
-                        // Make the circumradius 1.
-                        Factor = 1D / Math.Sqrt(3D),
-                        Scene = new Octahedron(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["plane"] = new SceneContainer
-                {
-                    Scene = new Scaled
-                    {
-                        // This is the bottom plane of the cube.
-                        Factor = 1D / Math.Sqrt(3D),
-                        Scene = new Intersection
-                        {
-                            Scenes = new List<Scene>
+                        Scenes = new List<Scene>
                             {
                                 new Plane
                                 {
@@ -381,53 +381,53 @@ namespace Scenery.Components.Implementations
                                     },
                                 },
                             },
-                        },
                     },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["rotatedCube"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["rotatedCube"] = new SceneContainer
+            {
+                Scene = new Rotated
                 {
-                    Scene = new Rotated
-                    {
-                        Angle = Math.PI / 4D,
-                        Scene = new Scaled
-                        {
-                            // Make the circumradius 1.
-                            Factor = 1D / Math.Sqrt(3D),
-                            Scene = new Cube(),
-                        },
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
-                },
-                ["scaledCube"] = new SceneContainer
-                {
+                    Angle = Math.PI / 4D,
                     Scene = new Scaled
                     {
-                        // Make the circumradius 1 / 2.
-                        Factor = 1D / (2D * Math.Sqrt(3D)),
+                        // Make the circumradius 1.
+                        Factor = 1D / Math.Sqrt(3D),
                         Scene = new Cube(),
                     },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["sphere"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["scaledCube"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Scaled
-                    {
-                        // Make the radius 0.9 times the midradius of the cube.
-                        Factor = 0.9D * Math.Sqrt(2D / 3D),
-                        Scene = new Sphere(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
+                    // Make the circumradius 1 / 2.
+                    Factor = 1D / (2D * Math.Sqrt(3D)),
+                    Scene = new Cube(),
                 },
-                ["sphereExceptCube"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["sphere"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Intersection
-                    {
-                        Scenes = new List<Scene>
+                    // Make the radius 0.9 times the midradius of the cube.
+                    Factor = 0.9D * Math.Sqrt(2D / 3D),
+                    Scene = new Sphere(),
+                },
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["sphereExceptCube"] = new SceneContainer
+            {
+                Scene = new Intersection
+                {
+                    Scenes = new List<Scene>
                         {
                             new Inverted
                             {
@@ -454,50 +454,49 @@ namespace Scenery.Components.Implementations
                                 },
                             },
                         },
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-                ["tetrahedron"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["tetrahedron"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Scaled
-                    {
-                        // Make the circumradius 1.
-                        Factor = 1D / 3D,
-                        Scene = new Tetrahedron(),
-                    },
-                    Projector = projector,
-                    Sampler = sampler,
+                    // Make the circumradius 1.
+                    Factor = 1D / 3D,
+                    Scene = new Tetrahedron(),
                 },
-                ["translatedCube"] = new SceneContainer
+                Projector = projector,
+                Sampler = sampler,
+            },
+            ["translatedCube"] = new SceneContainer
+            {
+                Scene = new Scaled
                 {
-                    Scene = new Scaled
+                    // Make the circumradius 1.
+                    Factor = 1D / Math.Sqrt(3D),
+                    Scene = new Translated
                     {
-                        // Make the circumradius 1.
-                        Factor = 1D / Math.Sqrt(3D),
-                        Scene = new Translated
+                        Translation = new Vector3
                         {
-                            Translation = new Vector3
-                            {
-                                X = 0D,
-                                Y = -2D,
-                                Z = 0D,
-                            },
-                            Scene = new Cube(),
+                            X = 0D,
+                            Y = -2D,
+                            Z = 0D,
                         },
+                        Scene = new Cube(),
                     },
-                    Projector = projector,
-                    Sampler = sampler,
                 },
-            };
-        }
+                Projector = projector,
+                Sampler = sampler,
+            },
+        };
+    }
 
-        /// <inheritdoc/>
-        public Stream GetStream(SceneContainer sceneContainer)
-        {
-            var image = this.projectorComponent.ProjectSceneToImage(sceneContainer.Scene, sceneContainer.Projector);
-            var bitmap = this.samplerComponent.SampleImageToBitmap(image, sceneContainer.Sampler);
-            return this.bitmapFileComponent.GetStream(bitmap);
-        }
+    /// <inheritdoc/>
+    public Stream GetStream(SceneContainer sceneContainer)
+    {
+        var image = this.projectorComponent.ProjectSceneToImage(sceneContainer.Scene, sceneContainer.Projector);
+        var bitmap = this.samplerComponent.SampleImageToBitmap(image, sceneContainer.Sampler);
+        return this.bitmapFileComponent.GetStream(bitmap);
     }
 }

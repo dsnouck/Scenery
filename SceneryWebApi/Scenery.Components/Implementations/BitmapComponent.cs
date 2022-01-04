@@ -3,53 +3,52 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class BitmapComponent : IBitmapComponent
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    private readonly IColorComponent colorComponent;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BitmapComponent"/> class.
+    /// </summary>
+    /// <param name="colorComponent">An <see cref="IColorComponent"/>.</param>
+    public BitmapComponent(
+        IColorComponent colorComponent)
+    {
+        this.colorComponent = colorComponent;
+    }
 
     /// <inheritdoc/>
-    public class BitmapComponent : IBitmapComponent
+    public System.Drawing.Bitmap CreateSystemDrawingBitmap(List<List<Color>> bitmap)
     {
-        private readonly IColorComponent colorComponent;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BitmapComponent"/> class.
-        /// </summary>
-        /// <param name="colorComponent">An <see cref="IColorComponent"/>.</param>
-        public BitmapComponent(
-            IColorComponent colorComponent)
+        if (bitmap == null)
         {
-            this.colorComponent = colorComponent;
+            throw new ArgumentNullException(nameof(bitmap));
         }
 
-        /// <inheritdoc/>
-        public System.Drawing.Bitmap CreateSystemDrawingBitmap(List<List<Color>> bitmap)
+        var rows = bitmap.Count;
+        var columns = bitmap.First().Count;
+
+        var systemDrawingBitmap = new System.Drawing.Bitmap(columns, rows);
+        for (var row = 0; row < rows; row++)
         {
-            if (bitmap == null)
+            for (var column = 0; column < columns; column++)
             {
-                throw new ArgumentNullException(nameof(bitmap));
+                systemDrawingBitmap.SetPixel(
+                    column,
+                    row,
+                    this.colorComponent.GetSystemDrawingColorFromColor(bitmap[row][column]));
             }
-
-            var rows = bitmap.Count;
-            var columns = bitmap.First().Count;
-
-            var systemDrawingBitmap = new System.Drawing.Bitmap(columns, rows);
-            for (var row = 0; row < rows; row++)
-            {
-                for (var column = 0; column < columns; column++)
-                {
-                    systemDrawingBitmap.SetPixel(
-                        column,
-                        row,
-                        this.colorComponent.GetSystemDrawingColorFromColor(bitmap[row][column]));
-                }
-            }
-
-            return systemDrawingBitmap;
         }
+
+        return systemDrawingBitmap;
     }
 }

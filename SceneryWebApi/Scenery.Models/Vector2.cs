@@ -3,21 +3,20 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Models
+namespace Scenery.Models;
+
+/// <summary>
+/// Represents a two-dimensional vector.
+/// </summary>
+public class Vector2
 {
     /// <summary>
-    /// Represents a two-dimensional vector.
+    /// Gets or sets the x-component.
     /// </summary>
-    public class Vector2
-    {
-        /// <summary>
-        /// Gets or sets the x-component.
-        /// </summary>
-        public double X { get; set; } = 0D;
+    public double X { get; set; } = 0D;
 
-        /// <summary>
-        /// Gets or sets the y-component.
-        /// </summary>
-        public double Y { get; set; } = 0D;
-    }
+    /// <summary>
+    /// Gets or sets the y-component.
+    /// </summary>
+    public double Y { get; set; } = 0D;
 }

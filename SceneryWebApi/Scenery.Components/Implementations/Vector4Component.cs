@@ -3,33 +3,32 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using System;
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class Vector4Component : IVector4Component
 {
-    using System;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
-
     /// <inheritdoc/>
-    public class Vector4Component : IVector4Component
+    public double DotProduct(Vector4 vector, Vector4 otherVector)
     {
-        /// <inheritdoc/>
-        public double DotProduct(Vector4 vector, Vector4 otherVector)
+        if (vector == null)
         {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
-
-            if (otherVector == null)
-            {
-                throw new ArgumentNullException(nameof(otherVector));
-            }
-
-            return
-                (vector.X * otherVector.X) +
-                (vector.Y * otherVector.Y) +
-                (vector.Z * otherVector.Z) +
-                (vector.W * otherVector.W);
+            throw new ArgumentNullException(nameof(vector));
         }
+
+        if (otherVector == null)
+        {
+            throw new ArgumentNullException(nameof(otherVector));
+        }
+
+        return
+            (vector.X * otherVector.X) +
+            (vector.Y * otherVector.Y) +
+            (vector.Z * otherVector.Z) +
+            (vector.W * otherVector.W);
     }
 }

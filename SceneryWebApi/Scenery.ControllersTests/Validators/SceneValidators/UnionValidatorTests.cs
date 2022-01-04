@@ -3,84 +3,83 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators.SceneValidators
+namespace Scenery.ControllersTests.Validators.SceneValidators;
+
+using System.Collections.Generic;
+using FluentValidation.TestHelper;
+using Moq;
+using Scenery.Components.Interfaces;
+using Scenery.Controllers.Validators;
+using Scenery.Controllers.Validators.SceneValidators;
+using Scenery.Models;
+using Scenery.Models.Scenes;
+using Xunit;
+
+/// <summary>
+/// Provides tests for <see cref="UnionValidator"/>.
+/// </summary>
+public class UnionValidatorTests
 {
-    using System.Collections.Generic;
-    using FluentValidation.TestHelper;
-    using Moq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Controllers.Validators;
-    using Scenery.Controllers.Validators.SceneValidators;
-    using Scenery.Models;
-    using Scenery.Models.Scenes;
-    using Xunit;
+    private readonly SceneContainerValidator systemUnderTest;
+    private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
     /// <summary>
-    /// Provides tests for <see cref="UnionValidator"/>.
+    /// Initializes a new instance of the <see cref="UnionValidatorTests"/> class.
     /// </summary>
-    public class UnionValidatorTests
+    public UnionValidatorTests()
     {
-        private readonly SceneContainerValidator systemUnderTest;
-        private readonly Mock<IVector3Component> vector3ComponentTestDouble;
+        this.vector3ComponentTestDouble = new Mock<IVector3Component>();
+        this.vector3ComponentTestDouble
+            .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+            .Returns(1D);
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UnionValidatorTests"/> class.
-        /// </summary>
-        public UnionValidatorTests()
+        this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
+    }
+
+    /// <summary>
+    /// Tests <see cref="UnionValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenScenesIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            this.vector3ComponentTestDouble = new Mock<IVector3Component>();
-            this.vector3ComponentTestDouble
-                .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
-                .Returns(1D);
-
-            this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
-        }
-
-        /// <summary>
-        /// Tests <see cref="UnionValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenScenesIsNullWhenValidateIsCalledThenItFails()
-        {
-            // Arrange.
-            var sceneContainer = new SceneContainer
+            Scene = new Union
             {
-                Scene = new Union
-                {
-                    Scenes = null,
-                },
-            };
+                Scenes = null,
+            },
+        };
 
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Union).Scenes);
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Union).Scenes);
+    }
 
-        /// <summary>
-        /// Tests <see cref="UnionValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenScenesContainsNullWhenValidateIsCalledThenItFails()
+    /// <summary>
+    /// Tests <see cref="UnionValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenScenesContainsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            // Arrange.
-            var sceneContainer = new SceneContainer
+            Scene = new Union
             {
-                Scene = new Union
-                {
-                    Scenes = new List<Scene>
+                Scenes = new List<Scene>
                     {
                         null,
                     },
-                },
-            };
+            },
+        };
 
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Union).Scenes);
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Union).Scenes);
     }
 }

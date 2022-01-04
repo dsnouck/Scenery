@@ -3,145 +3,144 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using System;
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class Vector3Component : IVector3Component
 {
-    using System;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    /// <inheritdoc/>
+    public Vector3 Add(Vector3 vector, Vector3 otherVector)
+    {
+        if (vector == null)
+        {
+            throw new ArgumentNullException(nameof(vector));
+        }
+
+        if (otherVector == null)
+        {
+            throw new ArgumentNullException(nameof(otherVector));
+        }
+
+        return new Vector3
+        {
+            X = vector.X + otherVector.X,
+            Y = vector.Y + otherVector.Y,
+            Z = vector.Z + otherVector.Z,
+        };
+    }
 
     /// <inheritdoc/>
-    public class Vector3Component : IVector3Component
+    public Vector3 CreateVector3FromSphericalCoordinates(double radius, double inclination, double azimuth)
     {
-        /// <inheritdoc/>
-        public Vector3 Add(Vector3 vector, Vector3 otherVector)
+        var sineOfInclination = Math.Sin(inclination);
+        var cosineOfInclination = Math.Cos(inclination);
+        var sineOfAzimuth = Math.Sin(azimuth);
+        var cosineOfAzimuth = Math.Cos(azimuth);
+
+        return new Vector3
         {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
+            X = radius * sineOfInclination * cosineOfAzimuth,
+            Y = radius * sineOfInclination * sineOfAzimuth,
+            Z = radius * cosineOfInclination,
+        };
+    }
 
-            if (otherVector == null)
-            {
-                throw new ArgumentNullException(nameof(otherVector));
-            }
-
-            return new Vector3
-            {
-                X = vector.X + otherVector.X,
-                Y = vector.Y + otherVector.Y,
-                Z = vector.Z + otherVector.Z,
-            };
+    /// <inheritdoc/>
+    public Vector3 CrossProduct(Vector3 vector, Vector3 otherVector)
+    {
+        if (vector == null)
+        {
+            throw new ArgumentNullException(nameof(vector));
         }
 
-        /// <inheritdoc/>
-        public Vector3 CreateVector3FromSphericalCoordinates(double radius, double inclination, double azimuth)
+        if (otherVector == null)
         {
-            var sineOfInclination = Math.Sin(inclination);
-            var cosineOfInclination = Math.Cos(inclination);
-            var sineOfAzimuth = Math.Sin(azimuth);
-            var cosineOfAzimuth = Math.Cos(azimuth);
-
-            return new Vector3
-            {
-                X = radius * sineOfInclination * cosineOfAzimuth,
-                Y = radius * sineOfInclination * sineOfAzimuth,
-                Z = radius * cosineOfInclination,
-            };
+            throw new ArgumentNullException(nameof(otherVector));
         }
 
-        /// <inheritdoc/>
-        public Vector3 CrossProduct(Vector3 vector, Vector3 otherVector)
+        return new Vector3
         {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
+            X = (vector.Y * otherVector.Z) - (vector.Z * otherVector.Y),
+            Y = (vector.Z * otherVector.X) - (vector.X * otherVector.Z),
+            Z = (vector.X * otherVector.Y) - (vector.Y * otherVector.X),
+        };
+    }
 
-            if (otherVector == null)
-            {
-                throw new ArgumentNullException(nameof(otherVector));
-            }
+    /// <inheritdoc/>
+    public Vector3 Divide(Vector3 vector, double divisor)
+    {
+        return this.Multiply(vector, 1D / divisor);
+    }
 
-            return new Vector3
-            {
-                X = (vector.Y * otherVector.Z) - (vector.Z * otherVector.Y),
-                Y = (vector.Z * otherVector.X) - (vector.X * otherVector.Z),
-                Z = (vector.X * otherVector.Y) - (vector.Y * otherVector.X),
-            };
+    /// <inheritdoc/>
+    public double DotProduct(Vector3 vector, Vector3 otherVector)
+    {
+        if (vector == null)
+        {
+            throw new ArgumentNullException(nameof(vector));
         }
 
-        /// <inheritdoc/>
-        public Vector3 Divide(Vector3 vector, double divisor)
+        if (otherVector == null)
         {
-            return this.Multiply(vector, 1D / divisor);
+            throw new ArgumentNullException(nameof(otherVector));
         }
 
-        /// <inheritdoc/>
-        public double DotProduct(Vector3 vector, Vector3 otherVector)
+        return
+            (vector.X * otherVector.X) +
+            (vector.Y * otherVector.Y) +
+            (vector.Z * otherVector.Z);
+    }
+
+    /// <inheritdoc/>
+    public double GetLength(Vector3 vector)
+    {
+        return Math.Sqrt(this.DotProduct(vector, vector));
+    }
+
+    /// <inheritdoc/>
+    public Vector3 Multiply(Vector3 vector, double factor)
+    {
+        if (vector == null)
         {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
-
-            if (otherVector == null)
-            {
-                throw new ArgumentNullException(nameof(otherVector));
-            }
-
-            return
-                (vector.X * otherVector.X) +
-                (vector.Y * otherVector.Y) +
-                (vector.Z * otherVector.Z);
+            throw new ArgumentNullException(nameof(vector));
         }
 
-        /// <inheritdoc/>
-        public double GetLength(Vector3 vector)
+        return new Vector3
         {
-            return Math.Sqrt(this.DotProduct(vector, vector));
+            X = factor * vector.X,
+            Y = factor * vector.Y,
+            Z = factor * vector.Z,
+        };
+    }
+
+    /// <inheritdoc/>
+    public Vector3 Normalize(Vector3 vector)
+    {
+        return this.Divide(vector, this.GetLength(vector));
+    }
+
+    /// <inheritdoc/>
+    public Vector3 Subtract(Vector3 vector, Vector3 otherVector)
+    {
+        if (vector == null)
+        {
+            throw new ArgumentNullException(nameof(vector));
         }
 
-        /// <inheritdoc/>
-        public Vector3 Multiply(Vector3 vector, double factor)
+        if (otherVector == null)
         {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
-
-            return new Vector3
-            {
-                X = factor * vector.X,
-                Y = factor * vector.Y,
-                Z = factor * vector.Z,
-            };
+            throw new ArgumentNullException(nameof(otherVector));
         }
 
-        /// <inheritdoc/>
-        public Vector3 Normalize(Vector3 vector)
+        return new Vector3
         {
-            return this.Divide(vector, this.GetLength(vector));
-        }
-
-        /// <inheritdoc/>
-        public Vector3 Subtract(Vector3 vector, Vector3 otherVector)
-        {
-            if (vector == null)
-            {
-                throw new ArgumentNullException(nameof(vector));
-            }
-
-            if (otherVector == null)
-            {
-                throw new ArgumentNullException(nameof(otherVector));
-            }
-
-            return new Vector3
-            {
-                X = vector.X - otherVector.X,
-                Y = vector.Y - otherVector.Y,
-                Z = vector.Z - otherVector.Z,
-            };
-        }
+            X = vector.X - otherVector.X,
+            Y = vector.Y - otherVector.Y,
+            Z = vector.Z - otherVector.Z,
+        };
     }
 }

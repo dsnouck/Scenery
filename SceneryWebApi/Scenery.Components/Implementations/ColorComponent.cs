@@ -3,61 +3,60 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class ColorComponent : IColorComponent
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    /// <inheritdoc/>
+    public Color Average(List<Color> colors)
+    {
+        return new Color
+        {
+            R = colors.Average(color => color.R),
+            G = colors.Average(color => color.G),
+            B = colors.Average(color => color.B),
+        };
+    }
 
     /// <inheritdoc/>
-    public class ColorComponent : IColorComponent
+    public System.Drawing.Color GetSystemDrawingColorFromColor(Color color)
     {
-        /// <inheritdoc/>
-        public Color Average(List<Color> colors)
+        if (color == null)
         {
-            return new Color
-            {
-                R = colors.Average(color => color.R),
-                G = colors.Average(color => color.G),
-                B = colors.Average(color => color.B),
-            };
+            throw new ArgumentNullException(nameof(color));
         }
 
-        /// <inheritdoc/>
-        public System.Drawing.Color GetSystemDrawingColorFromColor(Color color)
-        {
-            if (color == null)
-            {
-                throw new ArgumentNullException(nameof(color));
-            }
+        return System.Drawing.Color.FromArgb(
+            GetByteFromComponent(color.R),
+            GetByteFromComponent(color.G),
+            GetByteFromComponent(color.B));
+    }
 
-            return System.Drawing.Color.FromArgb(
-                GetByteFromComponent(color.R),
-                GetByteFromComponent(color.G),
-                GetByteFromComponent(color.B));
+    /// <inheritdoc/>
+    public Color Multiply(Color color, double factor)
+    {
+        if (color == null)
+        {
+            throw new ArgumentNullException(nameof(color));
         }
 
-        /// <inheritdoc/>
-        public Color Multiply(Color color, double factor)
+        return new Color
         {
-            if (color == null)
-            {
-                throw new ArgumentNullException(nameof(color));
-            }
+            R = color.R * factor,
+            G = color.G * factor,
+            B = color.B * factor,
+        };
+    }
 
-            return new Color
-            {
-                R = color.R * factor,
-                G = color.G * factor,
-                B = color.B * factor,
-            };
-        }
-
-        private static byte GetByteFromComponent(double component)
-        {
-            return (byte)Math.Floor(component * byte.MaxValue);
-        }
+    private static byte GetByteFromComponent(double component)
+    {
+        return (byte)Math.Floor(component * byte.MaxValue);
     }
 }
