@@ -16,15 +16,8 @@ public class FuncDoubleDoubleComponent : IFuncDoubleDoubleComponent
     /// <inheritdoc/>
     public Func<double, double> GetLineThrough(Vector2 point, Vector2 otherPoint)
     {
-        if (point == null)
-        {
-            throw new ArgumentNullException(nameof(point));
-        }
-
-        if (otherPoint == null)
-        {
-            throw new ArgumentNullException(nameof(otherPoint));
-        }
+        ArgumentNullException.ThrowIfNull(point);
+        ArgumentNullException.ThrowIfNull(otherPoint);
 
         var slope =
             (otherPoint.Y - point.Y)

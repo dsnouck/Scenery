@@ -42,10 +42,7 @@ public class ProjectorComponent : IProjectorComponent
     /// <inheritdoc/>
     public Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings)
     {
-        if (projectorSettings == null)
-        {
-            throw new ArgumentNullException(nameof(projectorSettings));
-        }
+        ArgumentNullException.ThrowIfNull(projectorSettings);
 
         var screen = this.GetScreen(projectorSettings);
         var sceneComponent = this.sceneComponentFactory.CreateSceneComponent(scene);

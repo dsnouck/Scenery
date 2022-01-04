@@ -28,10 +28,7 @@ public class ColorComponent : IColorComponent
     /// <inheritdoc/>
     public System.Drawing.Color GetSystemDrawingColorFromColor(Color color)
     {
-        if (color == null)
-        {
-            throw new ArgumentNullException(nameof(color));
-        }
+        ArgumentNullException.ThrowIfNull(color);
 
         return System.Drawing.Color.FromArgb(
             GetByteFromComponent(color.R),
@@ -42,10 +39,7 @@ public class ColorComponent : IColorComponent
     /// <inheritdoc/>
     public Color Multiply(Color color, double factor)
     {
-        if (color == null)
-        {
-            throw new ArgumentNullException(nameof(color));
-        }
+        ArgumentNullException.ThrowIfNull(color);
 
         return new Color
         {

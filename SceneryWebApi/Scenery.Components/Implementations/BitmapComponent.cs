@@ -29,10 +29,7 @@ public class BitmapComponent : IBitmapComponent
     /// <inheritdoc/>
     public System.Drawing.Bitmap CreateSystemDrawingBitmap(List<List<Color>> bitmap)
     {
-        if (bitmap == null)
-        {
-            throw new ArgumentNullException(nameof(bitmap));
-        }
+        ArgumentNullException.ThrowIfNull(bitmap);
 
         var rows = bitmap.Count;
         var columns = bitmap.First().Count;

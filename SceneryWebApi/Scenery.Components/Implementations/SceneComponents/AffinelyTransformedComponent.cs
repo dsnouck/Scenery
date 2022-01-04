@@ -42,10 +42,7 @@ public class AffinelyTransformedComponent : ISceneComponent
     /// <inheritdoc/>
     public bool Contains(Vector3 point)
     {
-        if (point == null)
-        {
-            throw new ArgumentNullException(nameof(point));
-        }
+        ArgumentNullException.ThrowIfNull(point);
 
         return this.sceneComponent.Contains(this.TransformedBackPoint(point));
     }
@@ -53,10 +50,7 @@ public class AffinelyTransformedComponent : ISceneComponent
     /// <inheritdoc/>
     public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
     {
-        if (lineOfSight == null)
-        {
-            throw new ArgumentNullException(nameof(lineOfSight));
-        }
+        ArgumentNullException.ThrowIfNull(lineOfSight);
 
         var transformedLineOfSight = new Line3
         {

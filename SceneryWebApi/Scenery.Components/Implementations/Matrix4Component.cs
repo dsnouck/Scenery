@@ -111,10 +111,7 @@ public class Matrix4Component : IMatrix4Component
     /// <inheritdoc/>
     public Matrix4 GetTranslationMatrix(Vector3 translation)
     {
-        if (translation == null)
-        {
-            throw new ArgumentNullException(nameof(translation));
-        }
+        ArgumentNullException.ThrowIfNull(translation);
 
         return new Matrix4
         {
@@ -152,10 +149,7 @@ public class Matrix4Component : IMatrix4Component
     /// <inheritdoc/>
     public Vector4 Multiply(Matrix4 matrix, Vector4 vector)
     {
-        if (matrix == null)
-        {
-            throw new ArgumentNullException(nameof(matrix));
-        }
+        ArgumentNullException.ThrowIfNull(matrix);
 
         return new Vector4
         {

@@ -15,15 +15,8 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public Vector3 Add(Vector3 vector, Vector3 otherVector)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
-
-        if (otherVector == null)
-        {
-            throw new ArgumentNullException(nameof(otherVector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
+        ArgumentNullException.ThrowIfNull(otherVector);
 
         return new Vector3
         {
@@ -52,15 +45,8 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public Vector3 CrossProduct(Vector3 vector, Vector3 otherVector)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
-
-        if (otherVector == null)
-        {
-            throw new ArgumentNullException(nameof(otherVector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
+        ArgumentNullException.ThrowIfNull(otherVector);
 
         return new Vector3
         {
@@ -79,15 +65,8 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public double DotProduct(Vector3 vector, Vector3 otherVector)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
-
-        if (otherVector == null)
-        {
-            throw new ArgumentNullException(nameof(otherVector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
+        ArgumentNullException.ThrowIfNull(otherVector);
 
         return
             (vector.X * otherVector.X) +
@@ -104,10 +83,7 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public Vector3 Multiply(Vector3 vector, double factor)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
 
         return new Vector3
         {
@@ -126,15 +102,8 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public Vector3 Subtract(Vector3 vector, Vector3 otherVector)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
-
-        if (otherVector == null)
-        {
-            throw new ArgumentNullException(nameof(otherVector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
+        ArgumentNullException.ThrowIfNull(otherVector);
 
         return new Vector3
         {

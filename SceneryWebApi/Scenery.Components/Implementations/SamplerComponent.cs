@@ -33,10 +33,7 @@ public class SamplerComponent : ISamplerComponent
     /// <inheritdoc/>
     public List<List<Color>> SampleImageToBitmap(Func<Vector2, Color> image, SamplerSettings samplerSettings)
     {
-        if (samplerSettings == null)
-        {
-            throw new ArgumentNullException(nameof(samplerSettings));
-        }
+        ArgumentNullException.ThrowIfNull(samplerSettings);
 
         var columnToX = this.GetColumnToX(samplerSettings);
         var rowToY = this.GetRowToY(samplerSettings);

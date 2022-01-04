@@ -12,6 +12,7 @@ using Scenery.Models;
 // TODO: Solve CA1416 warnings (validate platform compatibility).
 // TODO: Use new .net 6 features.
 // TODO: Use the new minimal hosting model.
+// TODO: Add global usings.
 
 /// <summary>
 /// A controller for scenes.

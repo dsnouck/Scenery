@@ -42,10 +42,7 @@ public class PlaneComponent : ISceneComponent
     /// <inheritdoc/>
     public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
     {
-        if (lineOfSight == null)
-        {
-            throw new ArgumentNullException(nameof(lineOfSight));
-        }
+        ArgumentNullException.ThrowIfNull(lineOfSight);
 
         var dotProductNormalDirection = this.vector3Component.DotProduct(
             this.normal,

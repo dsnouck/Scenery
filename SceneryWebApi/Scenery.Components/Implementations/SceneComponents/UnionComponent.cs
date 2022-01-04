@@ -44,10 +44,7 @@ public class UnionComponent : ISceneComponent
     /// <inheritdoc/>
     public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
     {
-        if (lineOfSight == null)
-        {
-            throw new ArgumentNullException(nameof(lineOfSight));
-        }
+        ArgumentNullException.ThrowIfNull(lineOfSight);
 
         var allIntercepts = new List<Intercept>();
 

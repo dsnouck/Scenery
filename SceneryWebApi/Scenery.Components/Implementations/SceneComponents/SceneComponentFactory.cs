@@ -42,10 +42,7 @@ public class SceneComponentFactory : ISceneComponentFactory
     /// <inheritdoc/>
     public ISceneComponent CreateSceneComponent(Scene scene)
     {
-        if (scene == null)
-        {
-            throw new ArgumentNullException(nameof(scene));
-        }
+        ArgumentNullException.ThrowIfNull(scene);
 
         return scene switch
         {

@@ -81,11 +81,6 @@ public class RenderingTests : IDisposable
     public async Task GivenASceneWhenPostIsCalledThenItIsCorrectlyRendered(string jsonFilename)
     {
         // Arrange.
-        if (string.IsNullOrWhiteSpace(jsonFilename))
-        {
-            throw new ArgumentException($"'{nameof(jsonFilename)}' cannot be null or whitespace.", nameof(jsonFilename));
-        }
-
         var json = File.ReadAllText(jsonFilename);
         using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 

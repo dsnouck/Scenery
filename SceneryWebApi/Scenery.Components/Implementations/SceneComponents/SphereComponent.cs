@@ -44,10 +44,7 @@ public class SphereComponent : ISceneComponent
     /// <inheritdoc/>
     public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
     {
-        if (lineOfSight == null)
-        {
-            throw new ArgumentNullException(nameof(lineOfSight));
-        }
+        ArgumentNullException.ThrowIfNull(lineOfSight);
 
         // These are the coefficients of the quadratic equation x ↦ ax² + bx + c we want to solve.
         var a = this.vector3Component.DotProduct(

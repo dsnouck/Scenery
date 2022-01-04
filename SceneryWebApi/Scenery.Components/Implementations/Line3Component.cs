@@ -27,10 +27,7 @@ public class Line3Component : ILine3Component
     /// <inheritdoc/>
     public Vector3 GetPointAtDistance(Line3 line, double distance)
     {
-        if (line == null)
-        {
-            throw new ArgumentNullException(nameof(line));
-        }
+        ArgumentNullException.ThrowIfNull(line);
 
         return this.vector3Component.Add(
             line.Origin,

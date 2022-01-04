@@ -15,15 +15,8 @@ public class Vector4Component : IVector4Component
     /// <inheritdoc/>
     public double DotProduct(Vector4 vector, Vector4 otherVector)
     {
-        if (vector == null)
-        {
-            throw new ArgumentNullException(nameof(vector));
-        }
-
-        if (otherVector == null)
-        {
-            throw new ArgumentNullException(nameof(otherVector));
-        }
+        ArgumentNullException.ThrowIfNull(vector);
+        ArgumentNullException.ThrowIfNull(otherVector);
 
         return
             (vector.X * otherVector.X) +
