@@ -9,6 +9,10 @@ namespace Scenery.Controllers.Controllers
     using Scenery.Components.Interfaces;
     using Scenery.Models;
 
+    // TODO: Solve CA1416 warnings (validate platform compatibility).
+    // TODO: Use new .net 6 features.
+    // TODO: Use the new minimal hosting model.
+
     /// <summary>
     /// A controller for scenes.
     /// </summary>
