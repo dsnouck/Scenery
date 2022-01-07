@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Scenery.Components.Interfaces;
 using Scenery.Models;
 
-// TODO: Solve CA1416 warnings (validate platform compatibility).
+// TODO: Solve CA1416 warnings (validate platform compatibility). Use a different graphics library for creating png files.
 // TODO: Use new .net 6 features.
 // TODO: Use the new minimal hosting model.
-// TODO: Add global usings.
 
 /// <summary>
 /// A controller for scenes.

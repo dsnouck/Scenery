@@ -5,8 +5,6 @@
 
 namespace Scenery.Components.Interfaces;
 
-using System;
-using System.Collections.Generic;
 using Scenery.Models;
 
 /// <summary>

@@ -5,7 +5,6 @@
 
 namespace Scenery.Components.Implementations;
 
-using System;
 using Scenery.Components.Interfaces;
 using Scenery.Models;
 

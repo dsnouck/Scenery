@@ -5,7 +5,6 @@
 
 namespace Scenery.Components.Tests.SceneComponents;
 
-using System;
 using FluentAssertions;
 using Moq;
 using Scenery.Components.Implementations.SceneComponents;

@@ -5,7 +5,6 @@
 
 namespace Scenery.ControllersTests.Converters;
 
-using System;
 using System.Text.Json;
 using FluentAssertions;
 using Scenery.Controllers.Converters;

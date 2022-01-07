@@ -5,7 +5,6 @@
 
 namespace Scenery.ControllersTests.Validators.SceneValidators;
 
-using System.Collections.Generic;
 using FluentValidation.TestHelper;
 using Moq;
 using Scenery.Components.Interfaces;

@@ -5,9 +5,6 @@
 
 namespace Scenery.Controllers;
 
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
 /// <summary>
 /// Contains the main entry point.
 /// </summary>

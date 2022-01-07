@@ -5,8 +5,6 @@
 
 namespace Scenery.Components.Tests;
 
-using System;
-using System.Collections.Generic;
 using FluentAssertions;
 using Scenery.Components.Implementations;
 using Scenery.Models;

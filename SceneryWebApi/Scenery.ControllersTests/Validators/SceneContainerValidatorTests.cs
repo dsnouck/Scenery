@@ -5,7 +5,6 @@
 
 namespace Scenery.ControllersTests.Validators;
 
-using System;
 using FluentAssertions;
 using FluentValidation.TestHelper;
 using Moq;

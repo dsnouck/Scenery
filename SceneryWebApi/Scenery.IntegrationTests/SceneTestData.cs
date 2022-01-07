@@ -6,9 +6,6 @@
 namespace Scenery.IntegrationTests;
 
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 /// <summary>
 /// Provides test scenes for <see cref="RenderingTests"/>.

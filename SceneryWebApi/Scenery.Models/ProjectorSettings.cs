@@ -5,8 +5,6 @@
 
 namespace Scenery.Models;
 
-using System;
-
 /// <summary>
 /// Contains projector settings.
 /// </summary>

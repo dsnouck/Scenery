@@ -5,8 +5,6 @@
 
 namespace Scenery.Models.Scenes;
 
-using System.Collections.Generic;
-
 /// <inheritdoc/>
 public class Intersection : Scene
 {

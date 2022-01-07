@@ -5,7 +5,6 @@
 
 namespace Scenery.ControllersTests.Controllers;
 
-using System.IO;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
