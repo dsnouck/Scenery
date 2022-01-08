@@ -31,26 +31,26 @@ public class BitmapComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="BitmapComponent.CreateSystemDrawingBitmap(List{List{Color}})"/>.
+    /// Tests <see cref="BitmapComponent.CreateSkiaBitmap(List{List{Color}})"/>.
     /// </summary>
     [Fact]
-    public void GivenTheBitmapIsNullWhenCreateSystemDrawingBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheBitmapIsNullWhenCreateSkiaBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         List<List<Color>> bitmap = null;
 
         // Act.
-        Action action = () => this.systemUnderTest.CreateSystemDrawingBitmap(bitmap);
+        Action action = () => this.systemUnderTest.CreateSkiaBitmap(bitmap);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="BitmapComponent.CreateSystemDrawingBitmap(List{List{Color}})"/>.
+    /// Tests <see cref="BitmapComponent.CreateSkiaBitmap(List{List{Color}})"/>.
     /// </summary>
     [Fact]
-    public void GivenABitmapWhenCreateSystemDrawingBitmapIsCalledThenColorComponentGetSystemDrawingColorFromColorIsCalled()
+    public void GivenABitmapWhenCreateSkiaBitmapIsCalledThenColorComponentGetSkiaColorFromColorIsCalled()
     {
         // Arrange.
         var bitmap = new List<List<Color>>
@@ -62,10 +62,10 @@ public class BitmapComponentTests
             };
 
         // Act.
-        using var result = this.systemUnderTest.CreateSystemDrawingBitmap(bitmap);
+        using var result = this.systemUnderTest.CreateSkiaBitmap(bitmap);
 
         // Assert.
         this.colorComponentTestDouble
-            .Verify(component => component.GetSystemDrawingColorFromColor(It.IsAny<Color>()), Times.Once);
+            .Verify(component => component.GetSkiaColorFromColor(It.IsAny<Color>()), Times.Once);
     }
 }

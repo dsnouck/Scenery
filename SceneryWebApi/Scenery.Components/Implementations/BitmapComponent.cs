@@ -7,6 +7,7 @@ namespace Scenery.Components.Implementations;
 
 using Scenery.Components.Interfaces;
 using Scenery.Models;
+using SkiaSharp;
 
 /// <inheritdoc/>
 public class BitmapComponent : IBitmapComponent
@@ -24,25 +25,16 @@ public class BitmapComponent : IBitmapComponent
     }
 
     /// <inheritdoc/>
-    public System.Drawing.Bitmap CreateSystemDrawingBitmap(List<List<Color>> bitmap)
+    public SKBitmap CreateSkiaBitmap(List<List<Color>> bitmap)
     {
         ArgumentNullException.ThrowIfNull(bitmap);
 
-        var rows = bitmap.Count;
-        var columns = bitmap.First().Count;
-
-        var systemDrawingBitmap = new System.Drawing.Bitmap(columns, rows);
-        for (var row = 0; row < rows; row++)
+        return new SKBitmap(bitmap.First().Count, bitmap.Count)
         {
-            for (var column = 0; column < columns; column++)
-            {
-                systemDrawingBitmap.SetPixel(
-                    column,
-                    row,
-                    this.colorComponent.GetSystemDrawingColorFromColor(bitmap[row][column]));
-            }
-        }
-
-        return systemDrawingBitmap;
+            Pixels = bitmap
+                .SelectMany(row => row)
+                .Select(this.colorComponent.GetSkiaColorFromColor)
+                .ToArray(),
+        };
     }
 }

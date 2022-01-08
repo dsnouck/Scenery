@@ -6,6 +6,7 @@
 namespace Scenery.Components.Interfaces;
 
 using Scenery.Models;
+using SkiaSharp;
 
 /// <summary>
 /// Provides operations concerning <see cref="Color"/>s.
@@ -20,11 +21,11 @@ public interface IColorComponent
     Color Average(List<Color> colors);
 
     /// <summary>
-    /// Gets the <see cref="System.Drawing.Color"/> from <paramref name="color"/>.
+    /// Gets the <see cref="SKColor"/> for <paramref name="color"/>.
     /// </summary>
     /// <param name="color">The color.</param>
-    /// <returns>The alpha, red, green and blue bytes from <paramref name="color"/>.</returns>
-    System.Drawing.Color GetSystemDrawingColorFromColor(Color color);
+    /// <returns>The <see cref="SKColor"/> for <paramref name="color"/>.</returns>
+    SKColor GetSkiaColorFromColor(Color color);
 
     /// <summary>
     /// Multiplies <paramref name="color"/> with <paramref name="factor"/>.

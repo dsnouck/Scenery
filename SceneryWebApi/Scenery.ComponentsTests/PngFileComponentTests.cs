@@ -10,6 +10,7 @@ using Moq;
 using Scenery.Components.Implementations;
 using Scenery.Components.Interfaces;
 using Scenery.Models;
+using SkiaSharp;
 using Xunit;
 
 /// <summary>
@@ -34,7 +35,7 @@ public class PngFileComponentTests
     /// Tests <see cref="PngFileComponent.GetStream(List{List{Color}})"/>.
     /// </summary>
     [Fact]
-    public void GivenABitmapWhenGetStreamIsCalledThenBitmapComponentCreateSystemDrawingBitmapIsCalled()
+    public void GivenABitmapWhenGetStreamIsCalledThenBitmapComponentCreateSkiaBitmapIsCalled()
     {
         // Arrange.
         var bitmap = new List<List<Color>>
@@ -44,10 +45,10 @@ public class PngFileComponentTests
                     new Color(),
                 },
             };
-        var systemDrawingBitmapTestDouble = new System.Drawing.Bitmap(1, 1);
+        var skiaBitmap = new SKBitmap(1, 1);
         this.bitmapComponentTestDouble
-            .Setup(component => component.CreateSystemDrawingBitmap(It.IsAny<List<List<Color>>>()))
-            .Returns(systemDrawingBitmapTestDouble);
+            .Setup(component => component.CreateSkiaBitmap(It.IsAny<List<List<Color>>>()))
+            .Returns(skiaBitmap);
 
         // Act.
         var result = this.systemUnderTest.GetStream(bitmap);
@@ -55,6 +56,6 @@ public class PngFileComponentTests
         // Assert.
         result.Should().NotBeNull();
         this.bitmapComponentTestDouble
-            .Verify(component => component.CreateSystemDrawingBitmap(It.IsAny<List<List<Color>>>()), Times.Once);
+            .Verify(component => component.CreateSkiaBitmap(It.IsAny<List<List<Color>>>()), Times.Once);
     }
 }

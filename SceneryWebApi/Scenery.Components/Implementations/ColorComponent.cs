@@ -7,6 +7,7 @@ namespace Scenery.Components.Implementations;
 
 using Scenery.Components.Interfaces;
 using Scenery.Models;
+using SkiaSharp;
 
 /// <inheritdoc/>
 public class ColorComponent : IColorComponent
@@ -23,11 +24,11 @@ public class ColorComponent : IColorComponent
     }
 
     /// <inheritdoc/>
-    public System.Drawing.Color GetSystemDrawingColorFromColor(Color color)
+    public SKColor GetSkiaColorFromColor(Color color)
     {
         ArgumentNullException.ThrowIfNull(color);
 
-        return System.Drawing.Color.FromArgb(
+        return new SKColor(
             GetByteFromComponent(color.R),
             GetByteFromComponent(color.G),
             GetByteFromComponent(color.B));

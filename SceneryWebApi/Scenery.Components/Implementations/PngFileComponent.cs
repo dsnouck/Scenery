@@ -7,6 +7,7 @@ namespace Scenery.Components.Implementations;
 
 using Scenery.Components.Interfaces;
 using Scenery.Models;
+using SkiaSharp;
 
 /// <inheritdoc/>
 public class PngFileComponent : IBitmapFileComponent
@@ -27,8 +28,9 @@ public class PngFileComponent : IBitmapFileComponent
     public Stream GetStream(List<List<Color>> bitmap)
     {
         var stream = new MemoryStream();
-        using var systemDrawingBitmap = this.bitmapComponent.CreateSystemDrawingBitmap(bitmap);
-        systemDrawingBitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+        using var skiaStream = new SKManagedWStream(stream);
+        var skiaBitmap = this.bitmapComponent.CreateSkiaBitmap(bitmap);
+        skiaBitmap.Encode(skiaStream, SKEncodedImageFormat.Png, 100);
         stream.Position = 0;
         return stream;
     }

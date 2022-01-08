@@ -9,6 +9,7 @@ using FluentAssertions;
 using Scenery.Components.Implementations;
 using Scenery.Models;
 using Scenery.TestInstrumentation;
+using SkiaSharp;
 using Xunit;
 
 /// <summary>
@@ -64,26 +65,26 @@ public class ColorComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="ColorComponent.GetSystemDrawingColorFromColor(Color)"/>.
+    /// Tests <see cref="ColorComponent.GetSkiaColorFromColor(Color)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheColorIsNullWhenGetSystemDrawingColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheColorIsNullWhenGetSkiaColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         Color color = null;
 
         // Act.
-        Action action = () => this.systemUnderTest.GetSystemDrawingColorFromColor(color);
+        Action action = () => this.systemUnderTest.GetSkiaColorFromColor(color);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="ColorComponent.GetSystemDrawingColorFromColor(Color)"/>.
+    /// Tests <see cref="ColorComponent.GetSkiaColorFromColor(Color)"/>.
     /// </summary>
     [Fact]
-    public void GivenAColorWhenGetSystemDrawingColorFromColorIsCalledThenTheCorrectSystemDrawingColorIsReturned()
+    public void GivenAColorWhenGetSkiaColorFromColorIsCalledThenTheCorrectSystemDrawingColorIsReturned()
     {
         // Arrange.
         var color = new Color
@@ -94,11 +95,11 @@ public class ColorComponentTests
         };
 
         // Act.
-        var result = this.systemUnderTest.GetSystemDrawingColorFromColor(color);
+        var result = this.systemUnderTest.GetSkiaColorFromColor(color);
 
         // Assert.
         result.Should().BeEquivalentTo(
-            System.Drawing.Color.FromArgb(0, 127, 255));
+            new SKColor(0, 127, 255));
     }
 
     /// <summary>
