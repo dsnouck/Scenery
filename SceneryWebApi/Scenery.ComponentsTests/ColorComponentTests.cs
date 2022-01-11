@@ -71,10 +71,10 @@ public class ColorComponentTests
     public void GivenTheColorIsNullWhenGetSkiaColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Color color = null;
+        var color = default(Color);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetSkiaColorFromColor(color);
+        var action = () => this.systemUnderTest.GetSkiaColorFromColor(color);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -109,10 +109,10 @@ public class ColorComponentTests
     public void GivenTheColorIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Color color = null;
+        var color = default(Color);
 
         // Act.
-        Action action = () => this.systemUnderTest.Multiply(color, 0D);
+        var action = () => this.systemUnderTest.Multiply(color, 0D);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

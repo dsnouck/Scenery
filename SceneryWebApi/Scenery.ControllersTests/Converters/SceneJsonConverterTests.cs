@@ -128,10 +128,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingStartObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"""string""";
+        var json = @"""string""";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -144,10 +144,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingEndObjectWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""type"":""sphere"",""string"":""string""}";
+        var json = @"{""type"":""sphere"",""string"":""string""}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -160,10 +160,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingStartArrayWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""type"":""intersection"",""scenes"":""string""}";
+        var json = @"{""type"":""intersection"",""scenes"":""string""}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -176,10 +176,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingPropertyWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{}";
+        var json = @"{}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -192,10 +192,10 @@ public class SceneJsonConverterTests
     public void GivenAnUnexpectedPropertyWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""string"":""string""}";
+        var json = @"{""string"":""string""}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -208,10 +208,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingNumberWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""type"":""scaled"",""factor"":""string""}";
+        var json = @"{""type"":""scaled"",""factor"":""string""}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -224,10 +224,10 @@ public class SceneJsonConverterTests
     public void GivenAMissingStringWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""type"":0}";
+        var json = @"{""type"":0}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -240,10 +240,10 @@ public class SceneJsonConverterTests
     public void GivenANullStringWhenDeserializeIsCalledThenAJsonExceptionIsThrown()
     {
         // Arrange.
-        const string json = @"{""type"":null}";
+        var json = @"{""type"":null}";
 
         // Act.
-        Action action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Deserialize<Scene>(json, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();
@@ -275,7 +275,7 @@ public class SceneJsonConverterTests
         var scene = new Scene();
 
         // Act.
-        Action action = () => JsonSerializer.Serialize(scene, this.jsonSerializerOptions);
+        var action = () => JsonSerializer.Serialize(scene, this.jsonSerializerOptions);
 
         // Assert.
         action.Should().Throw<JsonException>();

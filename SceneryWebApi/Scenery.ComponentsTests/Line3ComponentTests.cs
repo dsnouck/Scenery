@@ -37,10 +37,10 @@ public class Line3ComponentTests
     public void GivenTheLineIsNullWhenGetPointAtDistanceIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Line3 line = null;
+        var line = default(Line3);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetPointAtDistance(line, 0D);
+        var action = () => this.systemUnderTest.GetPointAtDistance(line, 0D);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

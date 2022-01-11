@@ -88,10 +88,10 @@ public class PlaneComponentTests
     public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Line3 lineOfSight = null;
+        var lineOfSight = default(Line3);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

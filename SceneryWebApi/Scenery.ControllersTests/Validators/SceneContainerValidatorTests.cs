@@ -41,10 +41,10 @@ public class SceneContainerValidatorTests
     public void GivenSceneContainerIsNullWhenValidateIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        SceneContainer sceneContainer = null;
+        var sceneContainer = default(SceneContainer);
 
         // Act.
-        Action action = () => this.systemUnderTest.TestValidate(sceneContainer);
+        var action = () => this.systemUnderTest.TestValidate(sceneContainer);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

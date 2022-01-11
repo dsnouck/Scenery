@@ -33,10 +33,10 @@ public class Vector4ComponentTests
     public void GivenTheVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector4 vector = null;
+        var vector = default(Vector4);
 
         // Act.
-        Action action = () => this.systemUnderTest.DotProduct(vector, new Vector4());
+        var action = () => this.systemUnderTest.DotProduct(vector, new Vector4());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -49,10 +49,10 @@ public class Vector4ComponentTests
     public void GivenTheOtherVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector4 otherVector = null;
+        var otherVector = default(Vector4);
 
         // Act.
-        Action action = () => this.systemUnderTest.DotProduct(new Vector4(), otherVector);
+        var action = () => this.systemUnderTest.DotProduct(new Vector4(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

@@ -169,7 +169,7 @@ public class SceneComponentFactory : ISceneComponentFactory
     private ISceneComponent CreateDodecahedronComponent()
     {
         var dihedralAngle = Math.Acos(-1D / Math.Sqrt(5D));
-        const double azimuthStep = Math.PI / 5D;
+        var azimuthStep = Math.PI / 5D;
 
         var intersection = new Intersection
         {
@@ -233,7 +233,7 @@ public class SceneComponentFactory : ISceneComponentFactory
     {
         var dihedralAngle = Math.Acos(-Math.Sqrt(5D) / 3D);
         var secondInclination = Math.Acos(-1D / 3D);
-        const double azimuthStep = Math.PI / 3D;
+        var azimuthStep = Math.PI / 3D;
         var azimuthOffset = (Math.PI / 3D) - Math.Acos(Math.Sqrt(5D / 8D));
 
         var intersection = new Intersection
@@ -353,7 +353,7 @@ public class SceneComponentFactory : ISceneComponentFactory
     private ISceneComponent CreateOctahedronComponent()
     {
         var dihedralAngle = Math.Acos(-1D / 3D);
-        const double azimuthStep = Math.PI / 3D;
+        var azimuthStep = Math.PI / 3D;
 
         var intersection = new Intersection
         {
@@ -433,7 +433,7 @@ public class SceneComponentFactory : ISceneComponentFactory
     private ISceneComponent CreateTetrahedronComponent()
     {
         var dihedralAngle = Math.Acos(1D / 3D);
-        const double azimuthStep = 2D * Math.PI / 3D;
+        var azimuthStep = 2D * Math.PI / 3D;
 
         var intersection = new Intersection
         {

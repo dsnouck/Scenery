@@ -41,10 +41,10 @@ public class SamplerComponentTests
     public void GivenTheSamplerSettingsIsNullWhenSampleImageToBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        SamplerSettings samplerSettings = null;
+        var samplerSettings = default(SamplerSettings);
 
         // Act.
-        Action action = () => this.systemUnderTest.SampleImageToBitmap(vector => new Color(), samplerSettings);
+        var action = () => this.systemUnderTest.SampleImageToBitmap(vector => new Color(), samplerSettings);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

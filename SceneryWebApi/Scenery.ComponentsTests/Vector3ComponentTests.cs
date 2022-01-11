@@ -33,10 +33,10 @@ public class Vector3ComponentTests
     public void GivenTheVectorIsNullWhenAddIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 vector = null;
+        var vector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Add(vector, new Vector3());
+        var action = () => this.systemUnderTest.Add(vector, new Vector3());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -49,10 +49,10 @@ public class Vector3ComponentTests
     public void GivenTheOtherVectorIsNullWhenAddIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 otherVector = null;
+        var otherVector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Add(new Vector3(), otherVector);
+        var action = () => this.systemUnderTest.Add(new Vector3(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -125,10 +125,10 @@ public class Vector3ComponentTests
     public void GivenTheVectorIsNullWhenCrossProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 vector = null;
+        var vector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.CrossProduct(vector, new Vector3());
+        var action = () => this.systemUnderTest.CrossProduct(vector, new Vector3());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -141,10 +141,10 @@ public class Vector3ComponentTests
     public void GivenTheOtherVectorIsNullWhenCrossProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 otherVector = null;
+        var otherVector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.CrossProduct(new Vector3(), otherVector);
+        var action = () => this.systemUnderTest.CrossProduct(new Vector3(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -222,10 +222,10 @@ public class Vector3ComponentTests
     public void GivenTheVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 vector = null;
+        var vector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.DotProduct(vector, new Vector3());
+        var action = () => this.systemUnderTest.DotProduct(vector, new Vector3());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -238,10 +238,10 @@ public class Vector3ComponentTests
     public void GivenTheOtherVectorIsNullWhenDotProductIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 otherVector = null;
+        var otherVector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.DotProduct(new Vector3(), otherVector);
+        var action = () => this.systemUnderTest.DotProduct(new Vector3(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -303,10 +303,10 @@ public class Vector3ComponentTests
     public void GivenTheVectorIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 vector = null;
+        var vector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Multiply(vector, 0D);
+        var action = () => this.systemUnderTest.Multiply(vector, 0D);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -377,10 +377,10 @@ public class Vector3ComponentTests
     public void GivenTheVectorIsNullWhenSubtractIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 vector = null;
+        var vector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Subtract(vector, new Vector3());
+        var action = () => this.systemUnderTest.Subtract(vector, new Vector3());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -393,10 +393,10 @@ public class Vector3ComponentTests
     public void GivenTheOtherVectorIsNullWhenSubtractIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 otherVector = null;
+        var otherVector = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Subtract(new Vector3(), otherVector);
+        var action = () => this.systemUnderTest.Subtract(new Vector3(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

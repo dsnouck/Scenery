@@ -48,10 +48,10 @@ public class ProjectorComponentTests
     public void GivenTheProjectorSettingsIsNullWhenProjectSceneToImageIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        ProjectorSettings projectorSettings = null;
+        var projectorSettings = default(ProjectorSettings);
 
         // Act.
-        Action action = () => this.systemUnderTest.ProjectSceneToImage(new Scene(), projectorSettings);
+        var action = () => this.systemUnderTest.ProjectSceneToImage(new Scene(), projectorSettings);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

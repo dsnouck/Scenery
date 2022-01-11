@@ -148,10 +148,10 @@ public class Matrix4ComponentTests
     public void GivenTheTranslationIsNullWhenGetTranslationMatrixIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 translation = null;
+        var translation = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetTranslationMatrix(translation);
+        var action = () => this.systemUnderTest.GetTranslationMatrix(translation);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -217,10 +217,10 @@ public class Matrix4ComponentTests
     public void GivenTheMatrixIsNullWhenMultiplyIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Matrix4 matrix = null;
+        var matrix = default(Matrix4);
 
         // Act.
-        Action action = () => this.systemUnderTest.Multiply(matrix, new Vector4());
+        var action = () => this.systemUnderTest.Multiply(matrix, new Vector4());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

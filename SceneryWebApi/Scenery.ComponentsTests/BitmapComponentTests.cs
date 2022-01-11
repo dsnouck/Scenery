@@ -37,10 +37,10 @@ public class BitmapComponentTests
     public void GivenTheBitmapIsNullWhenCreateSkiaBitmapIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        List<List<Color>> bitmap = null;
+        var bitmap = default(List<List<Color>>);
 
         // Act.
-        Action action = () => this.systemUnderTest.CreateSkiaBitmap(bitmap);
+        var action = () => this.systemUnderTest.CreateSkiaBitmap(bitmap);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

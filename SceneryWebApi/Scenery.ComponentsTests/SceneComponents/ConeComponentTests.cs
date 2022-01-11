@@ -43,10 +43,10 @@ public class ConeComponentTests
     public void GivenThePointIsNullWhenContainsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector3 point = null;
+        var point = default(Vector3);
 
         // Act.
-        Action action = () => this.systemUnderTest.Contains(point);
+        var action = () => this.systemUnderTest.Contains(point);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -101,10 +101,10 @@ public class ConeComponentTests
     public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Line3 lineOfSight = null;
+        var lineOfSight = default(Line3);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();

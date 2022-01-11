@@ -47,10 +47,10 @@ public class SceneComponentFactoryTests
     public void GivenTheSceneIsNullWhenCreateSceneComponentIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Scene scene = null;
+        var scene = default(Scene);
 
         // Act.
-        Action action = () => this.systemUnderTest.CreateSceneComponent(scene);
+        var action = () => this.systemUnderTest.CreateSceneComponent(scene);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -66,7 +66,7 @@ public class SceneComponentFactoryTests
         var scene = new Scene();
 
         // Act.
-        Action action = () => this.systemUnderTest.CreateSceneComponent(scene);
+        var action = () => this.systemUnderTest.CreateSceneComponent(scene);
 
         // Assert.
         action.Should().Throw<NotSupportedException>();

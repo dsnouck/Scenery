@@ -33,10 +33,10 @@ public class FuncDoubleDoubleComponentTests
     public void GivenTheVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector2 vector = null;
+        var vector = default(Vector2);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetLineThrough(vector, new Vector2());
+        var action = () => this.systemUnderTest.GetLineThrough(vector, new Vector2());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -49,10 +49,10 @@ public class FuncDoubleDoubleComponentTests
     public void GivenTheOtherVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
-        Vector2 otherVector = null;
+        var otherVector = default(Vector2);
 
         // Act.
-        Action action = () => this.systemUnderTest.GetLineThrough(new Vector2(), otherVector);
+        var action = () => this.systemUnderTest.GetLineThrough(new Vector2(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
@@ -90,9 +90,9 @@ public class FuncDoubleDoubleComponentTests
     public void GivenAParabolaWithVertexBelowTheXAxisWhenGetRealZerosOfQuadraticFunctionIsCalledThenTheCorrectZerosAreReturned()
     {
         // Arrange.
-        const double a = 1D;
-        const double b = 0D;
-        const double c = -1D;
+        var a = 1D;
+        var b = 0D;
+        var c = -1D;
 
         // Act.
         var result = this.systemUnderTest.GetRealZerosOfQuadraticFunction(a, b, c);
@@ -114,9 +114,9 @@ public class FuncDoubleDoubleComponentTests
     public void GivenAParabolaWithVertexOnTheXAxisWhenGetRealZerosOfQuadraticFunctionIsCalledThenTheCorrectZerosAreReturned()
     {
         // Arrange.
-        const double a = 1D;
-        const double b = 0D;
-        const double c = 0D;
+        var a = 1D;
+        var b = 0D;
+        var c = 0D;
 
         // Act.
         var result = this.systemUnderTest.GetRealZerosOfQuadraticFunction(a, b, c);
@@ -138,9 +138,9 @@ public class FuncDoubleDoubleComponentTests
     public void GivenAParabolaWithVertexAboveTheXAxisWhenGetRealZerosOfQuadraticFunctionIsCalledThenTheCorrectZerosAreReturned()
     {
         // Arrange.
-        const double a = 1D;
-        const double b = 0D;
-        const double c = 1D;
+        var a = 1D;
+        var b = 0D;
+        var c = 1D;
 
         // Act.
         var result = this.systemUnderTest.GetRealZerosOfQuadraticFunction(a, b, c);
