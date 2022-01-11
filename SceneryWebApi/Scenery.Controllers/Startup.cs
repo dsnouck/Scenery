@@ -6,7 +6,6 @@
 namespace Scenery.Controllers;
 
 using FluentValidation.AspNetCore;
-using Microsoft.OpenApi.Models;
 using Scenery.Components;
 using Scenery.Controllers.Converters;
 using Scenery.Controllers.Validators;
@@ -37,16 +36,10 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter());
-            });
+            .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter()));
         services.AddComponents()
             .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<SceneContainerValidator>());
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scenery.Controllers", Version = "v1" });
-        });
+        services.AddSwaggerGen();
     }
 
     /// <summary>
@@ -57,7 +50,7 @@ public class Startup
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment environment)
     {
         applicationBuilder.UseSwagger();
-        applicationBuilder.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scenery.Controllers v1"));
+        applicationBuilder.UseSwaggerUI();
 
         if (environment.IsDevelopment())
         {
@@ -67,9 +60,6 @@ public class Startup
         applicationBuilder.UseHttpsRedirection();
         applicationBuilder.UseRouting();
         applicationBuilder.UseAuthorization();
-        applicationBuilder.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        applicationBuilder.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }

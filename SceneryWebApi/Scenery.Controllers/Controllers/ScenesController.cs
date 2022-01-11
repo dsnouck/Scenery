@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Scenery.Components.Interfaces;
 using Scenery.Models;
 
-// TODO: Use the new minimal hosting model.
-
 /// <summary>
 /// A controller for scenes.
 /// </summary>
