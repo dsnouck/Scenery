@@ -3,36 +3,35 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+using SkiaSharp;
+
+/// <inheritdoc/>
+public class PngFileComponent : IBitmapFileComponent
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    private readonly IBitmapComponent bitmapComponent;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PngFileComponent"/> class.
+    /// </summary>
+    /// <param name="bitmapComponent">An <see cref="IBitmapComponent"/>.</param>
+    public PngFileComponent(
+        IBitmapComponent bitmapComponent)
+    {
+        this.bitmapComponent = bitmapComponent;
+    }
 
     /// <inheritdoc/>
-    public class PngFileComponent : IBitmapFileComponent
+    public Stream GetStream(List<List<Color>> bitmap)
     {
-        private readonly IBitmapComponent bitmapComponent;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PngFileComponent"/> class.
-        /// </summary>
-        /// <param name="bitmapComponent">An <see cref="IBitmapComponent"/>.</param>
-        public PngFileComponent(
-            IBitmapComponent bitmapComponent)
-        {
-            this.bitmapComponent = bitmapComponent;
-        }
-
-        /// <inheritdoc/>
-        public Stream GetStream(List<List<Color>> bitmap)
-        {
-            var stream = new MemoryStream();
-            using var systemDrawingBitmap = this.bitmapComponent.CreateSystemDrawingBitmap(bitmap);
-            systemDrawingBitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-            stream.Position = 0;
-            return stream;
-        }
+        var stream = new MemoryStream();
+        using var skiaStream = new SKManagedWStream(stream);
+        var skiaBitmap = this.bitmapComponent.CreateSkiaBitmap(bitmap);
+        skiaBitmap.Encode(skiaStream, SKEncodedImageFormat.Png, 100);
+        stream.Position = 0;
+        return stream;
     }
 }

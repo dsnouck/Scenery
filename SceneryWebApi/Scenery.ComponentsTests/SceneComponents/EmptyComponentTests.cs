@@ -3,58 +3,57 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Tests.SceneComponents
+namespace Scenery.Components.Tests.SceneComponents;
+
+using FluentAssertions;
+using Scenery.Components.Implementations.SceneComponents;
+using Scenery.Models;
+using Xunit;
+
+/// <summary>
+/// Provides tests for <see cref="EmptyComponent"/>.
+/// </summary>
+public class EmptyComponentTests
 {
-    using FluentAssertions;
-    using Scenery.Components.Implementations.SceneComponents;
-    using Scenery.Models;
-    using Xunit;
+    private readonly EmptyComponent systemUnderTest;
 
     /// <summary>
-    /// Provides tests for <see cref="EmptyComponent"/>.
+    /// Initializes a new instance of the <see cref="EmptyComponentTests"/> class.
     /// </summary>
-    public class EmptyComponentTests
+    public EmptyComponentTests()
     {
-        private readonly EmptyComponent systemUnderTest;
+        this.systemUnderTest = new EmptyComponent();
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmptyComponentTests"/> class.
-        /// </summary>
-        public EmptyComponentTests()
-        {
-            this.systemUnderTest = new EmptyComponent();
-        }
+    /// <summary>
+    /// Tests <see cref="EmptyComponent.Contains(Vector3)"/>.
+    /// </summary>
+    [Fact]
+    public void GivenAPointWhenContainsIsCalledThenFalseIsReturned()
+    {
+        // Arrange.
+        var point = new Vector3();
 
-        /// <summary>
-        /// Tests <see cref="EmptyComponent.Contains(Vector3)"/>.
-        /// </summary>
-        [Fact]
-        public void GivenAPointWhenContainsIsCalledThenFalseIsReturned()
-        {
-            // Arrange.
-            var point = new Vector3();
+        // Act.
+        var result = this.systemUnderTest.Contains(point);
 
-            // Act.
-            var result = this.systemUnderTest.Contains(point);
+        // Assert.
+        result.Should().BeFalse();
+    }
 
-            // Assert.
-            result.Should().BeFalse();
-        }
+    /// <summary>
+    /// Tests <see cref="EmptyComponent.GetAllIntercepts(Line3)"/>.
+    /// </summary>
+    [Fact]
+    public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    {
+        // Arrange.
+        var lineOfSight = new Line3();
 
-        /// <summary>
-        /// Tests <see cref="EmptyComponent.GetAllIntercepts(Line3)"/>.
-        /// </summary>
-        [Fact]
-        public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
-        {
-            // Arrange.
-            var lineOfSight = new Line3();
+        // Act.
+        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
 
-            // Act.
-            var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
-
-            // Assert.
-            result.Should().BeEmpty();
-        }
+        // Assert.
+        result.Should().BeEmpty();
     }
 }

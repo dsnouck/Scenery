@@ -3,61 +3,52 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+using SkiaSharp;
+
+/// <inheritdoc/>
+public class ColorComponent : IColorComponent
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    /// <inheritdoc/>
+    public Color Average(List<Color> colors)
+    {
+        return new Color
+        {
+            R = colors.Average(color => color.R),
+            G = colors.Average(color => color.G),
+            B = colors.Average(color => color.B),
+        };
+    }
 
     /// <inheritdoc/>
-    public class ColorComponent : IColorComponent
+    public SKColor GetSkiaColorFromColor(Color color)
     {
-        /// <inheritdoc/>
-        public Color Average(List<Color> colors)
+        ArgumentNullException.ThrowIfNull(color);
+
+        return new SKColor(
+            GetByteFromComponent(color.R),
+            GetByteFromComponent(color.G),
+            GetByteFromComponent(color.B));
+    }
+
+    /// <inheritdoc/>
+    public Color Multiply(Color color, double factor)
+    {
+        ArgumentNullException.ThrowIfNull(color);
+
+        return new Color
         {
-            return new Color
-            {
-                R = colors.Average(color => color.R),
-                G = colors.Average(color => color.G),
-                B = colors.Average(color => color.B),
-            };
-        }
+            R = color.R * factor,
+            G = color.G * factor,
+            B = color.B * factor,
+        };
+    }
 
-        /// <inheritdoc/>
-        public System.Drawing.Color GetSystemDrawingColorFromColor(Color color)
-        {
-            if (color == null)
-            {
-                throw new ArgumentNullException(nameof(color));
-            }
-
-            return System.Drawing.Color.FromArgb(
-                GetByteFromComponent(color.R),
-                GetByteFromComponent(color.G),
-                GetByteFromComponent(color.B));
-        }
-
-        /// <inheritdoc/>
-        public Color Multiply(Color color, double factor)
-        {
-            if (color == null)
-            {
-                throw new ArgumentNullException(nameof(color));
-            }
-
-            return new Color
-            {
-                R = color.R * factor,
-                G = color.G * factor,
-                B = color.B * factor,
-            };
-        }
-
-        private static byte GetByteFromComponent(double component)
-        {
-            return (byte)Math.Floor(component * byte.MaxValue);
-        }
+    private static byte GetByteFromComponent(double component)
+    {
+        return (byte)Math.Floor(component * byte.MaxValue);
     }
 }

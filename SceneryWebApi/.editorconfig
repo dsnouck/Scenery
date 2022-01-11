@@ -116,6 +116,7 @@ csharp_space_between_method_call_empty_parameter_list_parentheses = false
 csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
 csharp_using_directive_placement=inside_namespace:silent
+csharp_style_namespace_declarations=file_scoped:suggestion
 ###############################
 # VB Coding Conventions       #
 ###############################

@@ -3,80 +3,79 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.ControllersTests.Validators.SceneValidators
+namespace Scenery.ControllersTests.Validators.SceneValidators;
+
+using FluentValidation.TestHelper;
+using Moq;
+using Scenery.Components.Interfaces;
+using Scenery.Controllers.Validators;
+using Scenery.Controllers.Validators.SceneValidators;
+using Scenery.Models;
+using Scenery.Models.Scenes;
+using Xunit;
+
+/// <summary>
+/// Provides tests for <see cref="TranslatedValidator"/>.
+/// </summary>
+public class TranslatedValidatorTests
 {
-    using FluentValidation.TestHelper;
-    using Moq;
-    using Scenery.Components.Interfaces;
-    using Scenery.Controllers.Validators;
-    using Scenery.Controllers.Validators.SceneValidators;
-    using Scenery.Models;
-    using Scenery.Models.Scenes;
-    using Xunit;
+    private readonly SceneContainerValidator systemUnderTest;
+    private readonly Mock<IVector3Component> vector3ComponentTestDouble;
 
     /// <summary>
-    /// Provides tests for <see cref="TranslatedValidator"/>.
+    /// Initializes a new instance of the <see cref="TranslatedValidatorTests"/> class.
     /// </summary>
-    public class TranslatedValidatorTests
+    public TranslatedValidatorTests()
     {
-        private readonly SceneContainerValidator systemUnderTest;
-        private readonly Mock<IVector3Component> vector3ComponentTestDouble;
+        this.vector3ComponentTestDouble = new Mock<IVector3Component>();
+        this.vector3ComponentTestDouble
+            .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+            .Returns(1D);
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TranslatedValidatorTests"/> class.
-        /// </summary>
-        public TranslatedValidatorTests()
+        this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
+    }
+
+    /// <summary>
+    /// Tests <see cref="TranslatedValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenTranslationIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            this.vector3ComponentTestDouble = new Mock<IVector3Component>();
-            this.vector3ComponentTestDouble
-                .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
-                .Returns(1D);
-
-            this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
-        }
-
-        /// <summary>
-        /// Tests <see cref="TranslatedValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenTranslationIsNullWhenValidateIsCalledThenItFails()
-        {
-            // Arrange.
-            var sceneContainer = new SceneContainer
+            Scene = new Translated
             {
-                Scene = new Translated
-                {
-                    Translation = null,
-                },
-            };
+                Translation = null,
+            },
+        };
 
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Translated).Translation);
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Translated).Translation);
+    }
 
-        /// <summary>
-        /// Tests <see cref="TranslatedValidator"/>.
-        /// </summary>
-        [Fact]
-        public void GivenSceneIsNullWhenValidateIsCalledThenItFails()
+    /// <summary>
+    /// Tests <see cref="TranslatedValidator"/>.
+    /// </summary>
+    [Fact]
+    public void GivenSceneIsNullWhenValidateIsCalledThenItFails()
+    {
+        // Arrange.
+        var sceneContainer = new SceneContainer
         {
-            // Arrange.
-            var sceneContainer = new SceneContainer
+            Scene = new Translated
             {
-                Scene = new Translated
-                {
-                    Scene = null,
-                },
-            };
+                Scene = null,
+            },
+        };
 
-            // Act.
-            var result = this.systemUnderTest.TestValidate(sceneContainer);
+        // Act.
+        var result = this.systemUnderTest.TestValidate(sceneContainer);
 
-            // Assert.
-            result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Translated).Scene);
-        }
+        // Assert.
+        result.ShouldHaveValidationErrorFor(sceneContainer => (sceneContainer.Scene as Translated).Scene);
     }
 }

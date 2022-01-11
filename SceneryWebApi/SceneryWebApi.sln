@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.Controllers", "Scenery.Controllers\Scenery.Controllers.csproj", "{74339B13-E491-474E-B668-48E43799CE60}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.ControllersTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.TestInstrumentation", "Scenery.TestInstrumentation\Scenery.TestInstrumentation.csproj", "{A0AAB11F-217A-4586-B5BD-D0758E9A7FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenery.IntegrationTests", "Scenery.IntegrationTests\Scenery.IntegrationTests.csproj", "{F3A6A7DE-F779-4A91-B8FC-B255DD7769D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scenery.IntegrationTests", "Scenery.IntegrationTests\Scenery.IntegrationTests.csproj", "{F3A6A7DE-F779-4A91-B8FC-B255DD7769D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

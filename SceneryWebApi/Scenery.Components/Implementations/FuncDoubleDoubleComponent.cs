@@ -3,56 +3,46 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations
+namespace Scenery.Components.Implementations;
+
+using Scenery.Components.Interfaces;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class FuncDoubleDoubleComponent : IFuncDoubleDoubleComponent
 {
-    using System;
-    using System.Collections.Generic;
-    using Scenery.Components.Interfaces;
-    using Scenery.Models;
+    /// <inheritdoc/>
+    public Func<double, double> GetLineThrough(Vector2 point, Vector2 otherPoint)
+    {
+        ArgumentNullException.ThrowIfNull(point);
+        ArgumentNullException.ThrowIfNull(otherPoint);
+
+        var slope =
+            (otherPoint.Y - point.Y)
+            / (otherPoint.X - point.X);
+        var yIntercept =
+            ((point.Y * otherPoint.X) - (point.X * otherPoint.Y))
+            / (otherPoint.X - point.X);
+
+        return x => (x * slope) + yIntercept;
+    }
 
     /// <inheritdoc/>
-    public class FuncDoubleDoubleComponent : IFuncDoubleDoubleComponent
+    public List<double> GetRealZerosOfQuadraticFunction(double a, double b, double c)
     {
-        /// <inheritdoc/>
-        public Func<double, double> GetLineThrough(Vector2 point, Vector2 otherPoint)
+        var discriminant = (b * b) - (4D * a * c);
+        if (discriminant < 0D)
         {
-            if (point == null)
-            {
-                throw new ArgumentNullException(nameof(point));
-            }
-
-            if (otherPoint == null)
-            {
-                throw new ArgumentNullException(nameof(otherPoint));
-            }
-
-            var slope =
-                (otherPoint.Y - point.Y)
-                / (otherPoint.X - point.X);
-            var yIntercept =
-                ((point.Y * otherPoint.X) - (point.X * otherPoint.Y))
-                / (otherPoint.X - point.X);
-
-            return x => (x * slope) + yIntercept;
+            return new List<double>();
         }
 
-        /// <inheritdoc/>
-        public List<double> GetRealZerosOfQuadraticFunction(double a, double b, double c)
-        {
-            var discriminant = (b * b) - (4D * a * c);
-            if (discriminant < 0D)
-            {
-                return new List<double>();
-            }
+        var squareRootOfDiscriminant = Math.Sqrt(discriminant);
+        var divisor = 1D / (2D * a);
 
-            var squareRootOfDiscriminant = Math.Sqrt(discriminant);
-            var divisor = 1D / (2D * a);
-
-            return new List<double>
+        return new List<double>
             {
                 (-b - squareRootOfDiscriminant) * divisor,
                 (-b + squareRootOfDiscriminant) * divisor,
             };
-        }
     }
 }

@@ -3,14 +3,13 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Models.Scenes
+namespace Scenery.Models.Scenes;
+
+/// <inheritdoc/>
+public class Transformed : Scene
 {
-    /// <inheritdoc/>
-    public class Transformed : Scene
-    {
-        /// <summary>
-        /// Gets or sets the original scene.
-        /// </summary>
-        public Scene Scene { get; set; } = new Icosahedron();
-    }
+    /// <summary>
+    /// Gets or sets the original scene.
+    /// </summary>
+    public Scene Scene { get; set; } = new Icosahedron();
 }

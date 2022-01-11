@@ -3,25 +3,23 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.Components.Implementations.SceneComponents
+namespace Scenery.Components.Implementations.SceneComponents;
+
+using Scenery.Components.Interfaces.SceneComponents;
+using Scenery.Models;
+
+/// <inheritdoc/>
+public class FullComponent : ISceneComponent
 {
-    using System.Collections.Generic;
-    using Scenery.Components.Interfaces.SceneComponents;
-    using Scenery.Models;
+    /// <inheritdoc/>
+    public bool Contains(Vector3 point)
+    {
+        return true;
+    }
 
     /// <inheritdoc/>
-    public class FullComponent : ISceneComponent
+    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
     {
-        /// <inheritdoc/>
-        public bool Contains(Vector3 point)
-        {
-            return true;
-        }
-
-        /// <inheritdoc/>
-        public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
-        {
-            return new List<Intercept>();
-        }
+        return new List<Intercept>();
     }
 }

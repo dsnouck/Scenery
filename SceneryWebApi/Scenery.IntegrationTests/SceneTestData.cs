@@ -3,42 +3,38 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
 
-namespace Scenery.IntegrationTests
+namespace Scenery.IntegrationTests;
+
+using System.Collections;
+
+/// <summary>
+/// Provides test scenes for <see cref="RenderingTests"/>.
+/// </summary>
+public class SceneTestData : IEnumerable<object[]>
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
+    private readonly List<object[]> jsonFilenames;
 
     /// <summary>
-    /// Provides test scenes for <see cref="RenderingTests"/>.
+    /// Initializes a new instance of the <see cref="SceneTestData"/> class.
     /// </summary>
-    public class SceneTestData : IEnumerable<object[]>
+    public SceneTestData()
     {
-        private readonly List<object[]> jsonFilenames;
+        // scenes.json is used to test the output of GET ​/Scenes.
+        this.jsonFilenames = Directory.GetFiles("Scenes", "*.json")
+            .Where(filename => filename != "Scenes\\scenes.json")
+            .Select(filename => (new object[] { filename }))
+            .ToList();
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SceneTestData"/> class.
-        /// </summary>
-        public SceneTestData()
-        {
-            // scenes.json is used to test the output of GET ​/Scenes.
-            this.jsonFilenames = Directory.GetFiles("Scenes", "*.json")
-                .Where(filename => filename != "Scenes\\scenes.json")
-                .Select(filename => (new object[] { filename }))
-                .ToList();
-        }
+    /// <inheritdoc/>
+    public IEnumerator<object[]> GetEnumerator()
+    {
+        return this.jsonFilenames.GetEnumerator();
+    }
 
-        /// <inheritdoc/>
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            return this.jsonFilenames.GetEnumerator();
-        }
-
-        /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
+    /// <inheritdoc/>
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
     }
 }
