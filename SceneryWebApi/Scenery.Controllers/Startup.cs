@@ -5,6 +5,7 @@
 
 namespace Scenery.Controllers;
 
+using System.Reflection;
 using FluentValidation.AspNetCore;
 using Scenery.Components;
 using Scenery.Controllers.Converters;
@@ -39,7 +40,12 @@ public class Startup
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter()));
         services.AddComponents()
             .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<SceneContainerValidator>());
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(options =>
+        {
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            options.UseAllOfForInheritance();
+        });
     }
 
     /// <summary>
