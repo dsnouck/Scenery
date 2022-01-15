@@ -1,4 +1,4 @@
-﻿// <copyright file="ScenesControllerTests.cs" company="dsnouck">
+﻿// <copyright file="SceneContainersControllerTests.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
@@ -14,28 +14,28 @@ using Scenery.Models;
 using Xunit;
 
 /// <summary>
-/// Provides tests for <see cref="ScenesController"/>.
+/// Provides tests for <see cref="SceneContainersController"/>.
 /// </summary>
-public class ScenesControllerTests
+public class SceneContainersControllerTests
 {
-    private readonly ScenesController systemUnderTest;
+    private readonly SceneContainersController systemUnderTest;
     private readonly Mock<ISceneContainerComponent> sceneContainerComponentTestDouble;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ScenesControllerTests"/> class.
+    /// Initializes a new instance of the <see cref="SceneContainersControllerTests"/> class.
     /// </summary>
-    public ScenesControllerTests()
+    public SceneContainersControllerTests()
     {
         this.sceneContainerComponentTestDouble = new Mock<ISceneContainerComponent>();
-        this.systemUnderTest = new ScenesController(
+        this.systemUnderTest = new SceneContainersController(
             this.sceneContainerComponentTestDouble.Object);
     }
 
     /// <summary>
-    /// Tests <see cref="ScenesController.Get"/>.
+    /// Tests <see cref="SceneContainersController.Get"/>.
     /// </summary>
     [Fact]
-    public void WhenGetIsCalledThenExampleScenesAreReturned()
+    public void WhenGetIsCalledThenExamplesAreReturned()
     {
         // Act.
         var result = this.systemUnderTest.Get();
@@ -47,7 +47,7 @@ public class ScenesControllerTests
     }
 
     /// <summary>
-    /// Tests <see cref="ScenesController.Post(SceneContainer)"/>.
+    /// Tests <see cref="SceneContainersController.Post(SceneContainer)"/>.
     /// </summary>
     [Fact]
     public void GivenASceneContainerWhenPostIsCalledThenSceneContainerComponentGetStreamIsCalled()

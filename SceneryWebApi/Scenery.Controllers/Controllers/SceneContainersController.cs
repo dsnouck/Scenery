@@ -1,4 +1,4 @@
-﻿// <copyright file="ScenesController.cs" company="dsnouck">
+﻿// <copyright file="SceneContainersController.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
@@ -10,43 +10,43 @@ using Scenery.Components.Interfaces;
 using Scenery.Models;
 
 /// <summary>
-/// A controller for scenes.
+/// A controller for scene containers.
 /// </summary>
 [ApiController]
 [Route("[controller]")]
-public class ScenesController : ControllerBase
+public class SceneContainersController : ControllerBase
 {
     private readonly ISceneContainerComponent sceneContainerComponent;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ScenesController"/> class.
+    /// Initializes a new instance of the <see cref="SceneContainersController"/> class.
     /// </summary>
     /// <param name="sceneContainerComponent">An <see cref="ISceneContainerComponent"/>.</param>
-    public ScenesController(ISceneContainerComponent sceneContainerComponent)
+    public SceneContainersController(ISceneContainerComponent sceneContainerComponent)
     {
         this.sceneContainerComponent = sceneContainerComponent;
     }
 
     /// <summary>
-    /// Gets examples of scenes.
+    /// Gets some examples of scene containers.
     /// </summary>
-    /// <returns>Examples of scenes.</returns>
+    /// <returns>Some examples of scene containers.</returns>
     [HttpGet]
     public IActionResult Get()
     {
-        var scenes = this.sceneContainerComponent.GetExamples();
-        return this.Ok(scenes);
+        var examples = this.sceneContainerComponent.GetExamples();
+        return this.Ok(examples);
     }
 
     /// <summary>
-    /// Renders the scene to an image.
+    /// Renders a scene container to an image.
     /// </summary>
-    /// <param name="scene">The scene.</param>
-    /// <returns>The scene rendered to an image.</returns>
+    /// <param name="sceneContainer">The scene container.</param>
+    /// <returns>The scene container rendered to an image.</returns>
     [HttpPost]
-    public IActionResult Post(SceneContainer scene)
+    public IActionResult Post(SceneContainer sceneContainer)
     {
-        var image = this.sceneContainerComponent.GetStream(scene);
+        var image = this.sceneContainerComponent.GetStream(sceneContainer);
         return this.File(image, "image/png", "scene.png");
     }
 }
