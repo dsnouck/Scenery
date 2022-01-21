@@ -32,6 +32,7 @@ public class SceneContainersController : ControllerBase
     /// </summary>
     /// <returns>Some examples of scene containers.</returns>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult Get()
     {
         var examples = this.sceneContainerComponent.GetExamples();
@@ -44,6 +45,8 @@ public class SceneContainersController : ControllerBase
     /// <param name="sceneContainer">The scene container.</param>
     /// <returns>The scene container rendered to an image.</returns>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Post(SceneContainer sceneContainer)
     {
         var image = this.sceneContainerComponent.GetStream(sceneContainer);
