@@ -45,7 +45,7 @@ public class SceneContainersController : ControllerBase
     /// <param name="sceneContainer">The scene container.</param>
     /// <returns>The scene container rendered to an image.</returns>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Post(SceneContainer sceneContainer)
     {
