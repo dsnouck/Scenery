@@ -7,6 +7,7 @@ namespace Scenery.Controllers;
 
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using Microsoft.OpenApi.Models;
 using Scenery.Components;
 using Scenery.Controllers.Converters;
 using Scenery.Controllers.Validators;
@@ -42,6 +43,17 @@ public class Startup
             .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<SceneContainerValidator>());
         services.AddSwaggerGen(options =>
         {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Scenery web API",
+                Description = "An ASP.NET Core web API for rendering scene containers.",
+                License = new OpenApiLicense
+                {
+                    Name = "MIT License",
+                    Url = new Uri("https://github.com/dsnouck/Scenery/blob/main/LICENSE"),
+                },
+            });
             var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
             options.UseAllOfForInheritance();
