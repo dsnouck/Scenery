@@ -13,9 +13,9 @@ using Scenery.Models;
 public interface IBitmapFileComponent
 {
     /// <summary>
-    /// Gets the bitmap file as a stream.
+    /// Gets the bitmap file for the given <paramref name="bitmap"/>.
     /// </summary>
     /// <param name="bitmap">The bitmap.</param>
-    /// <returns>The bitmap file as a stream.</returns>
-    Stream GetStream(List<List<Color>> bitmap);
+    /// <returns>The bitmap file for the given <paramref name="bitmap"/>.</returns>
+    Stream GetBitmapFile(List<List<Color>> bitmap);
 }

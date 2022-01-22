@@ -32,13 +32,13 @@ public class SceneContainersControllerTests
     }
 
     /// <summary>
-    /// Tests <see cref="SceneContainersController.Get"/>.
+    /// Tests <see cref="SceneContainersController.GetExamples"/>.
     /// </summary>
     [Fact]
-    public void WhenGetIsCalledThenExamplesAreReturned()
+    public void WhenGetExamplesIsCalledThenExamplesAreReturned()
     {
         // Act.
-        var result = this.systemUnderTest.Get();
+        var result = this.systemUnderTest.GetExamples();
 
         // Assert.
         result.Should().BeOfType<OkObjectResult>();
@@ -47,24 +47,24 @@ public class SceneContainersControllerTests
     }
 
     /// <summary>
-    /// Tests <see cref="SceneContainersController.Post(SceneContainer)"/>.
+    /// Tests <see cref="SceneContainersController.PostSceneContainer(SceneContainer)"/>.
     /// </summary>
     [Fact]
-    public void GivenASceneContainerWhenPostIsCalledThenSceneContainerComponentGetStreamIsCalled()
+    public void GivenASceneContainerWhenPostSceneContainerIsCalledThenSceneContainerComponentGetImageIsCalled()
     {
         // Arrange.
         var sceneContainer = new SceneContainer();
         using var stream = new MemoryStream();
         this.sceneContainerComponentTestDouble
-            .Setup(component => component.GetStream(It.IsAny<SceneContainer>()))
+            .Setup(component => component.GetImage(It.IsAny<SceneContainer>()))
             .Returns(stream);
 
         // Act.
-        var result = this.systemUnderTest.Post(sceneContainer);
+        var result = this.systemUnderTest.PostSceneContainer(sceneContainer);
 
         // Assert.
         result.Should().BeOfType<FileStreamResult>();
         this.sceneContainerComponentTestDouble
-            .Verify(component => component.GetStream(It.IsAny<SceneContainer>()));
+            .Verify(component => component.GetImage(It.IsAny<SceneContainer>()));
     }
 }

@@ -490,10 +490,10 @@ public class SceneContainerComponent : ISceneContainerComponent
     }
 
     /// <inheritdoc/>
-    public Stream GetStream(SceneContainer sceneContainer)
+    public Stream GetImage(SceneContainer sceneContainer)
     {
         var image = this.projectorComponent.ProjectSceneToImage(sceneContainer.Scene, sceneContainer.Projector);
         var bitmap = this.samplerComponent.SampleImageToBitmap(image, sceneContainer.Sampler);
-        return this.bitmapFileComponent.GetStream(bitmap);
+        return this.bitmapFileComponent.GetBitmapFile(bitmap);
     }
 }

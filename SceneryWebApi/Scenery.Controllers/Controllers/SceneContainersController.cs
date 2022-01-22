@@ -33,7 +33,7 @@ public class SceneContainersController : ControllerBase
     /// <returns>Some examples of scene containers.</returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult Get()
+    public IActionResult GetExamples()
     {
         var examples = this.sceneContainerComponent.GetExamples();
         return this.Ok(examples);
@@ -47,9 +47,9 @@ public class SceneContainersController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult Post(SceneContainer sceneContainer)
+    public IActionResult PostSceneContainer(SceneContainer sceneContainer)
     {
-        var image = this.sceneContainerComponent.GetStream(sceneContainer);
+        var image = this.sceneContainerComponent.GetImage(sceneContainer);
         return this.File(image, "image/png", "scene.png");
     }
 }

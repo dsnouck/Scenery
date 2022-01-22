@@ -19,9 +19,9 @@ public interface ISceneContainerComponent
     Dictionary<string, SceneContainer> GetExamples();
 
     /// <summary>
-    /// Gets the <paramref name="sceneContainer"/> rendered to a <see cref="Stream"/>.
+    /// Gets the <paramref name="sceneContainer"/> rendered to an image.
     /// </summary>
     /// <param name="sceneContainer">The scene container.</param>
-    /// <returns>The <paramref name="sceneContainer"/> rendered to a <see cref="Stream"/>.</returns>
-    Stream GetStream(SceneContainer sceneContainer);
+    /// <returns>The <paramref name="sceneContainer"/> rendered to an image.</returns>
+    Stream GetImage(SceneContainer sceneContainer);
 }
