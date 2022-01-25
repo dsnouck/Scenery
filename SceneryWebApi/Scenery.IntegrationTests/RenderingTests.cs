@@ -29,7 +29,7 @@ public class RenderingTests : IDisposable
     {
         this.factory = new WebApplicationFactory<Startup>();
         this.client = this.factory.CreateClient();
-        this.uri = new Uri("http://localhost/Scenes");
+        this.uri = new Uri("http://localhost/SceneContainers");
     }
 
     /// <summary>

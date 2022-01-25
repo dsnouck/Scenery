@@ -5,7 +5,9 @@
 
 namespace Scenery.Controllers;
 
+using System.Reflection;
 using FluentValidation.AspNetCore;
+using Microsoft.OpenApi.Models;
 using Scenery.Components;
 using Scenery.Controllers.Converters;
 using Scenery.Controllers.Validators;
@@ -39,7 +41,19 @@ public class Startup
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter()));
         services.AddComponents()
             .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<SceneContainerValidator>());
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Scenery web API",
+                Description = "An ASP.NET Core web API for rendering scene containers.",
+            });
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
+            options.UseAllOfForInheritance();
+            options.SchemaFilter<ExampleSchemaFilter>();
+        });
     }
 
     /// <summary>
@@ -50,7 +64,7 @@ public class Startup
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment environment)
     {
         applicationBuilder.UseSwagger();
-        applicationBuilder.UseSwaggerUI();
+        applicationBuilder.UseSwaggerUI(options => options.EnableTryItOutByDefault());
 
         if (environment.IsDevelopment())
         {

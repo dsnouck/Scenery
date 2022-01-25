@@ -1,4 +1,4 @@
-﻿// <copyright file="ScenesControllerTests.cs" company="dsnouck">
+﻿// <copyright file="SceneContainersControllerTests.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
@@ -14,31 +14,31 @@ using Scenery.Models;
 using Xunit;
 
 /// <summary>
-/// Provides tests for <see cref="ScenesController"/>.
+/// Provides tests for <see cref="SceneContainersController"/>.
 /// </summary>
-public class ScenesControllerTests
+public class SceneContainersControllerTests
 {
-    private readonly ScenesController systemUnderTest;
+    private readonly SceneContainersController systemUnderTest;
     private readonly Mock<ISceneContainerComponent> sceneContainerComponentTestDouble;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ScenesControllerTests"/> class.
+    /// Initializes a new instance of the <see cref="SceneContainersControllerTests"/> class.
     /// </summary>
-    public ScenesControllerTests()
+    public SceneContainersControllerTests()
     {
         this.sceneContainerComponentTestDouble = new Mock<ISceneContainerComponent>();
-        this.systemUnderTest = new ScenesController(
+        this.systemUnderTest = new SceneContainersController(
             this.sceneContainerComponentTestDouble.Object);
     }
 
     /// <summary>
-    /// Tests <see cref="ScenesController.Get"/>.
+    /// Tests <see cref="SceneContainersController.GetExamples"/>.
     /// </summary>
     [Fact]
-    public void WhenGetIsCalledThenExampleScenesAreReturned()
+    public void WhenGetExamplesIsCalledThenExamplesAreReturned()
     {
         // Act.
-        var result = this.systemUnderTest.Get();
+        var result = this.systemUnderTest.GetExamples();
 
         // Assert.
         result.Should().BeOfType<OkObjectResult>();
@@ -47,24 +47,24 @@ public class ScenesControllerTests
     }
 
     /// <summary>
-    /// Tests <see cref="ScenesController.Post(SceneContainer)"/>.
+    /// Tests <see cref="SceneContainersController.PostSceneContainer(SceneContainer)"/>.
     /// </summary>
     [Fact]
-    public void GivenASceneContainerWhenPostIsCalledThenSceneContainerComponentGetStreamIsCalled()
+    public void GivenASceneContainerWhenPostSceneContainerIsCalledThenSceneContainerComponentGetImageIsCalled()
     {
         // Arrange.
         var sceneContainer = new SceneContainer();
         using var stream = new MemoryStream();
         this.sceneContainerComponentTestDouble
-            .Setup(component => component.GetStream(It.IsAny<SceneContainer>()))
+            .Setup(component => component.GetImage(It.IsAny<SceneContainer>()))
             .Returns(stream);
 
         // Act.
-        var result = this.systemUnderTest.Post(sceneContainer);
+        var result = this.systemUnderTest.PostSceneContainer(sceneContainer);
 
         // Assert.
         result.Should().BeOfType<FileStreamResult>();
         this.sceneContainerComponentTestDouble
-            .Verify(component => component.GetStream(It.IsAny<SceneContainer>()));
+            .Verify(component => component.GetImage(It.IsAny<SceneContainer>()));
     }
 }

@@ -32,10 +32,10 @@ public class PngFileComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="PngFileComponent.GetStream(List{List{Color}})"/>.
+    /// Tests <see cref="PngFileComponent.GetBitmapFile(List{List{Color}})"/>.
     /// </summary>
     [Fact]
-    public void GivenABitmapWhenGetStreamIsCalledThenBitmapComponentCreateSkiaBitmapIsCalled()
+    public void GivenABitmapWhenGetBitmapFileIsCalledThenBitmapComponentCreateSkiaBitmapIsCalled()
     {
         // Arrange.
         var bitmap = new List<List<Color>>
@@ -51,7 +51,7 @@ public class PngFileComponentTests
             .Returns(skiaBitmap);
 
         // Act.
-        var result = this.systemUnderTest.GetStream(bitmap);
+        var result = this.systemUnderTest.GetBitmapFile(bitmap);
 
         // Assert.
         result.Should().NotBeNull();

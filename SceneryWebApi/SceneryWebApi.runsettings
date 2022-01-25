@@ -16,6 +16,7 @@
               <Exclude>
                 <Source>^.*Program\.cs$</Source>
                 <Source>^.*Startup\.cs$</Source>
+                <Source>^.*ExampleSchemaFilter\.cs$</Source>
               </Exclude>
             </Sources>
           </CodeCoverage>
