@@ -48,11 +48,6 @@ public class Startup
                 Version = "v1",
                 Title = "Scenery web API",
                 Description = "An ASP.NET Core web API for rendering scene containers.",
-                License = new OpenApiLicense
-                {
-                    Name = "MIT License",
-                    Url = new Uri("https://github.com/dsnouck/Scenery/blob/main/LICENSE"),
-                },
             });
             var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
