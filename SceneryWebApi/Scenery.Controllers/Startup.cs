@@ -69,7 +69,7 @@ public class Startup
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment environment)
     {
         applicationBuilder.UseSwagger();
-        applicationBuilder.UseSwaggerUI();
+        applicationBuilder.UseSwaggerUI(options => options.EnableTryItOutByDefault());
 
         if (environment.IsDevelopment())
         {
