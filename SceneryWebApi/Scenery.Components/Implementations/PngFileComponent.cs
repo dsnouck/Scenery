@@ -25,7 +25,7 @@ public class PngFileComponent : IBitmapFileComponent
     }
 
     /// <inheritdoc/>
-    public Stream GetBitmapFile(List<List<Color>> bitmap)
+    public Stream CreateBitmapFile(List<List<Color>> bitmap)
     {
         var stream = new MemoryStream();
         using var skiaStream = new SKManagedWStream(stream);

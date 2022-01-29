@@ -13,10 +13,10 @@ using Scenery.Models;
 public interface IVector4Component
 {
     /// <summary>
-    /// Calculates the dot product between <paramref name="vector"/> and <paramref name="otherVector"/>.
+    /// Calculates the dot product between two vectors.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="otherVector">The other vector.</param>
-    /// <returns>The dot product between <paramref name="vector"/> and <paramref name="otherVector"/>.</returns>
+    /// <returns>The dot product between the vectors.</returns>
     double DotProduct(Vector4 vector, Vector4 otherVector);
 }

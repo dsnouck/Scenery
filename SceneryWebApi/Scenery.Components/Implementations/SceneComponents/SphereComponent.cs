@@ -65,7 +65,7 @@ public class SphereComponent : ISceneComponent
                 Normal = () => this.vector3Component.Multiply(
                     this.vector3Component.Normalize(
                         this.line3Component.GetPointAtDistance(lineOfSight, zero)),
-                    this.vector3Component.GetLength(lineOfSight.Direction)),
+                    this.vector3Component.Length(lineOfSight.Direction)),
             })
             .ToList();
     }

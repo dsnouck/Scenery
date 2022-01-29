@@ -66,7 +66,7 @@ public class PlaneComponent : ISceneComponent
                     Distance = distance,
                     Normal = () => this.vector3Component.Multiply(
                         this.vector3Component.Normalize(this.normal),
-                        this.vector3Component.GetLength(lineOfSight.Direction)),
+                        this.vector3Component.Length(lineOfSight.Direction)),
                 },
             };
     }

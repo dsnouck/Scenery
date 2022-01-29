@@ -73,7 +73,7 @@ public class ProjectorComponentTests
             Background = new Color(),
         };
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
@@ -89,7 +89,7 @@ public class ProjectorComponentTests
         // Assert.
         result(new Vector2()).Should().Be(projectorSettings.Background);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble
@@ -114,7 +114,7 @@ public class ProjectorComponentTests
         var scene = new Scene();
         var projectorSettings = new ProjectorSettings();
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
@@ -130,7 +130,7 @@ public class ProjectorComponentTests
         // Assert.
         result(new Vector2()).Should().Be(projectorSettings.Background);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble
@@ -155,7 +155,7 @@ public class ProjectorComponentTests
         var scene = new Scene();
         var projectorSettings = new ProjectorSettings();
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
@@ -181,7 +181,7 @@ public class ProjectorComponentTests
         this.colorComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Color>(), It.IsAny<double>()), Times.Once);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble

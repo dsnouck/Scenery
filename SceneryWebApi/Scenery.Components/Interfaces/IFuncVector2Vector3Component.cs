@@ -13,11 +13,11 @@ using Scenery.Models;
 public interface IFuncVector2Vector3Component
 {
     /// <summary>
-    /// Gets the parametric plane containing <paramref name="origin"/> along <paramref name="xDirection"/> and <paramref name="yDirection"/>.
+    /// Creates a parametric plane.
     /// </summary>
     /// <param name="origin">The origin.</param>
     /// <param name="xDirection">The x-direction.</param>
     /// <param name="yDirection">The y-direction.</param>
-    /// <returns>The parametric plane containing <paramref name="origin"/> along <paramref name="xDirection"/> and <paramref name="yDirection"/>.</returns>
-    Func<Vector2, Vector3> GetPlane(Vector3 origin, Vector3 xDirection, Vector3 yDirection);
+    /// <returns>The parametric plane containing the origin along both directions.</returns>
+    Func<Vector2, Vector3> CreatePlane(Vector3 origin, Vector3 xDirection, Vector3 yDirection);
 }

@@ -170,7 +170,7 @@ public class CylinderComponentTests
         this.vector3ComponentTestDouble
             .Verify(component => component.DotProduct(It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Exactly(3));
         this.vector3ComponentTestDouble
-           .Verify(component => component.GetLength(It.IsAny<Vector3>()), Times.Once);
+           .Verify(component => component.Length(It.IsAny<Vector3>()), Times.Once);
         this.vector3ComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Vector3>(), It.IsAny<double>()), Times.Once);
         this.vector3ComponentTestDouble

@@ -13,73 +13,73 @@ using Scenery.Models;
 public interface IVector3Component
 {
     /// <summary>
-    /// Adds <paramref name="otherVector"/> to <paramref name="vector"/>.
+    /// Adds two vectors.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="otherVector">The other vector.</param>
-    /// <returns><paramref name="otherVector"/> added to <paramref name="vector"/>.</returns>
+    /// <returns>The sum of the vectors.</returns>
     Vector3 Add(Vector3 vector, Vector3 otherVector);
 
     /// <summary>
-    /// Creates a <see cref="Vector3"/> from spherical coordinates.
+    /// Creates a vector with spherical coordinates.
     /// </summary>
     /// <param name="radius">The radius (r).</param>
     /// <param name="inclination">The inclination (θ).</param>
     /// <param name="azimuth">The azimuth (φ).</param>
-    /// <returns>The <see cref="Vector3"/> with the given spherical coordinates.</returns>
+    /// <returns>The vector with the spherical coordinates.</returns>
     Vector3 CreateVector3FromSphericalCoordinates(double radius, double inclination, double azimuth);
 
     /// <summary>
-    /// Calculates the cross product between <paramref name="vector"/> and <paramref name="otherVector"/>.
+    /// Calculates the cross product between two vectors.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="otherVector">The other vector.</param>
-    /// <returns>The cross product between <paramref name="vector"/> and <paramref name="otherVector"/>.</returns>
+    /// <returns>The cross product between the vectors.</returns>
     Vector3 CrossProduct(Vector3 vector, Vector3 otherVector);
 
     /// <summary>
-    /// Divides <paramref name="vector"/> by <paramref name="divisor"/>.
+    /// Divides a vector by a scalar divisor.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="divisor">The divisor.</param>
-    /// <returns><paramref name="vector"/> divided by <paramref name="divisor"/>.</returns>
+    /// <returns>The vector divided by the divisor.</returns>
     Vector3 Divide(Vector3 vector, double divisor);
 
     /// <summary>
-    /// Calculates the dot product between <paramref name="vector"/> and <paramref name="otherVector"/>.
+    /// Calculates the dot product between two vectors.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="otherVector">The other vector.</param>
-    /// <returns>The dot product between <paramref name="vector"/> and <paramref name="otherVector"/>.</returns>
+    /// <returns>The dot product between the vectors.</returns>
     double DotProduct(Vector3 vector, Vector3 otherVector);
 
     /// <summary>
-    /// Calculates the length of <paramref name="vector"/>.
+    /// Calculates the length of a vector.
     /// </summary>
     /// <param name="vector">The vector.</param>
-    /// <returns>The length of <paramref name="vector"/>.</returns>
-    double GetLength(Vector3 vector);
+    /// <returns>The length of the vector.</returns>
+    double Length(Vector3 vector);
 
     /// <summary>
-    /// Multiplies <paramref name="vector"/> with <paramref name="factor"/>.
+    /// Multiplies a vector with a scalar factor.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="factor">The factor.</param>
-    /// <returns><paramref name="vector"/> multiplied with <paramref name="factor"/>.</returns>
+    /// <returns>The vector multiplied with the factor.</returns>
     Vector3 Multiply(Vector3 vector, double factor);
 
     /// <summary>
-    /// Normalizes <paramref name="vector"/>.
+    /// Normalizes a vector.
     /// </summary>
     /// <param name="vector">The vector.</param>
-    /// <returns><paramref name="vector"/> normalized.</returns>
+    /// <returns>The normalized vector.</returns>
     Vector3 Normalize(Vector3 vector);
 
     /// <summary>
-    /// Subtracts <paramref name="otherVector"/> from <paramref name="vector"/>.
+    /// Subtracts two vectors.
     /// </summary>
     /// <param name="vector">The vector.</param>
     /// <param name="otherVector">The other vector.</param>
-    /// <returns><paramref name="otherVector"/> subtracted from <paramref name="vector"/>.</returns>
+    /// <returns>The difference between the vectors.</returns>
     Vector3 Subtract(Vector3 vector, Vector3 otherVector);
 }

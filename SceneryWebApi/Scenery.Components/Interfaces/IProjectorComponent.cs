@@ -14,10 +14,10 @@ using Scenery.Models.Scenes;
 public interface IProjectorComponent
 {
     /// <summary>
-    /// Creates the two-dimensional projection of <paramref name="scene"/>.
+    /// Creates the two-dimensional projection of a scene.
     /// </summary>
     /// <param name="scene">The scene.</param>
     /// <param name="projectorSettings">The projector settings.</param>
-    /// <returns>The two-dimensional projection of <paramref name="scene"/>.</returns>
+    /// <returns>The two-dimensional projection of the scene.</returns>
     Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings);
 }

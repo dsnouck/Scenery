@@ -35,10 +35,10 @@ public class Matrix4ComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="Matrix4Component.GetRotationMatrix(Vector3, double)"/>.
+    /// Tests <see cref="Matrix4Component.CreateRotationMatrix(Vector3, double)"/>.
     /// </summary>
     [Fact]
-    public void GivenAnAxisAndAnAngleWhenGGetRotationMatrixIsCalledThenTheCorrectRotationMatrixIsReturned()
+    public void GivenAnAxisAndAnAngleWhenGCreateRotationMatrixIsCalledThenTheCorrectRotationMatrixIsReturned()
     {
         // Arrange.
         var axis = new Vector3
@@ -53,7 +53,7 @@ public class Matrix4ComponentTests
             .Returns(axis);
 
         // Act.
-        var result = this.systemUnderTest.GetRotationMatrix(axis, angle);
+        var result = this.systemUnderTest.CreateRotationMatrix(axis, angle);
 
         // Assert.
         result.Should().BeEquivalentTo(
@@ -94,16 +94,16 @@ public class Matrix4ComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="Matrix4Component.GetScalingMatrix(double)"/>.
+    /// Tests <see cref="Matrix4Component.CreateScalingMatrix(double)"/>.
     /// </summary>
     [Fact]
-    public void GivenAFactorWhenGetScalingMatrixIsCalledThenTheCorrectScalingMatrixIsReturned()
+    public void GivenAFactorWhenCreateScalingMatrixIsCalledThenTheCorrectScalingMatrixIsReturned()
     {
         // Arrange.
         var factor = 2D;
 
         // Act.
-        var result = this.systemUnderTest.GetScalingMatrix(factor);
+        var result = this.systemUnderTest.CreateScalingMatrix(factor);
 
         // Assert.
         result.Should().BeEquivalentTo(
@@ -142,26 +142,26 @@ public class Matrix4ComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="Matrix4Component.GetTranslationMatrix(Vector3)"/>.
+    /// Tests <see cref="Matrix4Component.CreateTranslationMatrix(Vector3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheTranslationIsNullWhenGetTranslationMatrixIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheTranslationIsNullWhenCreateTranslationMatrixIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var translation = default(Vector3);
 
         // Act.
-        var action = () => this.systemUnderTest.GetTranslationMatrix(translation);
+        var action = () => this.systemUnderTest.CreateTranslationMatrix(translation);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="Matrix4Component.GetTranslationMatrix(Vector3)"/>.
+    /// Tests <see cref="Matrix4Component.CreateTranslationMatrix(Vector3)"/>.
     /// </summary>
     [Fact]
-    public void GivenATranslationWhenGetTranslationMatrixIsCalledThenTheCorrectTranslationMatrixIsReturned()
+    public void GivenATranslationWhenCreateTranslationMatrixIsCalledThenTheCorrectTranslationMatrixIsReturned()
     {
         // Arrange.
         var translation = new Vector3
@@ -172,7 +172,7 @@ public class Matrix4ComponentTests
         };
 
         // Act.
-        var result = this.systemUnderTest.GetTranslationMatrix(translation);
+        var result = this.systemUnderTest.CreateTranslationMatrix(translation);
 
         // Assert.
         result.Should().BeEquivalentTo(

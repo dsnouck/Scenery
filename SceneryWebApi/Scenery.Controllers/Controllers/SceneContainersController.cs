@@ -49,7 +49,7 @@ public class SceneContainersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult PostSceneContainer(SceneContainer sceneContainer)
     {
-        var image = this.sceneContainerComponent.GetImage(sceneContainer);
+        var image = this.sceneContainerComponent.Render(sceneContainer);
         return this.File(image, "image/png", "scene.png");
     }
 }

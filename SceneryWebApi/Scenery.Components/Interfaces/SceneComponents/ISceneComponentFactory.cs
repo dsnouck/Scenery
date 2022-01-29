@@ -8,14 +8,14 @@ namespace Scenery.Components.Interfaces.SceneComponents;
 using Scenery.Models.Scenes;
 
 /// <summary>
-/// Provides factory operations concerning <see cref="ISceneComponent"/>s.
+/// A factory for creating <see cref="ISceneComponent"/>s.
 /// </summary>
 public interface ISceneComponentFactory
 {
     /// <summary>
-    /// Creates an <see cref="ISceneComponent"/> from <paramref name="scene"/>.
+    /// Creates an <see cref="ISceneComponent"/> from a scene.
     /// </summary>
     /// <param name="scene">The scene.</param>
-    /// <returns>An <see cref="ISceneComponent"/> created from <paramref name="scene"/>.</returns>
+    /// <returns>The <see cref="ISceneComponent"/> created from the scene.</returns>
     ISceneComponent CreateSceneComponent(Scene scene);
 }

@@ -99,7 +99,7 @@ public class CylinderComponent : ISceneComponent
 
                     return this.vector3Component.Multiply(
                         this.vector3Component.Normalize(horizontalIntercept),
-                        this.vector3Component.GetLength(lineOfSight.Direction));
+                        this.vector3Component.Length(lineOfSight.Direction));
                 },
             })
             .ToList();

@@ -12,7 +12,7 @@ using Scenery.Models;
 public class FuncDoubleDoubleComponent : IFuncDoubleDoubleComponent
 {
     /// <inheritdoc/>
-    public Func<double, double> GetLineThrough(Vector2 point, Vector2 otherPoint)
+    public Func<double, double> CreateLineThrough(Vector2 point, Vector2 otherPoint)
     {
         ArgumentNullException.ThrowIfNull(point);
         ArgumentNullException.ThrowIfNull(otherPoint);

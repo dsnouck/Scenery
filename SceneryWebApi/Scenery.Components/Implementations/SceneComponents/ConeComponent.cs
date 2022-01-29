@@ -101,7 +101,7 @@ public class ConeComponent : ISceneComponent
 
                     return this.vector3Component.Multiply(
                         this.vector3Component.Normalize(mirroredIntercept),
-                        this.vector3Component.GetLength(lineOfSight.Direction));
+                        this.vector3Component.Length(lineOfSight.Direction));
                 },
             })
             .ToList();

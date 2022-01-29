@@ -50,7 +50,7 @@ public class BitmapComponentTests
     /// Tests <see cref="BitmapComponent.CreateSkiaBitmap(List{List{Color}})"/>.
     /// </summary>
     [Fact]
-    public void GivenABitmapWhenCreateSkiaBitmapIsCalledThenColorComponentGetSkiaColorFromColorIsCalled()
+    public void GivenABitmapWhenCreateSkiaBitmapIsCalledThenColorComponentCreateSkiaColorFromColorIsCalled()
     {
         // Arrange.
         var bitmap = new List<List<Color>>
@@ -66,6 +66,6 @@ public class BitmapComponentTests
 
         // Assert.
         this.colorComponentTestDouble
-            .Verify(component => component.GetSkiaColorFromColor(It.IsAny<Color>()), Times.Once);
+            .Verify(component => component.CreateSkiaColorFromColor(It.IsAny<Color>()), Times.Once);
     }
 }

@@ -87,6 +87,6 @@ public class ProjectorComponent : IProjectorComponent
         var halfScreenExtent = Math.Tan(projectorSettings.FieldOfView * 0.5D);
         xVector = this.vector3Component.Multiply(xVector, halfScreenExtent);
         yVector = this.vector3Component.Multiply(yVector, halfScreenExtent);
-        return this.funcVector2Vector3Component.GetPlane(centerScreen, xVector, yVector);
+        return this.funcVector2Vector3Component.CreatePlane(centerScreen, xVector, yVector);
     }
 }

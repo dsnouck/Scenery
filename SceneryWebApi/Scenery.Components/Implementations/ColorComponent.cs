@@ -24,7 +24,7 @@ public class ColorComponent : IColorComponent
     }
 
     /// <inheritdoc/>
-    public SKColor GetSkiaColorFromColor(Color color)
+    public SKColor CreateSkiaColorFromColor(Color color)
     {
         ArgumentNullException.ThrowIfNull(color);
 

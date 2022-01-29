@@ -65,26 +65,26 @@ public class ColorComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="ColorComponent.GetSkiaColorFromColor(Color)"/>.
+    /// Tests <see cref="ColorComponent.CreateSkiaColorFromColor(Color)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheColorIsNullWhenGetSkiaColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheColorIsNullWhenCreateSkiaColorFromColorIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var color = default(Color);
 
         // Act.
-        var action = () => this.systemUnderTest.GetSkiaColorFromColor(color);
+        var action = () => this.systemUnderTest.CreateSkiaColorFromColor(color);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="ColorComponent.GetSkiaColorFromColor(Color)"/>.
+    /// Tests <see cref="ColorComponent.CreateSkiaColorFromColor(Color)"/>.
     /// </summary>
     [Fact]
-    public void GivenAColorWhenGetSkiaColorFromColorIsCalledThenTheCorrectSystemDrawingColorIsReturned()
+    public void GivenAColorWhenCreateSkiaColorFromColorIsCalledThenTheCorrectSystemDrawingColorIsReturned()
     {
         // Arrange.
         var color = new Color
@@ -95,7 +95,7 @@ public class ColorComponentTests
         };
 
         // Act.
-        var result = this.systemUnderTest.GetSkiaColorFromColor(color);
+        var result = this.systemUnderTest.CreateSkiaColorFromColor(color);
 
         // Assert.
         result.Should().BeEquivalentTo(

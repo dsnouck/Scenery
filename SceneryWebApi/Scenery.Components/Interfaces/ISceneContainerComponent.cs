@@ -19,9 +19,10 @@ public interface ISceneContainerComponent
     Dictionary<string, SceneContainer> GetExamples();
 
     /// <summary>
-    /// Gets the <paramref name="sceneContainer"/> rendered to an image.
+    /// Renders a scene container to an image.
+    /// Ties together all the necessary steps: projection, sampling and creating a bitmap image.
     /// </summary>
     /// <param name="sceneContainer">The scene container.</param>
-    /// <returns>The <paramref name="sceneContainer"/> rendered to an image.</returns>
-    Stream GetImage(SceneContainer sceneContainer);
+    /// <returns>The scene container rendered to an image.</returns>
+    Stream Render(SceneContainer sceneContainer);
 }

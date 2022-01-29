@@ -74,7 +74,7 @@ public class Vector3Component : IVector3Component
     }
 
     /// <inheritdoc/>
-    public double GetLength(Vector3 vector)
+    public double Length(Vector3 vector)
     {
         return Math.Sqrt(this.DotProduct(vector, vector));
     }
@@ -95,7 +95,7 @@ public class Vector3Component : IVector3Component
     /// <inheritdoc/>
     public Vector3 Normalize(Vector3 vector)
     {
-        return this.Divide(vector, this.GetLength(vector));
+        return this.Divide(vector, this.Length(vector));
     }
 
     /// <inheritdoc/>

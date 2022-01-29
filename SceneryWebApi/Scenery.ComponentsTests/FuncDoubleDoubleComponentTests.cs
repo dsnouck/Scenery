@@ -27,42 +27,42 @@ public class FuncDoubleDoubleComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="FuncDoubleDoubleComponent.GetLineThrough(Vector2, Vector2)"/>.
+    /// Tests <see cref="FuncDoubleDoubleComponent.CreateLineThrough(Vector2, Vector2)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheVectorIsNullWhenCreateLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var vector = default(Vector2);
 
         // Act.
-        var action = () => this.systemUnderTest.GetLineThrough(vector, new Vector2());
+        var action = () => this.systemUnderTest.CreateLineThrough(vector, new Vector2());
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="FuncDoubleDoubleComponent.GetLineThrough(Vector2, Vector2)"/>.
+    /// Tests <see cref="FuncDoubleDoubleComponent.CreateLineThrough(Vector2, Vector2)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheOtherVectorIsNullWhenGetLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheOtherVectorIsNullWhenCreateLineThroughIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var otherVector = default(Vector2);
 
         // Act.
-        var action = () => this.systemUnderTest.GetLineThrough(new Vector2(), otherVector);
+        var action = () => this.systemUnderTest.CreateLineThrough(new Vector2(), otherVector);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="FuncDoubleDoubleComponent.GetLineThrough(Vector2, Vector2)"/>.
+    /// Tests <see cref="FuncDoubleDoubleComponent.CreateLineThrough(Vector2, Vector2)"/>.
     /// </summary>
     [Fact]
-    public void GivenTwoPointsWhenGetLineThroughIsCalledThenTheCorrectLineIsReturned()
+    public void GivenTwoPointsWhenCreateLineThroughIsCalledThenTheCorrectLineIsReturned()
     {
         // Arrange.
         var point = new Vector2
@@ -77,7 +77,7 @@ public class FuncDoubleDoubleComponentTests
         };
 
         // Act.
-        var result = this.systemUnderTest.GetLineThrough(point, otherPoint);
+        var result = this.systemUnderTest.CreateLineThrough(point, otherPoint);
 
         // Assert.
         result(5D).Should().BeApproximately(6D, Equivalencies.DoublePrecision);
