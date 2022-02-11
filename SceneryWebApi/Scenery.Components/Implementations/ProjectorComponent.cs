@@ -37,7 +37,17 @@ public class ProjectorComponent : IProjectorComponent
         this.vector3Component = vector3Component;
     }
 
+    // TODO: Rename intercept to surface intersection.
+
     /// <inheritdoc/>
+    /// <remarks>
+    /// This implementation is intentionally simple.
+    /// A screen is suspended between the eye and the focus.
+    /// The image is projected on that screen using perspective projection.
+    /// The only lighting is a single point source at the eye.
+    /// The colors in the image only depend on the color of the scene and the angle between the line of sight and the surface.
+    /// They do not depend on the distance between the eye and the scene.
+    /// </remarks>
     public Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings)
     {
         ArgumentNullException.ThrowIfNull(projectorSettings);
