@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Contains settings used when projecting a scene.
+/// Contains settings used when projecting a scene to an image.
 /// </summary>
 public class ProjectorSettings
 {

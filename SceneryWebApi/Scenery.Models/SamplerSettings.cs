@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Contains settings used when sampling an image.
+/// Contains settings used when sampling an image to a bitmap.
 /// </summary>
 public class SamplerSettings
 {
