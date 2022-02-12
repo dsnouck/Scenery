@@ -61,7 +61,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenNoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenNoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
@@ -108,7 +108,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenASurfaceIntersectionBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenASurfaceIntersectionBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
