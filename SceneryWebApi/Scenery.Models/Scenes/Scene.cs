@@ -9,9 +9,10 @@ namespace Scenery.Models.Scenes;
 /// Describes a scene.
 /// </summary>
 /// <remarks>
-/// A scene can be either primitive, transformed or aggregate.
-/// Like an object made of glass it has an interior and a surface which can be painted.
-/// This painted surface is what is projected to an image.
+/// A scene can be either primitive, transformed or an aggregate.
+/// Like an object made of glass it has an interior and an exterior.
+/// The surface between the the interior and exterior can be painted.
+/// This painted surface is projected to an image.
 /// </remarks>
 public class Scene
 {

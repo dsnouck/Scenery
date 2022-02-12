@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A cone along the z-axis with an apex angle of π/2 radians.
+/// </summary>
 public class Cone : Scene
 {
 }

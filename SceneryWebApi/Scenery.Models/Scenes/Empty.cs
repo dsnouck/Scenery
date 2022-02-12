@@ -5,7 +5,12 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// An empty scene.
+/// </summary>
+/// <remarks>
+/// Is an identity element for a union.
+/// </remarks>
 public class Empty : Scene
 {
 }

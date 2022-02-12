@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A dodecahedron with an inradius of 1.
+/// </summary>
 public class Dodecahedron : Scene
 {
 }

@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A cube with inradius of 1.
+/// </summary>
 public class Cube : Scene
 {
 }

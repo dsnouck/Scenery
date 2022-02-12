@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// An icosahedron with an inradius of 1.
+/// </summary>
 public class Icosahedron : Scene
 {
 }

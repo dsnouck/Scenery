@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Represents a four-dimensional vector.
+/// Represents a 4-dimensional vector.
 /// </summary>
 public class Vector4
 {

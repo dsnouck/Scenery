@@ -5,7 +5,13 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// An inverted scene.
+/// </summary>
+/// <remarks>
+/// Swaps the interior and the exterior of a scene.
+/// The surface remains unchanged.
+/// </remarks>
 public class Inverted : Transformed
 {
 }

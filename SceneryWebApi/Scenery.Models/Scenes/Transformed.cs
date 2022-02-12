@@ -5,7 +5,12 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A transformed scene.
+/// </summary>
+/// <remarks>
+/// Acts as a base class for scenes that have a single underlying scene to be transformed.
+/// </remarks>
 public class Transformed : Scene
 {
     /// <summary>

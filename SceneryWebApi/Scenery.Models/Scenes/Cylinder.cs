@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A cylinder along the z-axis with a radius of 1.
+/// </summary>
 public class Cylinder : Scene
 {
 }

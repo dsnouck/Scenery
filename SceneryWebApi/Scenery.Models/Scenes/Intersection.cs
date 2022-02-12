@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// An intersection of scenes.
+/// </summary>
 public class Intersection : Scene
 {
     /// <summary>

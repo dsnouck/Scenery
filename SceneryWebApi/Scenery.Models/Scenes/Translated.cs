@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A translated scene.
+/// </summary>
 public class Translated : Transformed
 {
     /// <summary>
