@@ -51,7 +51,7 @@ public class ConeComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
         ArgumentNullException.ThrowIfNull(lineOfSight);
 
@@ -86,21 +86,21 @@ public class ConeComponent : ISceneComponent
         var zeros = this.funcDoubleDoubleComponent.GetRealZerosOfQuadraticFunction(a, b, c);
 
         return zeros.
-            Select(zero => new Intercept
+            Select(zero => new SurfaceIntersection
             {
                 Distance = zero,
                 Normal = () =>
                 {
-                    var intercept = this.line3Component.GetPointAtDistance(lineOfSight, zero);
-                    var mirroredIntercept = new Vector3
+                    var surfaceIntersection = this.line3Component.GetPointAtDistance(lineOfSight, zero);
+                    var mirroredSurfaceIntersection = new Vector3
                     {
-                        X = intercept.X,
-                        Y = intercept.Y,
-                        Z = -intercept.Z,
+                        X = surfaceIntersection.X,
+                        Y = surfaceIntersection.Y,
+                        Z = -surfaceIntersection.Z,
                     };
 
                     return this.vector3Component.Multiply(
-                        this.vector3Component.Normalize(mirroredIntercept),
+                        this.vector3Component.Normalize(mirroredSurfaceIntersection),
                         this.vector3Component.Length(lineOfSight.Direction));
                 },
             })

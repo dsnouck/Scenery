@@ -61,7 +61,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenNoInterceptsWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenNoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
     {
         // Arrange.
         var scene = new Scene();
@@ -77,8 +77,8 @@ public class ProjectorComponentTests
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))
             .Returns(sceneComponentTestDouble.Object);
@@ -108,7 +108,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenAnInterceptBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenASurfaceIntersectionBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
     {
         // Arrange.
         var scene = new Scene();
@@ -118,8 +118,8 @@ public class ProjectorComponentTests
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept> { new Intercept { Distance = -1D } });
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection> { new SurfaceIntersection { Distance = -1D } });
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))
             .Returns(sceneComponentTestDouble.Object);
@@ -149,7 +149,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenTwoInterceptsWhenProjectSceneToImageIsCalledThenTheCorrectColorIsReturned()
+    public void GivenTwoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheCorrectColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
@@ -159,11 +159,11 @@ public class ProjectorComponentTests
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept { Distance = 1D },
-                    new Intercept { Distance = 2D },
+                    new SurfaceIntersection { Distance = 1D },
+                    new SurfaceIntersection { Distance = 2D },
             });
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))

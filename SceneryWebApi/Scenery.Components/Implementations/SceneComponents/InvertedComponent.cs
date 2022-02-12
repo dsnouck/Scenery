@@ -35,14 +35,14 @@ public class InvertedComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
-        return this.sceneComponent.GetAllIntercepts(lineOfSight)
-            .Select(intercept => new Intercept
+        return this.sceneComponent.GetAllSurfaceIntersections(lineOfSight)
+            .Select(surfaceIntersection => new SurfaceIntersection
             {
-                Color = intercept.Color,
-                Distance = intercept.Distance,
-                Normal = () => this.vector3Component.Multiply(intercept.Normal(), -1D),
+                Color = surfaceIntersection.Color,
+                Distance = surfaceIntersection.Distance,
+                Normal = () => this.vector3Component.Multiply(surfaceIntersection.Normal(), -1D),
             })
             .ToList();
     }

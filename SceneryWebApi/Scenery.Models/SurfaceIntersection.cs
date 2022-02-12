@@ -1,4 +1,4 @@
-﻿// <copyright file="Intercept.cs" company="dsnouck">
+﻿// <copyright file="SurfaceIntersection.cs" company="dsnouck">
 // Copyright (c) dsnouck. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 // </copyright>
@@ -6,9 +6,9 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Represents an intercept.
+/// Represents an intersection with the surface of a scene.
 /// </summary>
-public class Intercept
+public class SurfaceIntersection
 {
     /// <summary>
     /// Gets or sets the color.
@@ -29,7 +29,7 @@ public class Intercept
     /// Gets or sets the normal.
     /// </summary>
     /// <remarks>
-    /// Is lazy because we only need to calculate this for the first intercept along a line of sight.
+    /// Is lazy because we only need to calculate this for the first surface intersection along a line of sight.
     /// </remarks>
     public Func<Vector3> Normal { get; set; } = () => new Vector3();
 }

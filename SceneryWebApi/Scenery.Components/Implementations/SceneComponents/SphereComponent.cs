@@ -39,7 +39,7 @@ public class SphereComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
         ArgumentNullException.ThrowIfNull(lineOfSight);
 
@@ -59,7 +59,7 @@ public class SphereComponent : ISceneComponent
         var zeros = this.funcDoubleDoubleComponent.GetRealZerosOfQuadraticFunction(a, b, c);
 
         return zeros.
-            Select(zero => new Intercept
+            Select(zero => new SurfaceIntersection
             {
                 Distance = zero,
                 Normal = () => this.vector3Component.Multiply(

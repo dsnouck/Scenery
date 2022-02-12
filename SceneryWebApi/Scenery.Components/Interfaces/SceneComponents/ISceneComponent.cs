@@ -20,9 +20,9 @@ public interface ISceneComponent
     bool Contains(Vector3 point);
 
     /// <summary>
-    /// Calculates all intercepts with the scene along a line of sight.
+    /// Calculates all surface intersections with the scene along a line of sight.
     /// </summary>
     /// <param name="lineOfSight">The line of sight.</param>
-    /// <returns>All intercepts with the scene along the line of sight.</returns>
-    List<Intercept> GetAllIntercepts(Line3 lineOfSight);
+    /// <returns>All surface intersections with the scene along the line of sight.</returns>
+    List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight);
 }

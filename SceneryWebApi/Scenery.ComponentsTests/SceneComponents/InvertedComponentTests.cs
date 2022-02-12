@@ -56,31 +56,31 @@ public class InvertedComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="InvertedComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="InvertedComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenSceneComponentGetAllInterceptsIsCalled()
+    public void GivenALineOfSightWhenGetAllSurfaceIntersectionsIsCalledThenSceneComponentGetAllSurfaceIntersectionsIsCalled()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
         this.vector3ComponentTestDouble
             .Setup(component => component.Multiply(It.IsAny<Vector3>(), It.IsAny<double>()))
             .Returns(new Vector3());
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
         result.Single().Normal().Should().NotBeNull();
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.vector3ComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Vector3>(), It.IsAny<double>()), Times.Once);
     }

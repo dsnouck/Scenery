@@ -42,16 +42,16 @@ public class FullComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="EmptyComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="EmptyComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenALineOfSightWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();

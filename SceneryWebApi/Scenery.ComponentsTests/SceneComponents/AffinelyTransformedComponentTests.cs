@@ -79,26 +79,26 @@ public class AffinelyTransformedComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="AffinelyTransformedComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="AffinelyTransformedComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheLineOfSightIsNullWhenGetAllSurfaceIntersectionsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var lineOfSight = default(Line3);
 
         // Act.
-        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="AffinelyTransformedComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="AffinelyTransformedComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenTheCorrectCalculationsArePerformed()
+    public void GivenALineOfSightWhenGetAllSurfaceIntersectionsIsCalledThenTheCorrectCalculationsArePerformed()
     {
         // Arrange.
         var lineOfSight = new Line3();
@@ -106,20 +106,20 @@ public class AffinelyTransformedComponentTests
             .Setup(component => component.Multiply(It.IsAny<Matrix4>(), It.IsAny<Vector4>()))
             .Returns(new Vector4());
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
         result.Single().Normal().Should().NotBeNull();
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.matrix4ComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Matrix4>(), It.IsAny<Vector4>()), Times.Exactly(3));
     }

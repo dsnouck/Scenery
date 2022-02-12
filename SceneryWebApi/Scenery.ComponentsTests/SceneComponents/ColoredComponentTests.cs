@@ -55,49 +55,49 @@ public class ColoredComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="ColoredComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="ColoredComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheSceneGivesNoInterceptsWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenTheSceneGivesNoSurfaceIntersectionsWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
-        var originalIntercepts = new List<Intercept>();
+        var originalSurfaceIntersections = new List<SurfaceIntersection>();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(originalIntercepts);
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(originalSurfaceIntersections);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
     }
 
     /// <summary>
-    /// Tests <see cref="ColoredComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="ColoredComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheSceneGivesOneInterceptWhenGetAllInterceptsIsCalledThenOneInterceptIsReturned()
+    public void GivenTheSceneGivesOneSurfaceIntersectionWhenGetAllSurfaceIntersectionsIsCalledThenOneSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
-        var originalIntercepts = new List<Intercept>
+        var originalSurfaceIntersections = new List<SurfaceIntersection>
             {
-                new Intercept(),
+                new SurfaceIntersection(),
             };
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(originalIntercepts);
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(originalSurfaceIntersections);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
     }
 }

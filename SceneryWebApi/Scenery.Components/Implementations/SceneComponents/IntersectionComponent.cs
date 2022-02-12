@@ -40,32 +40,32 @@ public class IntersectionComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
         ArgumentNullException.ThrowIfNull(lineOfSight);
 
-        var allIntercepts = new List<Intercept>();
+        var allSurfaceIntersections = new List<SurfaceIntersection>();
 
-        var sceneIntercepts = this.sceneComponent.GetAllIntercepts(lineOfSight);
-        foreach (var intercept in sceneIntercepts)
+        var sceneSurfaceIntersections = this.sceneComponent.GetAllSurfaceIntersections(lineOfSight);
+        foreach (var surfaceIntersection in sceneSurfaceIntersections)
         {
-            var point = this.line3Component.GetPointAtDistance(lineOfSight, intercept.Distance);
+            var point = this.line3Component.GetPointAtDistance(lineOfSight, surfaceIntersection.Distance);
             if (this.otherSceneComponent.Contains(point))
             {
-                allIntercepts.Add(intercept);
+                allSurfaceIntersections.Add(surfaceIntersection);
             }
         }
 
-        var otherSceneIntercepts = this.otherSceneComponent.GetAllIntercepts(lineOfSight);
-        foreach (var intercept in otherSceneIntercepts)
+        var otherSceneSurfaceIntersections = this.otherSceneComponent.GetAllSurfaceIntersections(lineOfSight);
+        foreach (var surfaceIntersection in otherSceneSurfaceIntersections)
         {
-            var point = this.line3Component.GetPointAtDistance(lineOfSight, intercept.Distance);
+            var point = this.line3Component.GetPointAtDistance(lineOfSight, surfaceIntersection.Distance);
             if (this.sceneComponent.Contains(point))
             {
-                allIntercepts.Add(intercept);
+                allSurfaceIntersections.Add(surfaceIntersection);
             }
         }
 
-        return allIntercepts;
+        return allSurfaceIntersections;
     }
 }

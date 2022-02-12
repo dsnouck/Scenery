@@ -37,8 +37,6 @@ public class ProjectorComponent : IProjectorComponent
         this.vector3Component = vector3Component;
     }
 
-    // TODO: Rename intercept to surface intersection.
-
     /// <inheritdoc/>
     /// <remarks>
     /// This implementation is intentionally simple.
@@ -66,17 +64,17 @@ public class ProjectorComponent : IProjectorComponent
                 Origin = projectorSettings.Eye,
                 Direction = direction,
             };
-            var firstOrDefaultIntercept = sceneComponent.GetAllIntercepts(lineOfSight)
-                .Where(intercept => intercept.Distance > 0D)
-                .OrderBy(intercept => intercept.Distance)
+            var firstOrDefaultSurfaceIntersection = sceneComponent.GetAllSurfaceIntersections(lineOfSight)
+                .Where(surfaceIntersection => surfaceIntersection.Distance > 0D)
+                .OrderBy(surfaceIntersection => surfaceIntersection.Distance)
                 .FirstOrDefault();
-            if (firstOrDefaultIntercept == null)
+            if (firstOrDefaultSurfaceIntersection == null)
             {
                 return projectorSettings.Background;
             }
 
-            var intensity = Math.Abs(this.vector3Component.DotProduct(firstOrDefaultIntercept.Normal(), direction));
-            return this.colorComponent.Multiply(firstOrDefaultIntercept.Color, intensity);
+            var intensity = Math.Abs(this.vector3Component.DotProduct(firstOrDefaultSurfaceIntersection.Normal(), direction));
+            return this.colorComponent.Multiply(firstOrDefaultSurfaceIntersection.Color, intensity);
         };
     }
 
