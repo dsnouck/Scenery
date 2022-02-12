@@ -53,16 +53,16 @@ public class SceneContainerComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="SceneContainerComponent.GetImage(SceneContainer)"/>.
+    /// Tests <see cref="SceneContainerComponent.Render(SceneContainer)"/>.
     /// </summary>
     [Fact]
-    public void GivenASceneContainerWhenGetImageIsCalledThenTheCorrectActionsArePerformed()
+    public void GivenASceneContainerWhenRenderIsCalledThenTheCorrectActionsArePerformed()
     {
         // Arrange.
         var sceneContainer = new SceneContainer();
 
         // Act.
-        this.systemUnderTest.GetImage(sceneContainer);
+        this.systemUnderTest.Render(sceneContainer);
 
         // Assert.
         this.projectorComponentTestDouble
@@ -70,6 +70,6 @@ public class SceneContainerComponentTests
         this.samplerComponentTestDouble
             .Verify(component => component.SampleImageToBitmap(It.IsAny<Func<Vector2, Color>>(), It.IsAny<SamplerSettings>()), Times.Once);
         this.bitmapFileComponentTestDouble
-            .Verify(component => component.GetBitmapFile(It.IsAny<List<List<Color>>>()), Times.Once);
+            .Verify(component => component.CreateBitmapFile(It.IsAny<List<List<Color>>>()), Times.Once);
     }
 }

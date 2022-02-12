@@ -13,10 +13,10 @@ using Scenery.Models;
 public interface ISamplerComponent
 {
     /// <summary>
-    /// Samples <paramref name="image"/> to bitmap.
+    /// Samples an image to a bitmap.
     /// </summary>
     /// <param name="image">The image.</param>
     /// <param name="samplerSettings">The sampler settings.</param>
-    /// <returns><paramref name="image"/> sampled to bitmap.</returns>
+    /// <returns>The image sampled to a bitmap.</returns>
     List<List<Color>> SampleImageToBitmap(Func<Vector2, Color> image, SamplerSettings samplerSettings);
 }

@@ -13,9 +13,9 @@ using Scenery.Models;
 public interface IBitmapFileComponent
 {
     /// <summary>
-    /// Gets the bitmap file for the given <paramref name="bitmap"/>.
+    /// Creates a bitmap file from a bitmap.
     /// </summary>
     /// <param name="bitmap">The bitmap.</param>
-    /// <returns>The bitmap file for the given <paramref name="bitmap"/>.</returns>
-    Stream GetBitmapFile(List<List<Color>> bitmap);
+    /// <returns>The bitmap file created from the bitmap.</returns>
+    Stream CreateBitmapFile(List<List<Color>> bitmap);
 }

@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Represents a four by four matrix.
+/// Represents a 4×4 matrix.
 /// </summary>
 public class Matrix4
 {

@@ -13,32 +13,32 @@ using Scenery.Models;
 public interface IMatrix4Component
 {
     /// <summary>
-    /// Gets the matrix for rotating <paramref name="angle"/> around <paramref name="axis"/>.
+    /// Creates a rotation matrix.
     /// </summary>
     /// <param name="axis">The rotation axis.</param>
     /// <param name="angle">The rotation angle.</param>
-    /// <returns>The matrix for rotating <paramref name="angle"/> around <paramref name="axis"/>.</returns>
-    Matrix4 GetRotationMatrix(Vector3 axis, double angle);
+    /// <returns>The rotation matrix for the rotation axis and angle.</returns>
+    Matrix4 CreateRotationMatrix(Vector3 axis, double angle);
 
     /// <summary>
-    /// Gets the matrix for scaling with <paramref name="factor"/>.
+    /// Creates a scaling matrix.
     /// </summary>
     /// <param name="factor">The scaling factor.</param>
-    /// <returns>The matrix for scaling with <paramref name="factor"/>.</returns>
-    Matrix4 GetScalingMatrix(double factor);
+    /// <returns>The scaling matrix for the scaling factor.</returns>
+    Matrix4 CreateScalingMatrix(double factor);
 
     /// <summary>
-    /// Gets the matrix for translating with <paramref name="translation"/>.
+    /// Creates a translation matrix.
     /// </summary>
     /// <param name="translation">The translation.</param>
-    /// <returns>The matrix for translating with <paramref name="translation"/>.</returns>
-    Matrix4 GetTranslationMatrix(Vector3 translation);
+    /// <returns>The translation matrix for the translation.</returns>
+    Matrix4 CreateTranslationMatrix(Vector3 translation);
 
     /// <summary>
-    /// Multiplies <paramref name="matrix"/> with <paramref name="vector"/>.
+    /// Multiplies a matrix with a vector.
     /// </summary>
     /// <param name="matrix">The matrix.</param>
     /// <param name="vector">The vector.</param>
-    /// <returns><paramref name="matrix"/> multiplied with <paramref name="vector"/>.</returns>
+    /// <returns>The product of the matrix and the vector.</returns>
     Vector4 Multiply(Matrix4 matrix, Vector4 vector);
 }

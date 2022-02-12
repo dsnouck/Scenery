@@ -8,7 +8,7 @@ namespace Scenery.Models;
 using Scenery.Models.Scenes;
 
 /// <summary>
-/// Contains a <see cref="Scene"/> and everything necessary for rendering it.
+/// Contains a scene and all the settings necessary for rendering it.
 /// </summary>
 public class SceneContainer
 {

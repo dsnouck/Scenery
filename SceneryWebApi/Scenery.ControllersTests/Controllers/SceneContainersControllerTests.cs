@@ -50,13 +50,13 @@ public class SceneContainersControllerTests
     /// Tests <see cref="SceneContainersController.PostSceneContainer(SceneContainer)"/>.
     /// </summary>
     [Fact]
-    public void GivenASceneContainerWhenPostSceneContainerIsCalledThenSceneContainerComponentGetImageIsCalled()
+    public void GivenASceneContainerWhenPostSceneContainerIsCalledThenSceneContainerComponentRenderIsCalled()
     {
         // Arrange.
         var sceneContainer = new SceneContainer();
         using var stream = new MemoryStream();
         this.sceneContainerComponentTestDouble
-            .Setup(component => component.GetImage(It.IsAny<SceneContainer>()))
+            .Setup(component => component.Render(It.IsAny<SceneContainer>()))
             .Returns(stream);
 
         // Act.
@@ -65,6 +65,6 @@ public class SceneContainersControllerTests
         // Assert.
         result.Should().BeOfType<FileStreamResult>();
         this.sceneContainerComponentTestDouble
-            .Verify(component => component.GetImage(It.IsAny<SceneContainer>()));
+            .Verify(component => component.Render(It.IsAny<SceneContainer>()));
     }
 }

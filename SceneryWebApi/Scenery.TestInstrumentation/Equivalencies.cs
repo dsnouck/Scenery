@@ -14,7 +14,7 @@ using FluentAssertions.Equivalency;
 public static class Equivalencies
 {
     /// <summary>
-    /// Gets the double precision.
+    /// Gets the precision used for comparing doubles.
     /// </summary>
     public static double DoublePrecision => 0.001D;
 

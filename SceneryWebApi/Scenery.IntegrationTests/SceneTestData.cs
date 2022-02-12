@@ -19,9 +19,8 @@ public class SceneTestData : IEnumerable<object[]>
     /// </summary>
     public SceneTestData()
     {
-        // scenes.json is used to test the output of GET ​/Scenes.
         this.jsonFilenames = Directory.GetFiles("Scenes", "*.json")
-            .Where(filename => filename != "Scenes\\scenes.json")
+            .Where(filename => filename != "Scenes\\scenes.json") // scenes.json is used to test the output of GET ​/Scenes.
             .Select(filename => (new object[] { filename }))
             .ToList();
     }

@@ -22,7 +22,7 @@ public class RotatedValidator : AbstractValidator<Rotated>
     {
         this.RuleFor(scene => scene.Axis)
             .NotNull()
-            .Must(axis => vector3Component.GetLength(axis) > 0D)
+            .Must(axis => vector3Component.Length(axis) > 0D)
             .WithMessage("Axis must not have zero length.");
         this.RuleFor(scene => scene.Scene)
             .NotNull()

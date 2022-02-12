@@ -61,7 +61,7 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenNoInterceptsWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenNoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
@@ -73,12 +73,12 @@ public class ProjectorComponentTests
             Background = new Color(),
         };
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))
             .Returns(sceneComponentTestDouble.Object);
@@ -89,7 +89,7 @@ public class ProjectorComponentTests
         // Assert.
         result(new Vector2()).Should().Be(projectorSettings.Background);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble
@@ -108,18 +108,18 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenAnInterceptBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundIsReturned()
+    public void GivenASurfaceIntersectionBehindTheEyeWhenProjectSceneToImageIsCalledThenTheBackgroundColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
         var projectorSettings = new ProjectorSettings();
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept> { new Intercept { Distance = -1D } });
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection> { new SurfaceIntersection { Distance = -1D } });
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))
             .Returns(sceneComponentTestDouble.Object);
@@ -130,7 +130,7 @@ public class ProjectorComponentTests
         // Assert.
         result(new Vector2()).Should().Be(projectorSettings.Background);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble
@@ -149,21 +149,21 @@ public class ProjectorComponentTests
     /// Tests <see cref="ProjectorComponent.ProjectSceneToImage(Scene, ProjectorSettings)"/>.
     /// </summary>
     [Fact]
-    public void GivenTwoInterceptsWhenProjectSceneToImageIsCalledThenTheCorrectColorIsReturned()
+    public void GivenTwoSurfaceIntersectionsWhenProjectSceneToImageIsCalledThenTheCorrectColorIsReturned()
     {
         // Arrange.
         var scene = new Scene();
         var projectorSettings = new ProjectorSettings();
         this.funcVector2Vector3ComponentTestDouble
-            .Setup(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
+            .Setup(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()))
             .Returns(point => new Vector3());
         var sceneComponentTestDouble = new Mock<ISceneComponent>();
         sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept { Distance = 1D },
-                    new Intercept { Distance = 2D },
+                    new SurfaceIntersection { Distance = 1D },
+                    new SurfaceIntersection { Distance = 2D },
             });
         this.sceneComponentFactoryTestDouble
             .Setup(component => component.CreateSceneComponent(It.IsAny<Scene>()))
@@ -181,7 +181,7 @@ public class ProjectorComponentTests
         this.colorComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Color>(), It.IsAny<double>()), Times.Once);
         this.funcVector2Vector3ComponentTestDouble
-            .Verify(component => component.GetPlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.CreatePlane(It.IsAny<Vector3>(), It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Once);
         this.sceneComponentFactoryTestDouble
             .Verify(component => component.CreateSceneComponent(It.IsAny<Scene>()), Times.Once);
         this.vector3ComponentTestDouble

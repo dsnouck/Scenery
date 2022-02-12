@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// An octahedron with an inradius of 1.
+/// </summary>
 public class Octahedron : Scene
 {
 }

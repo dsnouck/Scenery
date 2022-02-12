@@ -28,7 +28,7 @@ public class Matrix4Component : IMatrix4Component
     }
 
     /// <inheritdoc/>
-    public Matrix4 GetRotationMatrix(Vector3 axis, double angle)
+    public Matrix4 CreateRotationMatrix(Vector3 axis, double angle)
     {
         axis = this.vector3Component.Normalize(axis);
         var l = axis.X;
@@ -72,7 +72,7 @@ public class Matrix4Component : IMatrix4Component
     }
 
     /// <inheritdoc/>
-    public Matrix4 GetScalingMatrix(double factor)
+    public Matrix4 CreateScalingMatrix(double factor)
     {
         return new Matrix4
         {
@@ -108,7 +108,7 @@ public class Matrix4Component : IMatrix4Component
     }
 
     /// <inheritdoc/>
-    public Matrix4 GetTranslationMatrix(Vector3 translation)
+    public Matrix4 CreateTranslationMatrix(Vector3 translation)
     {
         ArgumentNullException.ThrowIfNull(translation);
 

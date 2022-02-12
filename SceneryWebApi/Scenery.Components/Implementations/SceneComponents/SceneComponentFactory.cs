@@ -409,8 +409,8 @@ public class SceneComponentFactory : ISceneComponentFactory
         return new AffinelyTransformedComponent(
             this.matrix4Component,
             this.CreateSceneComponent(rotated.Scene),
-            this.matrix4Component.GetRotationMatrix(rotated.Axis, rotated.Angle),
-            this.matrix4Component.GetRotationMatrix(rotated.Axis, -rotated.Angle));
+            this.matrix4Component.CreateRotationMatrix(rotated.Axis, rotated.Angle),
+            this.matrix4Component.CreateRotationMatrix(rotated.Axis, -rotated.Angle));
     }
 
     private ISceneComponent CreateScaledComponent(Scaled scaled)
@@ -418,8 +418,8 @@ public class SceneComponentFactory : ISceneComponentFactory
         return new AffinelyTransformedComponent(
             this.matrix4Component,
             this.CreateSceneComponent(scaled.Scene),
-            this.matrix4Component.GetScalingMatrix(scaled.Factor),
-            this.matrix4Component.GetScalingMatrix(1 / scaled.Factor));
+            this.matrix4Component.CreateScalingMatrix(scaled.Factor),
+            this.matrix4Component.CreateScalingMatrix(1 / scaled.Factor));
     }
 
     private ISceneComponent CreateSphereComponent()
@@ -466,8 +466,8 @@ public class SceneComponentFactory : ISceneComponentFactory
         return new AffinelyTransformedComponent(
             this.matrix4Component,
             this.CreateSceneComponent(translated.Scene),
-            this.matrix4Component.GetTranslationMatrix(translated.Translation),
-            this.matrix4Component.GetTranslationMatrix(this.vector3Component.Multiply(translated.Translation, -1D)));
+            this.matrix4Component.CreateTranslationMatrix(translated.Translation),
+            this.matrix4Component.CreateTranslationMatrix(this.vector3Component.Multiply(translated.Translation, -1D)));
     }
 
     private ISceneComponent CreateUnionComponent(Union union)

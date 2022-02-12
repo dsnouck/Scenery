@@ -5,7 +5,13 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A transparent scene.
+/// </summary>
+/// <remarks>
+/// Makes the surface of a scene transparent.
+/// The interior and exterior remain unchanged.
+/// </remarks>
 public class Transparent : Transformed
 {
 }

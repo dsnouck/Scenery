@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A sphere with a radius of 1.
+/// </summary>
 public class Sphere : Scene
 {
 }

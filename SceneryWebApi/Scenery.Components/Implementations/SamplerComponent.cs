@@ -57,7 +57,7 @@ public class SamplerComponent : ISamplerComponent
         // The x-component for a column is the center of the subinterval.
         // The columns are counted from left to right.
         // The x-component runs from left to right.
-        return this.funcDoubleDoubleComponent.GetLineThrough(
+        return this.funcDoubleDoubleComponent.CreateLineThrough(
             new Vector2 { X = -0.5D, Y = -1D },
             new Vector2 { X = (samplerSettings.Columns * samplerSettings.Subsamples) - 0.5D, Y = 1D });
     }
@@ -70,7 +70,7 @@ public class SamplerComponent : ISamplerComponent
         // The y-component for a row is the center of the subinterval.
         // The rows are counted from top to bottom.
         // The y-component runs from bottom to top.
-        return this.funcDoubleDoubleComponent.GetLineThrough(
+        return this.funcDoubleDoubleComponent.CreateLineThrough(
             new Vector2 { X = -0.5D, Y = aspectRatio },
             new Vector2 { X = (samplerSettings.Rows * samplerSettings.Subsamples) - 0.5D, Y = -aspectRatio });
     }

@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A colored scene.
+/// </summary>
 public class Colored : Transformed
 {
     /// <summary>

@@ -82,26 +82,26 @@ public class PlaneComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="PlaneComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="PlaneComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheLineOfSightIsNullWhenGetAllSurfaceIntersectionsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var lineOfSight = default(Line3);
 
         // Act.
-        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="PlaneComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="PlaneComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheLineOfSightIsApproximatelyParallelToThePlaneWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenTheLineOfSightIsApproximatelyParallelToThePlaneWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
@@ -110,7 +110,7 @@ public class PlaneComponentTests
             .Returns(0D);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
@@ -119,10 +119,10 @@ public class PlaneComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="PlaneComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="PlaneComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenALineOfSightWhenGetAllInterceptsIsCalledThenASingleInterceptIsReturned()
+    public void GivenALineOfSightWhenGetAllSurfaceIntersectionsIsCalledThenASingleSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
@@ -134,7 +134,7 @@ public class PlaneComponentTests
             .Returns(new Vector3());
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
@@ -142,7 +142,7 @@ public class PlaneComponentTests
         this.vector3ComponentTestDouble
             .Verify(component => component.DotProduct(It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Exactly(2));
         this.vector3ComponentTestDouble
-            .Verify(component => component.GetLength(It.IsAny<Vector3>()), Times.Once);
+            .Verify(component => component.Length(It.IsAny<Vector3>()), Times.Once);
         this.vector3ComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Vector3>(), It.IsAny<double>()), Times.Once);
         this.vector3ComponentTestDouble

@@ -30,10 +30,10 @@ public class FuncVector2Vector3ComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="FuncVector2Vector3Component.GetPlane(Vector3, Vector3, Vector3)"/>.
+    /// Tests <see cref="FuncVector2Vector3Component.CreatePlane(Vector3, Vector3, Vector3)"/>.
     /// </summary>
     [Fact]
-    public void GivenAnOriginAndTwoDirectionsWhenGetPlaneIsCalledThenTheCorrectPlaneIsReturned()
+    public void GivenAnOriginAndTwoDirectionsWhenCreatePlaneIsCalledThenTheCorrectPlaneIsReturned()
     {
         // Arrange.
         var origin = new Vector3();
@@ -41,7 +41,7 @@ public class FuncVector2Vector3ComponentTests
         var yDirection = new Vector3();
 
         // Act.
-        var result = this.systemUnderTest.GetPlane(origin, xDirection, yDirection);
+        var result = this.systemUnderTest.CreatePlane(origin, xDirection, yDirection);
 
         // Assert.
         result(new Vector2());

@@ -111,188 +111,188 @@ public class UnionComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheLineOfSightIsNullWhenGetAllSurfaceIntersectionsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var lineOfSight = default(Line3);
 
         // Act.
-        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenBothScenesGiveNoInterceptsWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenBothScenesGiveNoSurfaceIntersectionsWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.otherSceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.otherSceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheFirstSceneGivesAnInterceptWhichIsNotContainedByTheSecondSceneWhenGetAllInterceptsIsCalledThenOneInterceptIsReturned()
+    public void GivenTheFirstSceneGivesASurfaceIntersectionWhichIsNotContainedByTheSecondSceneWhenGetAllSurfaceIntersectionsIsCalledThenOneSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
         this.otherSceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.otherSceneComponentTestDouble
             .Setup(component => component.Contains(It.IsAny<Vector3>()))
             .Returns(false);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
         this.line3ComponentTestDouble
             .Verify(component => component.GetPointAtDistance(It.IsAny<Line3>(), It.IsAny<double>()), Times.Once);
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.otherSceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.otherSceneComponentTestDouble
             .Verify(component => component.Contains(It.IsAny<Vector3>()), Times.Once);
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheFirstSceneGivesAnInterceptWhichIsContainedByTheSecondSceneWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenTheFirstSceneGivesASurfaceIntersectionWhichIsContainedByTheSecondSceneWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
         this.otherSceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.otherSceneComponentTestDouble
             .Setup(component => component.Contains(It.IsAny<Vector3>()))
             .Returns(true);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
         this.line3ComponentTestDouble
             .Verify(component => component.GetPointAtDistance(It.IsAny<Line3>(), It.IsAny<double>()), Times.Once);
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.otherSceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.otherSceneComponentTestDouble
             .Verify(component => component.Contains(It.IsAny<Vector3>()), Times.Once);
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheSecondSceneGivesAnInterceptWhichIsNotContainedByTheFirstSceneWhenGetAllInterceptsIsCalledThenOneInterceptIsReturned()
+    public void GivenTheSecondSceneGivesASurfaceIntersectionWhichIsNotContainedByTheFirstSceneWhenGetAllSurfaceIntersectionsIsCalledThenOneSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.sceneComponentTestDouble
             .Setup(component => component.Contains(It.IsAny<Vector3>()))
             .Returns(false);
         this.otherSceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(1);
         this.line3ComponentTestDouble
             .Verify(component => component.GetPointAtDistance(It.IsAny<Line3>(), It.IsAny<double>()), Times.Once);
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.sceneComponentTestDouble
             .Verify(component => component.Contains(It.IsAny<Vector3>()), Times.Once);
         this.otherSceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
     }
 
     /// <summary>
-    /// Tests <see cref="UnionComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="UnionComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheSecondSceneGivesAnInterceptWhichIsContainedByTheFirstSceneWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenTheSecondSceneGivesASurfaceIntersectionWhichIsContainedByTheFirstSceneWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
         this.sceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>());
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>());
         this.sceneComponentTestDouble
             .Setup(component => component.Contains(It.IsAny<Vector3>()))
             .Returns(true);
         this.otherSceneComponentTestDouble
-            .Setup(component => component.GetAllIntercepts(It.IsAny<Line3>()))
-            .Returns(new List<Intercept>
+            .Setup(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()))
+            .Returns(new List<SurfaceIntersection>
             {
-                    new Intercept(),
+                    new SurfaceIntersection(),
             });
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
         this.line3ComponentTestDouble
             .Verify(component => component.GetPointAtDistance(It.IsAny<Line3>(), It.IsAny<double>()), Times.Once);
         this.sceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
         this.sceneComponentTestDouble
             .Verify(component => component.Contains(It.IsAny<Vector3>()), Times.Once);
         this.otherSceneComponentTestDouble
-            .Verify(component => component.GetAllIntercepts(It.IsAny<Line3>()), Times.Once);
+            .Verify(component => component.GetAllSurfaceIntersections(It.IsAny<Line3>()), Times.Once);
     }
 }

@@ -14,24 +14,24 @@ using SkiaSharp;
 public interface IColorComponent
 {
     /// <summary>
-    /// Calculates the average of <paramref name="colors"/>.
+    /// Calculates an average color.
     /// </summary>
     /// <param name="colors">The colors.</param>
-    /// <returns>The average of <paramref name="colors"/>.</returns>
+    /// <returns>The average of the colors.</returns>
     Color Average(List<Color> colors);
 
     /// <summary>
-    /// Gets the <see cref="SKColor"/> for <paramref name="color"/>.
+    /// Creates a <see cref="SKColor"/> from a color.
     /// </summary>
     /// <param name="color">The color.</param>
-    /// <returns>The <see cref="SKColor"/> for <paramref name="color"/>.</returns>
-    SKColor GetSkiaColorFromColor(Color color);
+    /// <returns>The <see cref="SKColor"/> created from the color.</returns>
+    SKColor CreateSkiaColorFromColor(Color color);
 
     /// <summary>
-    /// Multiplies <paramref name="color"/> with <paramref name="factor"/>.
+    /// Multiplies a color with a factor.
     /// </summary>
     /// <param name="color">The color.</param>
     /// <param name="factor">The factor.</param>
-    /// <returns><paramref name="color"/> multiplied with <paramref name="factor"/>.</returns>
+    /// <returns>The color multiplied with the factor.</returns>
     Color Multiply(Color color, double factor);
 }

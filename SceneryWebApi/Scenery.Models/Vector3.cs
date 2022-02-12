@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Represents a three-dimensional vector.
+/// Represents a 3-dimensional vector.
 /// </summary>
 public class Vector3
 {

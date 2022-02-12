@@ -33,7 +33,7 @@ public class BitmapComponent : IBitmapComponent
         {
             Pixels = bitmap
                 .SelectMany(row => row)
-                .Select(this.colorComponent.GetSkiaColorFromColor)
+                .Select(this.colorComponent.CreateSkiaColorFromColor)
                 .ToArray(),
         };
     }

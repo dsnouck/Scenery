@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A union of scenes.
+/// </summary>
 public class Union : Scene
 {
     /// <summary>

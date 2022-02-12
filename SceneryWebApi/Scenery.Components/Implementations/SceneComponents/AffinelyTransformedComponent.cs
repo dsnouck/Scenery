@@ -45,7 +45,7 @@ public class AffinelyTransformedComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
         ArgumentNullException.ThrowIfNull(lineOfSight);
 
@@ -55,12 +55,12 @@ public class AffinelyTransformedComponent : ISceneComponent
             Direction = this.TransformedBackDirection(lineOfSight.Direction),
         };
 
-        return this.sceneComponent.GetAllIntercepts(transformedLineOfSight)
-            .Select(intercept => new Intercept
+        return this.sceneComponent.GetAllSurfaceIntersections(transformedLineOfSight)
+            .Select(surfaceIntersection => new SurfaceIntersection
             {
-                Color = intercept.Color,
-                Distance = intercept.Distance,
-                Normal = () => this.TransformedDirection(intercept.Normal()),
+                Color = surfaceIntersection.Color,
+                Distance = surfaceIntersection.Distance,
+                Normal = () => this.TransformedDirection(surfaceIntersection.Normal()),
             })
             .ToList();
     }

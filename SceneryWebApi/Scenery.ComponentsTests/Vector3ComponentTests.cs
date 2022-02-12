@@ -276,10 +276,10 @@ public class Vector3ComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="Vector3Component.GetLength(Vector3)"/>.
+    /// Tests <see cref="Vector3Component.Length(Vector3)"/>.
     /// </summary>
     [Fact]
-    public void GivenAVectorWhenGetLengthIsCalledThenTheCorrectLengthIsReturned()
+    public void GivenAVectorWhenLengthIsCalledThenTheCorrectLengthIsReturned()
     {
         // Arrange.
         var vector = new Vector3
@@ -290,7 +290,7 @@ public class Vector3ComponentTests
         };
 
         // Act.
-        var result = this.systemUnderTest.GetLength(vector);
+        var result = this.systemUnderTest.Length(vector);
 
         // Assert.
         result.Should().BeApproximately(3.742D, Equivalencies.DoublePrecision);

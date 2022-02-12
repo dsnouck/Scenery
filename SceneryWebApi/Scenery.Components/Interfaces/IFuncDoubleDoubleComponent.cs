@@ -13,15 +13,15 @@ using Scenery.Models;
 public interface IFuncDoubleDoubleComponent
 {
     /// <summary>
-    /// Gets the line through two points.
+    /// Creates a line through two points.
     /// </summary>
-    /// <param name="point">A point.</param>
-    /// <param name="otherPoint">Another point.</param>
-    /// <returns>The line through two points.</returns>
-    Func<double, double> GetLineThrough(Vector2 point, Vector2 otherPoint);
+    /// <param name="point">The point.</param>
+    /// <param name="otherPoint">The other point.</param>
+    /// <returns>The line through both points.</returns>
+    Func<double, double> CreateLineThrough(Vector2 point, Vector2 otherPoint);
 
     /// <summary>
-    /// Gets the real zeros of x ↦ ax² + bx + c.
+    /// Calculates the real zeros of x ↦ ax² + bx + c.
     /// </summary>
     /// <param name="a">The quadratic coefficient.</param>
     /// <param name="b">The linear coefficient.</param>

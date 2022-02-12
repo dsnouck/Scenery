@@ -6,7 +6,7 @@
 namespace Scenery.Models;
 
 /// <summary>
-/// Represents a line in three dimensions.
+/// Represents a line in 3 dimensions.
 /// </summary>
 public class Line3
 {

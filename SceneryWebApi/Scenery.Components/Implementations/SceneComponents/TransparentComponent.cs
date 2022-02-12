@@ -30,8 +30,8 @@ public class TransparentComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
-        return new List<Intercept>();
+        return new List<SurfaceIntersection>();
     }
 }

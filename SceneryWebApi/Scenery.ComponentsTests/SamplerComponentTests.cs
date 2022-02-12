@@ -72,7 +72,7 @@ public class SamplerComponentTests
             .Setup(component => component.Average(It.IsAny<List<Color>>()))
             .Returns(new Color());
         this.funcDoubleDoubleComponentTestDouble
-            .Setup(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
+            .Setup(component => component.CreateLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
             .Returns(x => 0D);
 
         // Act.
@@ -99,7 +99,7 @@ public class SamplerComponentTests
         this.colorComponentTestDouble
             .Verify(component => component.Average(It.IsAny<List<Color>>()), Times.Exactly(6));
         this.funcDoubleDoubleComponentTestDouble
-            .Verify(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()), Times.Exactly(2));
+            .Verify(component => component.CreateLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()), Times.Exactly(2));
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public class SamplerComponentTests
             .Setup(component => component.Average(It.IsAny<List<Color>>()))
             .Returns(new Color());
         this.funcDoubleDoubleComponentTestDouble
-            .Setup(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
+            .Setup(component => component.CreateLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()))
             .Returns(x => 0D);
 
         // Act.
@@ -151,6 +151,6 @@ public class SamplerComponentTests
         this.colorComponentTestDouble
             .Verify(component => component.Average(It.IsAny<List<Color>>()), Times.Exactly(6));
         this.funcDoubleDoubleComponentTestDouble
-            .Verify(component => component.GetLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()), Times.Exactly(2));
+            .Verify(component => component.CreateLineThrough(It.IsAny<Vector2>(), It.IsAny<Vector2>()), Times.Exactly(2));
     }
 }

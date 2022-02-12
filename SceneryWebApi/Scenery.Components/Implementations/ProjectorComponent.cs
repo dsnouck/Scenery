@@ -38,6 +38,14 @@ public class ProjectorComponent : IProjectorComponent
     }
 
     /// <inheritdoc/>
+    /// <remarks>
+    /// This implementation is intentionally simple.
+    /// A screen is suspended between the eye and the focus.
+    /// The image is projected on that screen using perspective projection.
+    /// The only lighting is a single point source at the eye.
+    /// The colors in the image only depend on the color of the scene and the angle between the line of sight and the surface.
+    /// They do not depend on the distance between the eye and the scene.
+    /// </remarks>
     public Func<Vector2, Color> ProjectSceneToImage(Scene scene, ProjectorSettings projectorSettings)
     {
         ArgumentNullException.ThrowIfNull(projectorSettings);
@@ -56,17 +64,17 @@ public class ProjectorComponent : IProjectorComponent
                 Origin = projectorSettings.Eye,
                 Direction = direction,
             };
-            var firstOrDefaultIntercept = sceneComponent.GetAllIntercepts(lineOfSight)
-                .Where(intercept => intercept.Distance > 0D)
-                .OrderBy(intercept => intercept.Distance)
+            var firstOrDefaultSurfaceIntersection = sceneComponent.GetAllSurfaceIntersections(lineOfSight)
+                .Where(surfaceIntersection => surfaceIntersection.Distance > 0D)
+                .OrderBy(surfaceIntersection => surfaceIntersection.Distance)
                 .FirstOrDefault();
-            if (firstOrDefaultIntercept == null)
+            if (firstOrDefaultSurfaceIntersection == null)
             {
                 return projectorSettings.Background;
             }
 
-            var intensity = Math.Abs(this.vector3Component.DotProduct(firstOrDefaultIntercept.Normal(), direction));
-            return this.colorComponent.Multiply(firstOrDefaultIntercept.Color, intensity);
+            var intensity = Math.Abs(this.vector3Component.DotProduct(firstOrDefaultSurfaceIntersection.Normal(), direction));
+            return this.colorComponent.Multiply(firstOrDefaultSurfaceIntersection.Color, intensity);
         };
     }
 
@@ -87,6 +95,6 @@ public class ProjectorComponent : IProjectorComponent
         var halfScreenExtent = Math.Tan(projectorSettings.FieldOfView * 0.5D);
         xVector = this.vector3Component.Multiply(xVector, halfScreenExtent);
         yVector = this.vector3Component.Multiply(yVector, halfScreenExtent);
-        return this.funcVector2Vector3Component.GetPlane(centerScreen, xVector, yVector);
+        return this.funcVector2Vector3Component.CreatePlane(centerScreen, xVector, yVector);
     }
 }

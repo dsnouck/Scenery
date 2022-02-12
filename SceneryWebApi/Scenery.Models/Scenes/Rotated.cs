@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A rotated scene.
+/// </summary>
 public class Rotated : Transformed
 {
     /// <summary>

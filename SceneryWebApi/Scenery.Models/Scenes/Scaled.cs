@@ -5,7 +5,9 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A scaled scene.
+/// </summary>
 public class Scaled : Transformed
 {
     /// <summary>

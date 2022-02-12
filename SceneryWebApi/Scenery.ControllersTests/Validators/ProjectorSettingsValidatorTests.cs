@@ -27,7 +27,7 @@ public class ProjectorSettingsValidatorTests
     {
         this.vector3ComponentTestDouble = new Mock<IVector3Component>();
         this.vector3ComponentTestDouble
-            .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+            .Setup(vector3Component => vector3Component.Length(It.IsAny<Vector3>()))
             .Returns(1D);
 
         this.systemUnderTest = new SceneContainerValidator(this.vector3ComponentTestDouble.Object);
@@ -86,7 +86,7 @@ public class ProjectorSettingsValidatorTests
         // Arrange.
         var sceneContainer = new SceneContainer();
         this.vector3ComponentTestDouble
-            .Setup(vector3Component => vector3Component.GetLength(It.IsAny<Vector3>()))
+            .Setup(vector3Component => vector3Component.Length(It.IsAny<Vector3>()))
             .Returns(0D);
 
         // Act.

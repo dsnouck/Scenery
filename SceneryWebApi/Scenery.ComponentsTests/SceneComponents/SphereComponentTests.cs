@@ -79,26 +79,26 @@ public class SphereComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="SphereComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="SphereComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTheLineOfSightIsNullWhenGetAllInterceptsIsCalledThenAnArgumentNullExceptionIsThrown()
+    public void GivenTheLineOfSightIsNullWhenGetAllSurfaceIntersectionsIsCalledThenAnArgumentNullExceptionIsThrown()
     {
         // Arrange.
         var lineOfSight = default(Line3);
 
         // Act.
-        var action = () => this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var action = () => this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         action.Should().Throw<ArgumentNullException>();
     }
 
     /// <summary>
-    /// Tests <see cref="SphereComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="SphereComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenNoInterceptsWhenGetAllInterceptsIsCalledThenNoInterceptIsReturned()
+    public void GivenNoSurfaceIntersectionsWhenGetAllSurfaceIntersectionsIsCalledThenNoSurfaceIntersectionIsReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
@@ -108,7 +108,7 @@ public class SphereComponentTests
             .Returns(zeros);
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().BeEmpty();
@@ -119,10 +119,10 @@ public class SphereComponentTests
     }
 
     /// <summary>
-    /// Tests <see cref="SphereComponent.GetAllIntercepts(Line3)"/>.
+    /// Tests <see cref="SphereComponent.GetAllSurfaceIntersections(Line3)"/>.
     /// </summary>
     [Fact]
-    public void GivenTwoInterceptsWhenGetAllInterceptsIsCalledThenTwoInterceptsAreReturned()
+    public void GivenTwoSurfaceIntersectionsWhenGetAllSurfaceIntersectionsIsCalledThenTwoSurfaceIntersectionsAreReturned()
     {
         // Arrange.
         var lineOfSight = new Line3();
@@ -139,7 +139,7 @@ public class SphereComponentTests
             .Returns(new Vector3());
 
         // Act.
-        var result = this.systemUnderTest.GetAllIntercepts(lineOfSight);
+        var result = this.systemUnderTest.GetAllSurfaceIntersections(lineOfSight);
 
         // Assert.
         result.Should().HaveCount(2);
@@ -151,7 +151,7 @@ public class SphereComponentTests
         this.vector3ComponentTestDouble
             .Verify(component => component.DotProduct(It.IsAny<Vector3>(), It.IsAny<Vector3>()), Times.Exactly(3));
         this.vector3ComponentTestDouble
-           .Verify(component => component.GetLength(It.IsAny<Vector3>()), Times.Once);
+           .Verify(component => component.Length(It.IsAny<Vector3>()), Times.Once);
         this.vector3ComponentTestDouble
             .Verify(component => component.Multiply(It.IsAny<Vector3>(), It.IsAny<double>()), Times.Once);
         this.vector3ComponentTestDouble

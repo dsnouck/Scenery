@@ -34,14 +34,14 @@ public class ColoredComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
-        return this.sceneComponent.GetAllIntercepts(lineOfSight)
-            .Select(intercept => new Intercept
+        return this.sceneComponent.GetAllSurfaceIntersections(lineOfSight)
+            .Select(surfaceIntersection => new SurfaceIntersection
             {
                 Color = this.color,
-                Distance = intercept.Distance,
-                Normal = intercept.Normal,
+                Distance = surfaceIntersection.Distance,
+                Normal = surfaceIntersection.Normal,
             })
             .ToList();
     }

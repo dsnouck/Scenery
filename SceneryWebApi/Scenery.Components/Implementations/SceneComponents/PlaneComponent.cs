@@ -38,7 +38,7 @@ public class PlaneComponent : ISceneComponent
     }
 
     /// <inheritdoc/>
-    public List<Intercept> GetAllIntercepts(Line3 lineOfSight)
+    public List<SurfaceIntersection> GetAllSurfaceIntersections(Line3 lineOfSight)
     {
         ArgumentNullException.ThrowIfNull(lineOfSight);
 
@@ -49,7 +49,7 @@ public class PlaneComponent : ISceneComponent
         if (Math.Abs(dotProductNormalDirection) < this.epsilon)
         {
             // The line of sight is approximately parallel to the plane.
-            return new List<Intercept>();
+            return new List<SurfaceIntersection>();
         }
 
         var distance = this.vector3Component.DotProduct(
@@ -59,14 +59,14 @@ public class PlaneComponent : ISceneComponent
                 lineOfSight.Origin))
             / dotProductNormalDirection;
 
-        return new List<Intercept>
+        return new List<SurfaceIntersection>
             {
-                new Intercept()
+                new SurfaceIntersection()
                 {
                     Distance = distance,
                     Normal = () => this.vector3Component.Multiply(
                         this.vector3Component.Normalize(this.normal),
-                        this.vector3Component.GetLength(lineOfSight.Direction)),
+                        this.vector3Component.Length(lineOfSight.Direction)),
                 },
             };
     }

@@ -5,7 +5,12 @@
 
 namespace Scenery.Models.Scenes;
 
-/// <inheritdoc/>
+/// <summary>
+/// A full scene.
+/// </summary>
+/// <remarks>
+/// Is an identity element for an intersection.
+/// </remarks>
 public class Full : Scene
 {
 }

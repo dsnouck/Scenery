@@ -14,9 +14,9 @@ using SkiaSharp;
 public interface IBitmapComponent
 {
     /// <summary>
-    /// Creates a <see cref="SKBitmap"/> from <paramref name="bitmap"/>.
+    /// Creates a <see cref="SKBitmap"/> from a bitmap.
     /// </summary>
     /// <param name="bitmap">The bitmap.</param>
-    /// <returns>A <see cref="SKBitmap"/> created from <paramref name="bitmap"/>.</returns>
+    /// <returns>The <see cref="SKBitmap"/> created from the bitmap.</returns>
     SKBitmap CreateSkiaBitmap(List<List<Color>> bitmap);
 }
