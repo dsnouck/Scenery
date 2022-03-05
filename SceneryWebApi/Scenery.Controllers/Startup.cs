@@ -37,6 +37,14 @@ public class Startup
     /// <param name="services">An <see cref="IServiceCollection"/>.</param>
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                });
+        });
         services.AddControllers()
             .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new SceneJsonConverter()));
         services.AddComponents()
@@ -63,6 +71,7 @@ public class Startup
     /// <param name="environment">An <see cref="IWebHostEnvironment"/>.</param>
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment environment)
     {
+        applicationBuilder.UseCors();
         applicationBuilder.UseSwagger();
         applicationBuilder.UseSwaggerUI(options => options.EnableTryItOutByDefault());
 
