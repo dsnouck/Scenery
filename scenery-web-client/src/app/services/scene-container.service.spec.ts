@@ -1,22 +1,18 @@
-import { HttpClient } from "@angular/common/http";
-import { TestBed } from "@angular/core/testing";
 import { SceneContainerService } from "./scene-container.service";
+import { HttpClient } from "@angular/common/http";
+import { mock, instance } from "ts-mockito";
 
 describe('SceneContainerService', () => {
-  let service: SceneContainerService;
-  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let systemUnderTest: SceneContainerService;
+  let httpClientTestDouble: HttpClient;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj<HttpClient>('HttpClient', ['get']);
-
-    TestBed.configureTestingModule({
-      providers: [{ provide: HttpClient, useValue: httpClientSpy }]
-    });
-
-    service = TestBed.inject(SceneContainerService);
+    httpClientTestDouble = mock(HttpClient);
+    systemUnderTest = new SceneContainerService(instance(httpClientTestDouble));
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    // Assert.
+    expect(systemUnderTest).toBeTruthy();
   });
 });

@@ -1,22 +1,14 @@
-import { TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+  let systemUnderTest: AppComponent;
+
+  beforeEach(() => {
+    systemUnderTest = new AppComponent();
   });
 
   it('should be created', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    // Act.
+    expect(systemUnderTest).toBeTruthy();
   });
 });
